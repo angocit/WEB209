@@ -5,6 +5,7 @@ type Props = {}
 const Login = (props: Props) => {
   return (
     <>
+    <div className='bg-overlay'>
    <form>
   <div className="form-group">
     <label>Email address</label>
@@ -21,6 +22,7 @@ const Login = (props: Props) => {
   </div>
   <button type="submit" className="btn btn-primary">Submit</button>
 </form>
+</div>
     </>
   )
 }

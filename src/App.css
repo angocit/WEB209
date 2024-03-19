@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+.bg-overlay{
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+.bg-overlay form{
+  background: #fff;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 15px;
+}

@@ -12,6 +12,7 @@ import Client from './layout/client';
 import Dashboard from './layout/dashboard';
 import Home from './layout/home';
 import Details from './components/detail';
+import Products from './components/admin/products';
 function App() {  
   return (
     <Routes>
@@ -20,7 +21,9 @@ function App() {
             <Route path='details/:id' Component={Details}/>
             <Route path='demo' Component={Templatedemo}/>
         </Route>
-        <Route path='/dashboard' Component={Dashboard}/>
+        <Route path='/dashboard' Component={Dashboard}>
+            <Route path='product' Component={Products}/> 
+        </Route>
     </Routes>
   );
 }

@@ -5,6 +5,7 @@ type Props = {}
 const Register = (props: Props) => {
   return (
     <>
+    <div className='bg-overlay'>
      <form>
   <div className="form-row">
     <div className="form-group col-md-6">
@@ -51,6 +52,7 @@ const Register = (props: Props) => {
   </div>
   <button type="submit" className="btn btn-primary">Sign in</button>
 </form>
+</div>
     </>
   )
 }

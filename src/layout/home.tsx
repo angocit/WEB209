@@ -7,8 +7,9 @@ type Props = {}
 const Home = (props: Props) => {
   return (
     <>
-    <Slider/>
-    <Productlist/>
+    sdfsd
+    {/* <Slider/>
+    <Productlist/> */}
     </>
   )
 }
