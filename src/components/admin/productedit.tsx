@@ -1,9 +1,9 @@
-import Joi from 'joi';
 import React, { useEffect, useState } from 'react'
+import IProduct from '../../interface/product'
+import { useParams } from 'react-router-dom'
+import Joi from 'joi'
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import IProduct from '../../interface/product';
-import ProductList from './productlist';
+
 type Props = {}
 const ProductJoiObj = Joi.object({
     name: Joi.string().required().empty().messages({
@@ -19,26 +19,23 @@ const ProductJoiObj = Joi.object({
         "number.min":"Giá không nhỏ hơn 1000"
     })
 })
-const Products = (props: Props) => {
+const ProductEdit = (props: Props) => {
+    // const [product,setProduct]=useState<IProduct>({}as any)
     const [name,setName]=useState<string>('')
     const [image,setImage]=useState<string>('')
     const [price,setPrice]=useState<number>(0)
     const [message,setMessage]=useState<string>('')
-    const [Products,setProduct]=useState<IProduct[]>([])
-    const getAllProduct = async()=>{
-        try {
-            const res = await fetch('http://localhost:3000/products');
-            const data = await res.json();
-            setProduct(data);
-        } catch (error) {
-            console.log(error);
-            
-        }
-    }
-    useEffect(()=>{
-        (async()=>{
-           await getAllProduct();
-        })();
+    const params = useParams()
+    const id = params.id;
+    useEffect(()=>{        
+        fetch(`http://localhost:3000/products/${id}`)
+        .then (response =>response.json())
+        .then((product:IProduct)=>{
+            setName(product.name)
+            setImage(product.image)
+            setPrice(product.price)
+        })
+        
     },[])
     const handleSubmit = (e:any)=>{
         e.preventDefault()
@@ -48,18 +45,12 @@ const Products = (props: Props) => {
             setMessage(error.message)
         }
         else {
-            fetch(`http://localhost:3000/products`,{
-                method: 'POST',
+            fetch(`http://localhost:3000/products/${id}`,{
+                method: 'PUT',
                 body: JSON.stringify({name,image,price})
             }).then(response=>response.json())
             .then((data:IProduct)=>{
-                // Copy mảng cũ và bổ sung data được trả về từ json vào mảng 
-                const newproducts = [...Products,data]
-                setProduct(newproducts)
-                toast.success("Thêm mới thành công");
-                setName('')
-                setImage('')
-                setPrice(0)
+                toast.success("Cập nhật thành công");
             })
             .catch(error=>{
                 setMessage('Lỗi')
@@ -67,21 +58,18 @@ const Products = (props: Props) => {
         }
     }
   return (
-    <div className='container'>
-        <h1>Thêm mới sản phẩm</h1>
+    <>
+        <h1>Sửa sản phẩm {name}</h1>
         {message}
         <form onSubmit={handleSubmit}>
             <input onChange={(e:any)=>{setName(e.target.value)}} type='text' placeholder='Tên sản phẩm' value={name}/><br/>
             <input onChange={(e:any)=>{setImage(e.target.value)}} type='text' placeholder='Ảnh sản phẩm' value={image}/><br/>
             <input onChange={(e:any)=>{setPrice(e.target.value)}} type='number' placeholder='Giá tiền' value={price}/><br/>
-            <button type='submit'>Thêm mới</button>
+            <button type='submit'>Cập nhật</button>
         </form>
         <ToastContainer/>
-        <h3>Danh sách sản phẩm</h3>
-        <ProductList products={Products} setProduct = {setProduct}/>
-        
-    </div>
+    </>
   )
 }
 
-export default Products
+export default ProductEdit

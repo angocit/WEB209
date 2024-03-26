@@ -1,10 +1,28 @@
 {
   "products": [
     {
-      "id": "a81e",
-      "name": "sản phẩm 1",
-      "image": "Link ảnh 1",
-      "price": "100000"
+      "id": "ccd0",
+      "name": "sdafasdfasd",
+      "image": "sadfasdfas",
+      "price": "3242432"
+    },
+    {
+      "id": "ac66",
+      "name": "sdafasdfsadfadsfsdfasd",
+      "image": "dsfsdfsdfs",
+      "price": "234234"
+    },
+    {
+      "name": "dsfasfdsaf edit",
+      "image": "dsfasdfadsf",
+      "price": "234234",
+      "id": "7fbe"
+    },
+    {
+      "id": "cc87",
+      "name": "sdfasfadsf",
+      "image": "32423432",
+      "price": "32423432"
     }
   ]
 }

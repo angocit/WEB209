@@ -13,6 +13,7 @@ import Dashboard from './layout/dashboard';
 import Home from './layout/home';
 import Details from './components/detail';
 import Products from './components/admin/products';
+import ProductEdit from './components/admin/productedit';
 function App() {  
   return (
     <Routes>
@@ -23,6 +24,7 @@ function App() {
         </Route>
         <Route path='/dashboard' Component={Dashboard}>
             <Route path='product' Component={Products}/> 
+            <Route path='product/edit/:id' Component={ProductEdit}/> 
         </Route>
     </Routes>
   );

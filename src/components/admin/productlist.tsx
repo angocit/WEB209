@@ -6,8 +6,10 @@ type Props = {
     setProduct: (data:IProduct[])=>void
 }
 
-const ProductList = ({products,setProduct}:Props) => {
+const ProductList = ({products,setProduct}:Props) => {    
     const delProduct = (id:string)=>{
+    //    let mess = confirm('Are you sure?') 
+    //    if (mess){
         fetch(`http://localhost:3000/products/${id}`,{method: 'DELETE'})
         .then(response=>response.json())
         .then((data:IProduct)=>{
@@ -19,6 +21,7 @@ const ProductList = ({products,setProduct}:Props) => {
             console.log(`Looix ${error}`);
             
         })
+    // }
     }
   return (
     <table>
@@ -39,7 +42,7 @@ const ProductList = ({products,setProduct}:Props) => {
                         <td><img src={product.image}/></td>
                         <td>{product.name}</td>
                         <td>{product.price}</td>
-                        <td><a href={`/edit/${product.id}`}>Sửa</a><button onClick={()=>{delProduct(product.id)}}>Xóa</button></td>
+                        <td><a href={`/dashboard/product/edit/${product.id}`}>Sửa</a><button onClick={()=>{delProduct(product.id)}}>Xóa</button></td>
                     </tr>
                 )
             })}
