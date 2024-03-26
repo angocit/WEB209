@@ -21,10 +21,10 @@ const Details = (props: Props) => {
     <div className='container'>
         <div className='row'>
         <div className='col-md-6'>
-            <img src={product?.thumbnail}/>
+            <img src={product?.image}/>
         </div>
         <div className='col-md-6'>
-            <h1>{product?.title}</h1>
+            <h1>{product?.name}</h1>
             <span>{product?.price}</span>
         </div>
         </div>
