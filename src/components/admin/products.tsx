@@ -52,8 +52,10 @@ const Products = (props: Props) => {
                 method: 'POST',
                 body: JSON.stringify({name,image,price})
             }).then(response=>response.json())
-            .then(data=>{
-                // setMessage('Thêm mới thành công')
+            .then((data:IProduct)=>{
+                // Copy mảng cũ và bổ sung data được trả về từ json vào mảng 
+                const newproducts = [...Products,data]
+                setProduct(newproducts)
                 toast.success("Thêm mới thành công");
                 setName('')
                 setImage('')
@@ -76,7 +78,7 @@ const Products = (props: Props) => {
         </form>
         <ToastContainer/>
         <h3>Danh sách sản phẩm</h3>
-        <ProductList products={Products}/>
+        <ProductList products={Products} setProduct = {setProduct}/>
     </div>
   )
 }

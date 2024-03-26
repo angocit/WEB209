@@ -1,11 +1,25 @@
 import React from 'react'
 import IProduct from '../../interface/product'
-
+import { ToastContainer, toast } from 'react-toastify';
 type Props = {
-    products:IProduct[]
+    products:IProduct[],
+    setProduct: (data:IProduct[])=>void
 }
 
-const ProductList = ({products}:Props) => {
+const ProductList = ({products,setProduct}:Props) => {
+    const delProduct = (id:string)=>{
+        fetch(`http://localhost:3000/products/${id}`,{method: 'DELETE'})
+        .then(response=>response.json())
+        .then((data:IProduct)=>{
+            const newproducts = products.filter((product:IProduct)=>product.id!==id)
+            setProduct(newproducts)
+            toast.warning("Xóa thành công");
+        })
+        .catch((error:any)=>{
+            console.log(`Looix ${error}`);
+            
+        })
+    }
   return (
     <table>
         <thead>
@@ -25,7 +39,7 @@ const ProductList = ({products}:Props) => {
                         <td><img src={product.image}/></td>
                         <td>{product.name}</td>
                         <td>{product.price}</td>
-                        <td><a href={`/edit/${product.id}`}>Sửa</a><button>Xóa</button></td>
+                        <td><a href={`/edit/${product.id}`}>Sửa</a><button onClick={()=>{delProduct(product.id)}}>Xóa</button></td>
                     </tr>
                 )
             })}
