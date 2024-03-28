@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import IProduct from '../../interface/product'
+import {IProduct} from '../../interface/product'
 import { useParams } from 'react-router-dom'
 import Joi from 'joi'
 import { ToastContainer, toast } from 'react-toastify';

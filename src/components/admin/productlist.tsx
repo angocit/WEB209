@@ -1,5 +1,5 @@
 import React from 'react'
-import IProduct from '../../interface/product'
+import {IProduct} from '../../interface/product'
 import { ToastContainer, toast } from 'react-toastify';
 type Props = {
     products:IProduct[],
@@ -8,8 +8,8 @@ type Props = {
 
 const ProductList = ({products,setProduct}:Props) => {    
     const delProduct = (id:string)=>{
-    //    let mess = confirm('Are you sure?') 
-    //    if (mess){
+       let mess = window.confirm('Are you sure?') 
+       if (mess){
         fetch(`http://localhost:3000/products/${id}`,{method: 'DELETE'})
         .then(response=>response.json())
         .then((data:IProduct)=>{
@@ -21,7 +21,7 @@ const ProductList = ({products,setProduct}:Props) => {
             console.log(`Looix ${error}`);
             
         })
-    // }
+    }
     }
   return (
     <table>

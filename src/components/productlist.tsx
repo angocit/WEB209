@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import IProduct from "../interface/product";
+import {IProduct} from "../interface/product";
 import Addtocart from "./addtocart";
 import { Link } from "react-router-dom";
 

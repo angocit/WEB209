@@ -5,7 +5,7 @@ import Header from './components/header';
 import Slider from './components/slider';
 import Productlist from './components/productlist';
 import Footer from './components/footer';
-import IProduct from './interface/product';
+import {IProduct} from './interface/product';
 import Templatedemo from './components/demo';
 import { Route, Routes } from 'react-router-dom';
 import Client from './layout/client';

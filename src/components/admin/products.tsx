@@ -2,8 +2,9 @@ import Joi from 'joi';
 import React, { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import IProduct from '../../interface/product';
+import {IProduct} from '../../interface/product';
 import ProductList from './productlist';
+import { getAllProduct } from '../../service/product';
 type Props = {}
 const ProductJoiObj = Joi.object({
     name: Joi.string().required().empty().messages({
@@ -25,19 +26,10 @@ const Products = (props: Props) => {
     const [price,setPrice]=useState<number>(0)
     const [message,setMessage]=useState<string>('')
     const [Products,setProduct]=useState<IProduct[]>([])
-    const getAllProduct = async()=>{
-        try {
-            const res = await fetch('http://localhost:3000/products');
-            const data = await res.json();
-            setProduct(data);
-        } catch (error) {
-            console.log(error);
-            
-        }
-    }
     useEffect(()=>{
         (async()=>{
-           await getAllProduct();
+           const product:IProduct[] = await getAllProduct();
+           setProduct(product);
         })();
     },[])
     const handleSubmit = (e:any)=>{
