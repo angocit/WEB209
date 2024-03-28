@@ -1,26 +1,24 @@
 import React from 'react'
 import {IProduct} from '../../interface/product'
 import { ToastContainer, toast } from 'react-toastify';
+import { DeleteProduct } from '../../service/product';
 type Props = {
     products:IProduct[],
     setProduct: (data:IProduct[])=>void
 }
 
 const ProductList = ({products,setProduct}:Props) => {    
-    const delProduct = (id:string)=>{
+    const delProduct = async(id:string)=>{
        let mess = window.confirm('Are you sure?') 
        if (mess){
-        fetch(`http://localhost:3000/products/${id}`,{method: 'DELETE'})
-        .then(response=>response.json())
-        .then((data:IProduct)=>{
+        try {
+            await DeleteProduct(id)
             const newproducts = products.filter((product:IProduct)=>product.id!==id)
             setProduct(newproducts)
             toast.warning("Xóa thành công");
-        })
-        .catch((error:any)=>{
-            console.log(`Looix ${error}`);
-            
-        })
+        } catch (error) {
+           console.log(error);            
+        }
     }
     }
   return (

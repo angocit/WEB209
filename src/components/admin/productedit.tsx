@@ -1,24 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import {IProduct} from '../../interface/product'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Joi from 'joi'
 import { ToastContainer, toast } from 'react-toastify';
+import { ProductJoiObj } from '../../validate/product';
+import { UpdateProduct, getProductByID } from '../../service/product';
 
 type Props = {}
-const ProductJoiObj = Joi.object({
-    name: Joi.string().required().empty().messages({
-        "any.required":"Tên không để trống",
-        "string.empty":"Tên không để trống"
-    }),
-    image: Joi.string().required().empty().messages({
-        "any.required":"Ảnh không để trống",
-        "string.empty":"Ảnh không để trống"
-    }),
-    price: Joi.number().required().min(1000).messages({
-        "any.required":"Tên không để trống",
-        "number.min":"Giá không nhỏ hơn 1000"
-    })
-})
 const ProductEdit = (props: Props) => {
     // const [product,setProduct]=useState<IProduct>({}as any)
     const [name,setName]=useState<string>('')
@@ -26,36 +14,33 @@ const ProductEdit = (props: Props) => {
     const [price,setPrice]=useState<number>(0)
     const [message,setMessage]=useState<string>('')
     const params = useParams()
-    const id = params.id;
+    const navigate = useNavigate()
+    const id:any = params.id;
     useEffect(()=>{        
-        fetch(`http://localhost:3000/products/${id}`)
-        .then (response =>response.json())
-        .then((product:IProduct)=>{
-            setName(product.name)
+        (async ()=>{
+           const product = await getProductByID(id)
+           setName(product.name)
             setImage(product.image)
             setPrice(product.price)
-        })
+        })()
         
     },[])
-    const handleSubmit = (e:any)=>{
+    const handleSubmit = async (e:any)=>{
         e.preventDefault()
+        try {            
+        
         const {error} = ProductJoiObj.validate({name,image,price})
         // 
         if (error){
             setMessage(error.message)
         }
         else {
-            fetch(`http://localhost:3000/products/${id}`,{
-                method: 'PUT',
-                body: JSON.stringify({name,image,price})
-            }).then(response=>response.json())
-            .then((data:IProduct)=>{
-                toast.success("Cập nhật thành công");
-            })
-            .catch(error=>{
-                setMessage('Lỗi')
-            })
+            const product:IProduct = await UpdateProduct(id,{name,image,price})
+            navigate('/dashboard/product')
         }
+    } catch (error) {
+          console.log(error);            
+    }
     }
   return (
     <>

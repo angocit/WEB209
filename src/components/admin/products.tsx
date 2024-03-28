@@ -1,25 +1,12 @@
-import Joi from 'joi';
 import React, { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {IProduct} from '../../interface/product';
 import ProductList from './productlist';
-import { getAllProduct } from '../../service/product';
+import { addProduct, getAllProduct } from '../../service/product';
+import {ProductJoiObj} from '../../validate/product'
 type Props = {}
-const ProductJoiObj = Joi.object({
-    name: Joi.string().required().empty().messages({
-        "any.required":"Tên không để trống",
-        "string.empty":"Tên không để trống"
-    }),
-    image: Joi.string().required().empty().messages({
-        "any.required":"Ảnh không để trống",
-        "string.empty":"Ảnh không để trống"
-    }),
-    price: Joi.number().required().min(1000).messages({
-        "any.required":"Tên không để trống",
-        "number.min":"Giá không nhỏ hơn 1000"
-    })
-})
+
 const Products = (props: Props) => {
     const [name,setName]=useState<string>('')
     const [image,setImage]=useState<string>('')
@@ -32,7 +19,8 @@ const Products = (props: Props) => {
            setProduct(product);
         })();
     },[])
-    const handleSubmit = (e:any)=>{
+    const handleSubmit = async (e:any)=>{
+        try {
         e.preventDefault()
         const {error} = ProductJoiObj.validate({name,image,price})
         // 
@@ -40,23 +28,17 @@ const Products = (props: Props) => {
             setMessage(error.message)
         }
         else {
-            fetch(`http://localhost:3000/products`,{
-                method: 'POST',
-                body: JSON.stringify({name,image,price})
-            }).then(response=>response.json())
-            .then((data:IProduct)=>{
-                // Copy mảng cũ và bổ sung data được trả về từ json vào mảng 
-                const newproducts = [...Products,data]
+            const product = await addProduct({name,image,price})
+            const newproducts = [...Products,product]
                 setProduct(newproducts)
                 toast.success("Thêm mới thành công");
                 setName('')
                 setImage('')
                 setPrice(0)
-            })
-            .catch(error=>{
-                setMessage('Lỗi')
-            })
         }
+    } catch (error) {
+           console.log(error);            
+    }
     }
   return (
     <div className='container'>
@@ -71,7 +53,6 @@ const Products = (props: Props) => {
         <ToastContainer/>
         <h3>Danh sách sản phẩm</h3>
         <ProductList products={Products} setProduct = {setProduct}/>
-        
     </div>
   )
 }
