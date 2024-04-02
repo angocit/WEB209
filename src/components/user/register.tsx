@@ -1,53 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { UserRegister } from '../../service/auth'
 
 type Props = {}
 
 const Register = (props: Props) => {
+  const [name,setName] = useState<string>('')
+  const [email,setEmail] = useState<string>('')
+  const [password,setPassword] = useState<string>('')
+  const [message,setMessage] = useState<string>('')
+  const handleSubmit = async (e:any)=>{
+    try { 
+    e.preventDefault()
+    const user = await UserRegister({name,email,password})
+    if (user!==null){
+      setMessage('Đăng ký thành công')
+    }
+    else {
+      setMessage('Đăng ký không thành công')
+    }
+  } catch (error) {
+    setMessage('Đăng ký không thành công')
+  }
+  }
   return (
     <>
-    <div className='bg-overlay'>
-     <form>
+    <div className='bg-overlay'>      
+     <form onSubmit={handleSubmit}>
+     {message}
   <div className="form-row">
-    <div className="form-group col-md-6">
+  <div className="form-group col-md-12">
+      <label>Name</label>
+      <input type="text" onChange={(e:any)=>{setName(e.target.value)}} className="form-control" placeholder="Fullname"/>
+    </div>
+    <div className="form-group col-md-12">
       <label>Email</label>
-      <input type="email" className="form-control" id="inputEmail4" placeholder="Email"/>
+      <input type="email" onChange={(e:any)=>{setEmail(e.target.value)}} className="form-control" placeholder="Email"/>
     </div>
-    <div className="form-group col-md-6">
+    <div className="form-group col-md-12">
       <label>Password</label>
-      <input type="password" className="form-control" id="inputPassword4" placeholder="Password"/>
-    </div>
-  </div>
-  <div className="form-group">
-    <label>Address</label>
-    <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St"/>
-  </div>
-  <div className="form-group">
-    <label>Address 2</label>
-    <input type="text" className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"/>
-  </div>
-  <div className="form-row">
-    <div className="form-group col-md-6">
-      <label>City</label>
-      <input type="text" className="form-control" id="inputCity"/>
-    </div>
-    <div className="form-group col-md-4">
-      <label>State</label>
-      <select id="inputState" className="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div className="form-group col-md-2">
-      <label>Zip</label>
-      <input type="text" className="form-control" id="inputZip"/>
-    </div>
-  </div>
-  <div className="form-group">
-    <div className="form-check">
-      <input className="form-check-input" type="checkbox" id="gridCheck"/>
-      <label className="form-check-label">
-        Check me out
-      </label>
+      <input type="password" onChange={(e:any)=>{setPassword(e.target.value)}} className="form-control" placeholder="Password"/>
     </div>
   </div>
   <button type="submit" className="btn btn-primary">Sign in</button>

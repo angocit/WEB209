@@ -8,7 +8,6 @@ import { UpdateProduct, getProductByID } from '../../service/product';
 
 type Props = {}
 const ProductEdit = (props: Props) => {
-    // const [product,setProduct]=useState<IProduct>({}as any)
     const [name,setName]=useState<string>('')
     const [image,setImage]=useState<string>('')
     const [price,setPrice]=useState<number>(0)
