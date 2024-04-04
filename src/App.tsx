@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/header';
@@ -14,7 +14,18 @@ import Home from './layout/home';
 import Details from './components/detail';
 import Products from './components/admin/products';
 import ProductEdit from './components/admin/productedit';
+import PrivateRouter from './privaterouter';
 function App() {  
+  let userLogin = false;
+    let userinfo = sessionStorage.getItem("user")
+      userinfo = JSON.parse(userinfo) 
+      console.log(userinfo);     
+      if (userinfo===null) {
+        userLogin = false
+      }
+      else {
+        userLogin = true
+      }
   return (
     <Routes>
         <Route path='/' Component={Client}>
@@ -22,7 +33,7 @@ function App() {
             <Route path='details/:id' Component={Details}/>
             <Route path='demo' Component={Templatedemo}/>
         </Route>
-        <Route path='/dashboard' Component={Dashboard}>
+        <Route path='/dashboard' element={<PrivateRouter user={userLogin}><Dashboard/></PrivateRouter>}>
             <Route path='product' Component={Products}/> 
             <Route path='product/edit/:id' Component={ProductEdit}/> 
         </Route>

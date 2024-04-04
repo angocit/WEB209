@@ -17,7 +17,7 @@ const Login = (props: Props) => {
         setMessage(user.response.data)
       }
       else {
-        sessionStorage.setItem("user", user)
+        sessionStorage.setItem("user", JSON.stringify(user))
         setMessage('Đăng nhập thành công')
       }
     } catch (error) {
