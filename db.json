@@ -13,6 +13,24 @@
       "password": "$2a$10$kRTY3q0alARUYkmkEwDgXOZk4f/m0/WakfG1pa434m9zTq/zChnom",
       "name": "Ngọc",
       "id": 1
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$/24AJhULZd8318ud6ipOEeznkjoGGvp1GPjPq2F2EhN3VOJlsId2W",
+      "name": "admin",
+      "id": 2
+    },
+    {
+      "email": "angocit333@gmail.com",
+      "password": "$2a$10$OPqlIv2V2ELJMjiPGRu/6.L6IPqwfbYKqCwfL8SOU7kWNaPI/aApW",
+      "name": "Ngọc",
+      "id": 3
+    },
+    {
+      "email": "angocit1111@gmail.com",
+      "password": "$2a$10$0HfA/YhVlSm3Clg0C4sH/Odlg9lypQuF2h8fP9cE5sSSS.9ioMeAe",
+      "name": "Ngọc",
+      "id": 4
     }
   ]
 }

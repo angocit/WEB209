@@ -1,15 +1,16 @@
 import {axiosservice} from '../config/axiosconf'
 import { IUserLogin, IUserRegister } from '../interface/user'
 export const UserRegister = async(datauser:IUserRegister)=>{
+    // console.log(1)
     try {
         // const {data} = await axiosservice.post(`/register`,datauser)
-        const {data} = await axiosservice.post(`/register`,datauser)
+        const { data } = await axiosservice.post(`/register`,datauser)
         // console.log(data);
         return data
         
     } catch (error) {
-        // console.log(error);
-        return null
+        // console.log(error.response)
+        return error
     }
 }
 export const UserLogin = async(datauser:IUserLogin)=>{
@@ -17,7 +18,7 @@ export const UserLogin = async(datauser:IUserLogin)=>{
         const {data} = await axiosservice.post(`/login`,datauser)
         return data
     } catch (error) {
-        console.log(error);
-        return null
+        // console.log(error);
+        return error
     }
 }
