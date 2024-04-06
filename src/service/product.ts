@@ -45,3 +45,11 @@ export const DeleteProduct = async(pid:string)=>{
         console.log(error);    
     }
 }
+export const UploadImageProduct = async (formdata:any)=>{
+    try {
+        const {data} = await axiosservice.post(`/files/upload`,formdata);
+        return data;
+    } catch (error) {
+        console.log(error);    
+    }
+}

@@ -3,8 +3,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {IProduct} from '../../interface/product';
 import ProductList from './productlist';
-import { addProduct, getAllProduct } from '../../service/product';
+import { UploadImageProduct, addProduct, getAllProduct } from '../../service/product';
 import {ProductJoiObj} from '../../validate/product'
+import { baseURL } from '../../config/axiosconf';
 type Props = {}
 
 const Products = (props: Props) => {
@@ -40,13 +41,23 @@ const Products = (props: Props) => {
            console.log(error);            
     }
     }
+    const handleUpload = async (file:any)=>{
+        console.log(file);  
+        const formdata = new FormData();
+        formdata.append('file',file[0])
+        const image = await UploadImageProduct(formdata) 
+        // console.log(baseURL+image.url);
+        setImage(baseURL+image.url)
+    }
   return (
     <div className='container'>
         <h1>Thêm mới sản phẩm</h1>
         {message}
         <form onSubmit={handleSubmit}>
             <input onChange={(e:any)=>{setName(e.target.value)}} type='text' placeholder='Tên sản phẩm' value={name}/><br/>
-            <input onChange={(e:any)=>{setImage(e.target.value)}} type='text' placeholder='Ảnh sản phẩm' value={image}/><br/>
+            {/* <input onChange={(e:any)=>{setImage(e.target.value)}} type='text' placeholder='Ảnh sản phẩm' value={image}/><br/> */}
+            <input type='file' onChange={(e:any)=>{handleUpload(e.target.files)}} placeholder='Upload'/>
+            {(image==='')?<></>:<img src={image} width={100}/>}
             <input onChange={(e:any)=>{setPrice(e.target.value)}} type='number' placeholder='Giá tiền' value={price}/><br/>
             <button type='submit'>Thêm mới</button>
         </form>

@@ -16,16 +16,16 @@ import Products from './components/admin/products';
 import ProductEdit from './components/admin/productedit';
 import PrivateRouter from './privaterouter';
 function App() {  
-  let userLogin = false;
-    let userinfo = sessionStorage.getItem("user")
-      userinfo = JSON.parse(userinfo) 
-      console.log(userinfo);     
-      if (userinfo===null) {
-        userLogin = false
-      }
-      else {
-        userLogin = true
-      }
+  let userLogin = true;
+    // let userinfo = sessionStorage.getItem("user")
+    //   userinfo = JSON.parse(userinfo) 
+    //   console.log(userinfo);     
+    //   if (userinfo===null) {
+    //     userLogin = false
+    //   }
+    //   else {
+    //     userLogin = true
+    //   }
   return (
     <Routes>
         <Route path='/' Component={Client}>

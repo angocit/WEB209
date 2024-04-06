@@ -37,7 +37,7 @@ const ProductList = ({products,setProduct}:Props) => {
                 return (
                     <tr>
                         <td>{index+1}</td>
-                        <td><img src={product.image}/></td>
+                        <td><img src={product.image} width={100}/></td>
                         <td>{product.name}</td>
                         <td>{product.price}</td>
                         <td><a href={`/dashboard/product/edit/${product.id}`}>Sửa</a><button onClick={()=>{delProduct(product.id)}}>Xóa</button></td>
