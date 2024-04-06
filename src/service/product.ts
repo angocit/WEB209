@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {axiosservice} from '../config/axiosconf'
 import { IProductLite } from '../interface/product';
 
@@ -48,6 +49,14 @@ export const DeleteProduct = async(pid:string)=>{
 export const UploadImageProduct = async (formdata:any)=>{
     try {
         const {data} = await axiosservice.post(`/files/upload`,formdata);
+        return data;
+    } catch (error) {
+        console.log(error);    
+    }
+}
+export const UploadImageProductToCloudinary = async (formdata:any)=>{
+    try {
+        const {data} = await axios.post(`https://api.cloudinary.com/v1_1/dyzal5ujh/upload`,formdata);
         return data;
     } catch (error) {
         console.log(error);    
