@@ -21,13 +21,19 @@ function App() {
     const todo = {id:todos.length+1,title:newtodo,complete:true}
     setTodos([...todos,todo])
   }
+  const deleTodo = (id:number)=>{
+    if(confirm("Are you sure")){
+    const newtodos = todos.filter(todo=>todo.id!==id)
+    setTodos(newtodos)
+  }
+  }
   return (
     <>
     <input type='text' onChange={(e)=>setTodoValue(e.target.value)}/>
     <button onClick={handleAddTodo}>Thêm vào danh sách</button>
     <ul>
     {todos.map(todo=>(
-      <li>{todo.title}</li>
+      <li>{todo.title} <button onClick={()=>{deleTodo(todo.id)}}>Xóa</button></li>
     ))}
     </ul>
     {count}
