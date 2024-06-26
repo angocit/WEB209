@@ -39,8 +39,14 @@ function App() {
   }
   const onDelete = (id:any)=>{
     if (confirm("Are you sure you want to delete")){
-      const newtodos = todos.filter(todo=>todo.id!==id)
-      setTodo(newtodos)
+      fetch("http://localhost:3000/todo/"+id,{
+        method:"DELETE"
+      }).then(response=>response.json())
+      .then((data:ITodo)=>{
+        const newtodos = todos.filter(todo=>todo.id!==id)
+        setTodo(newtodos)
+        alert("Xóa thành công")
+      })      
     }
   }
   const changeStatus = (id:any)=>{
