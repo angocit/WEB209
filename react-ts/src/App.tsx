@@ -1,16 +1,24 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-
+interface ITodo {
+  id:number|string;
+  title:string;
+  complete:boolean;
+}
 function App() {
-  const [todos,setTodo]=useState([
-    {id:1,title:"To do 1",complete: true},
-    {id:2,title:"To do 2",complete: true},
-    {id:3,title:"To do 3",complete: true}
-  ])
+  const [todos,setTodo]=useState<ITodo[]>([])
   const [count, setCount] = useState(0)
   const [newtodo,setNewtodo] = useState('')
+  useEffect(()=>{
+    fetch("http://localhost:3000/todo").then(
+      response=>response.json()
+    ).then(data=>{
+      console.log(data);
+      setTodo(data)
+    })
+  },[])
   const handleClickAdd =()=>{
     setTodo([...todos,{id:todos.length+1,title:newtodo,complete:true}])
   }
@@ -23,7 +31,7 @@ function App() {
       setTodo(newtodos)
     }
   }
-  const changeStatus = (id:number)=>{
+  const changeStatus = (id:number|string)=>{
     const newtodos = todos.map(todo=>{
       if (todo.id ==id){
         todo.complete = !todo.complete
@@ -32,7 +40,7 @@ function App() {
     })
     setTodo(newtodos)
   }
-  const updateTodo = (id:number)=>{
+  const updateTodo = (id:number|string)=>{
     const newtodos = todos.map(todo=>{
       if (todo.id ==id){
         todo.title = newtodo
@@ -48,7 +56,7 @@ function App() {
     <button onClick={handleClickAdd}>Thêm danh sách</button>
     <ul>
       {
-        todos.map(todo=>(
+        todos.map((todo:ITodo)=>(
           (todo.complete)?
           (<li key={todo.id}> {todo.title}<button onClick={()=>{changeStatus(todo.id)}}>Sửa</button> <button onClick={()=>onDelete(todo.id)}>Xóa</button></li>)
           :(<li key={todo.id}>
