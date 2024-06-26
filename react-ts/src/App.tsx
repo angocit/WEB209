@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 interface ITodo {
-  id:number|string;
+  id?:number|string;
   title:string;
   complete:boolean;
 }
@@ -20,7 +20,19 @@ function App() {
     })
   },[])
   const handleClickAdd =()=>{
-    setTodo([...todos,{id:todos.length+1,title:newtodo,complete:true}])
+    const data:ITodo = {
+        title:newtodo,
+        complete:true
+    }
+    fetch("http://localhost:3000/todo",{
+      method:"POST",
+      body:JSON.stringify(data),
+      headers:{"Content-Type": "application/json"}
+    }).then(response=>response.json())
+    .then((data:ITodo)=>{
+      setTodo([...todos,data])
+      alert("Thêm mới thành công")
+    })
   }
   const Set_new_todo =(value:any)=>{
     setNewtodo(value)
@@ -31,7 +43,7 @@ function App() {
       setTodo(newtodos)
     }
   }
-  const changeStatus = (id:number|string)=>{
+  const changeStatus = (id:any)=>{
     const newtodos = todos.map(todo=>{
       if (todo.id ==id){
         todo.complete = !todo.complete
@@ -40,7 +52,7 @@ function App() {
     })
     setTodo(newtodos)
   }
-  const updateTodo = (id:number|string)=>{
+  const updateTodo = (id:any)=>{
     const newtodos = todos.map(todo=>{
       if (todo.id ==id){
         todo.title = newtodo
