@@ -27,13 +27,34 @@ function App() {
     setTodos(newtodos)
   }
   }
+  const changeStatus = (id:number)=>{
+     const newtodos = todos.map(todo=>{
+        if (todo.id==id){
+          todo.complete = !todo.complete
+        }
+        return todo
+     })
+     setTodos(newtodos)
+  }
+  const updateTodo =(id:number)=>{
+    const newtodos = todos.map(todo=>{
+      if (todo.id==id){
+        todo.title = newtodo
+        todo.complete = !todo.complete
+      }
+      return todo
+   })
+   setTodos(newtodos)
+  }
   return (
     <>
     <input type='text' onChange={(e)=>setTodoValue(e.target.value)}/>
     <button onClick={handleAddTodo}>Thêm vào danh sách</button>
     <ul>
     {todos.map(todo=>(
-      <li>{todo.title} <button onClick={()=>{deleTodo(todo.id)}}>Xóa</button></li>
+      (todo.complete)?
+      <li>{todo.title} <button onClick={()=>{deleTodo(todo.id)}}>Xóa</button><button onClick={()=>changeStatus(todo.id)}>Sửa</button></li>
+      : <li><input type='text' defaultValue={todo.title} onChange={(e)=>setTodoValue(e.target.value)}/> <button onClick={()=>updateTodo(todo.id)}>Lưu</button><button onClick={()=>changeStatus(todo.id)}>Hủy</button></li>
     ))}
     </ul>
     {count}
