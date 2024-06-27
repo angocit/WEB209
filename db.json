@@ -1,0 +1,9 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "To do 1",
+      "complete": true
+    }
+  ]
+}
