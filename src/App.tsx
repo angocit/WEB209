@@ -20,12 +20,24 @@ function App() {
   const [newtodo,setNewtodo] = useState('')
   const DeleteTodo =(id:number)=>{
     if(confirm("Are you sure you want to delete")){
-      const newtodolist = todolist.filter(todo=>todo.id !== id)
-      setTodolist(newtodolist) 
+      fetch("http://localhost:3000/todos/"+id,{method: "DELETE"}).then(res=>res.json())
+      .then((data:ITodo)=>{
+        const newtodolist = todolist.filter(todo=>todo.id !== id)
+        setTodolist(newtodolist) 
+        alert("Xóa thành công")
+      })      
     }
   }
   const handleAdd=()=>{
-    setTodolist([...todolist,{id:todolist.length+1,title:newtodo,complete:true}])
+    fetch("http://localhost:3000/todos",{
+      method: "POST",
+      body:JSON.stringify({title:newtodo,complete:true}),
+      headers:{"Content-Type": "application/json"}
+    }).then(res=>res.json())
+    .then((data:ITodo)=>{
+      setTodolist([...todolist,data])
+      alert("Thêm thành công")
+    })
   }
   const onChangetodo = (id:number)=>{
     setFlag(id)
