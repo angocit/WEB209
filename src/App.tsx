@@ -20,6 +20,25 @@ function App() {
   const handleAdd=()=>{
     setTodolist([...todolist,{id:todolist.length+1,title:newtodo,complete:true}])
   }
+  const onChangetodo = (id:number)=>{
+    const newtodos = todolist.map(todo=>{
+      if (todo.id==id){
+        todo.complete = !todo.complete;
+      }
+      return todo
+    })
+    setTodolist(newtodos)
+  }
+  const updateTodo = (id:number)=>{
+    const newtodos = todolist.map(todo=>{
+      if (todo.id==id){
+        todo.title = newtodo
+        todo.complete = !todo.complete;
+      }
+      return todo
+    })
+    setTodolist(newtodos)
+  }
   return (
     <>
      <h1>Danh sách các việc đã làm</h1>
@@ -27,8 +46,10 @@ function App() {
      <button onClick={handleAdd}>Thêm</button>
      <ul>
      {todolist.map(todo=>(
-        <li>{todo.title} <button onClick={()=>DeleteTodo(todo.id)}>Xóa</button></li>
-     ))}
+        (todo.complete)?
+        <li>{todo.title} <button onClick={()=>{onChangetodo(todo.id)}}>Sửa</button><button onClick={()=>DeleteTodo(todo.id)}>Xóa</button></li>
+      :<li><input type='text' defaultValue={todo.title} onChange={(e)=>{setNewtodo(e.target.value)}}/> <button onClick={()=>updateTodo(todo.id)}>Lưu</button><button onClick={()=>{onChangetodo(todo.id)}}>Hủy</button></li>
+      ))}
      </ul>
     </>
   )
