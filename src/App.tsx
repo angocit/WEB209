@@ -25,13 +25,25 @@ function App() {
     setNewtodo(data)
   }
   const handleAddTodo = ()=>{
-    const todo = {id:todos.length+1,title:newtodo,complete:true}
-    setTodos([...todos,todo])
+    const todo = {title:newtodo,complete:true}
+    fetch("http://localhost:3000/todos",{
+      method: "POST",
+      body: JSON.stringify(todo),
+      headers:{"content-type": "application/json"} // Thêm headers nếu Jsonserver chỉ add mỗi ID
+    }).then(response => response.json()).then((data: ITodo) =>{
+        setTodos([...todos,data])
+        alert("Thêm mới thành công")
+    })
+    // setTodos([...todos,todo])
   }
   const deleTodo = (id:number|string)=>{
     if(confirm("Are you sure")){
-    const newtodos = todos.filter(todo=>todo.id!==id)
-    setTodos(newtodos)
+      fetch("http://localhost:3000/todos/"+id,{method: "DELETE"}).then(response => response.json())
+      .then((data:ITodo)=>{
+        const newtodos = todos.filter(todo=>todo.id!==id)
+        setTodos(newtodos)
+        alert("Xóa thành công")
+      })    
   }
   }
   const changeStatus = (id:number|string)=>{
