@@ -1,16 +1,23 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-
+type ITodo = {
+  id:string|number,
+  title:string,
+  complete:boolean
+}
 function App() {
   const [count, setCount] = useState(0)
   const [newtodo, setNewtodo] = useState('')
-  const [todos, setTodos]= useState([
-    {id:1,title:"To do 1",complete:true},
-    {id:2,title:"To do 2",complete:true},
-    {id:3,title:"To do 3",complete:true}
-  ])
+  const [todos, setTodos]= useState<ITodo[]>([])
+  useEffect(()=>{
+    fetch("http://localhost:3000/todos").then(response => response.json())
+    .then((data: ITodo[]) =>{
+      setTodos(data)
+    })
+
+  },[])
   const handclick =()=>{
     setCount(count+1)
   }
@@ -21,13 +28,13 @@ function App() {
     const todo = {id:todos.length+1,title:newtodo,complete:true}
     setTodos([...todos,todo])
   }
-  const deleTodo = (id:number)=>{
+  const deleTodo = (id:number|string)=>{
     if(confirm("Are you sure")){
     const newtodos = todos.filter(todo=>todo.id!==id)
     setTodos(newtodos)
   }
   }
-  const changeStatus = (id:number)=>{
+  const changeStatus = (id:number|string)=>{
      const newtodos = todos.map(todo=>{
         if (todo.id==id){
           todo.complete = !todo.complete
@@ -36,7 +43,7 @@ function App() {
      })
      setTodos(newtodos)
   }
-  const updateTodo =(id:number)=>{
+  const updateTodo =(id:number|string)=>{
     const newtodos = todos.map(todo=>{
       if (todo.id==id){
         todo.title = newtodo
