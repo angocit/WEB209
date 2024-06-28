@@ -11,12 +11,7 @@ interface IProduct {
   price: number;
   category: string;
 }
-type formType = {
-  name: string;
-  image: string;
-  price: number;
-  category: string;
-}
+type formType = Pick<IProduct,'name'|'price'|'image'|'category'>
 function App() {
   const [products,setProducts] = useState<IProduct[]>([])
   const {register,handleSubmit,reset} = useForm<formType>()
