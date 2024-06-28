@@ -59,14 +59,25 @@ function App() {
     setTodo(newtodos)
   }
   const updateTodo = (id:any)=>{
-    const newtodos = todos.map(todo=>{
-      if (todo.id ==id){
-        todo.title = newtodo
-        todo.complete = true
-      }
-      return todo
+    fetch("http://localhost:3000/todo/"+id,{
+      method: "PUT",
+      body: JSON.stringify({title:newtodo,complete:true}),
+      headers:{"Content-Type": "application/json"}
+    }).then(res=>res.json())
+    .then(data=>{
+      alert("Sửa thành công")
+      const newtodos = todos.map(todo=>{
+        if (todo.id ==id){
+          todo.title = newtodo
+          todo.complete = true
+        }
+        return todo
+      })
+      setTodo(newtodos)
+    }).catch(err=>{
+      console.log(err);
+      
     })
-    setTodo(newtodos)
   }
   return (
     <>
