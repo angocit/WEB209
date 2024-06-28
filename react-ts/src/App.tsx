@@ -32,6 +32,17 @@ function App() {
         
       }        
   } 
+  const onDelete = async(id:number)=>{
+    try {
+      if (confirm("Are you sure you want to delete")){
+        const {data}= await axios.delete(`http://localhost:3000/products/${id}`)
+        alert("Xóa thành công")
+        setProducts(products.filter((product:IProduct)=>product.id!==id))
+      }
+      } catch (error) {
+      
+    }
+  }
   return (
     <>
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -59,7 +70,7 @@ function App() {
                     <td>{product.name}</td>
                     <td>{product.category}</td>
                     <td>{product.price}</td>
-                    <td><button>Sửa</button><button>Xóa</button></td>
+                    <td><button>Sửa</button><button onClick={()=>onDelete(product.id)}>Xóa</button></td>
                 </tr>
                ))}
             </tbody>
