@@ -10,5 +10,19 @@
       "complete": true,
       "id": 4
     }
-  ]
+  ],
+  "products":[
+    {"id": 1, "name": "Product 1", "image": "image_product_1.jpg", "price": 100000, "category": "Electronics"},
+    {"id": 2, "name": "Product 2", "image": "image_product_2.jpg", "price": 200000, "category": "Fashion"},
+    {"id": 3, "name": "Product 3", "image": "image_product_3.jpg", "price": 300000, "category": "Home Appliances"},
+    {"id": 4, "name": "Product 4", "image": "image_product_4.jpg", "price": 400000, "category": "Books"},
+    {"id": 5, "name": "Product 5", "image": "image_product_5.jpg", "price": 500000, "category": "Sports"},
+    {"id": 6, "name": "Product 6", "image": "image_product_6.jpg", "price": 600000, "category": "Toys"},
+    {"id": 7, "name": "Product 7", "image": "image_product_7.jpg", "price": 700000, "category": "Groceries"},
+    {"id": 8, "name": "Product 8", "image": "image_product_8.jpg", "price": 800000, "category": "Beauty"},
+    {"id": 9, "name": "Product 9", "image": "image_product_9.jpg", "price": 900000, "category": "Automotive"},
+    {"id": 10, "name": "Product 10", "image": "image_product_10.jpg", "price": 1000000, "category": "Garden"}
+]
+
+
 }
