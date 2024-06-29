@@ -1,91 +1,90 @@
 import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import axios from 'axios'
 import './App.css'
-type ITodo = {
-  id:string|number,
-  title:string,
-  complete:boolean
+import { useForm } from 'react-hook-form'
+interface IProduct {
+  id:number;
+  name: string;
+  image: string;
+  price: number;
+  category: string;
 }
 function App() {
-  const [count, setCount] = useState(0)
-  const [newtodo, setNewtodo] = useState('')
-  const [todos, setTodos]= useState<ITodo[]>([])
+  const [products,setProduct]=useState<IProduct[]>([])
+  const {register,handleSubmit,reset} = useForm()
+  const [isLoading,setLoading] = useState<boolean>(true)
   useEffect(()=>{
-    fetch("http://localhost:3000/todos").then(response => response.json())
-    .then((data: ITodo[]) =>{
-      setTodos(data)
-    })
-
+      (async ()=>{
+        try {
+          const {data} = await axios.get("http://localhost:3000/products")
+          setProduct(data)
+          setLoading(false)
+        } catch (error) {
+            console.log(error);
+            
+        }          
+      })()
   },[])
-  const handclick =()=>{
-    setCount(count+1)
+  const onSubmit = async(product:any)=>{
+      // console.log(data);
+      try {
+          const {data} = await axios.post("http://localhost:3000/products",product)
+          setProduct([...products,data])
+          alert("Thêm mới thành công")
+      } catch (error) {
+          alert(error)
+      }
+      
   }
-  const setTodoValue =(data:any)=>{
-    setNewtodo(data)
-  }
-  const handleAddTodo = ()=>{
-    const todo = {title:newtodo,complete:true}
-    fetch("http://localhost:3000/todos",{
-      method: "POST",
-      body: JSON.stringify(todo),
-      headers:{"content-type": "application/json"} // Thêm headers nếu Jsonserver chỉ add mỗi ID
-    }).then(response => response.json()).then((data: ITodo) =>{
-        setTodos([...todos,data])
-        alert("Thêm mới thành công")
-    })
-    // setTodos([...todos,todo])
-  }
-  const deleTodo = (id:number|string)=>{
-    if(confirm("Are you sure")){
-      fetch("http://localhost:3000/todos/"+id,{method: "DELETE"}).then(response => response.json())
-      .then((data:ITodo)=>{
-        const newtodos = todos.filter(todo=>todo.id!==id)
-        setTodos(newtodos)
+  const onDelete = async(id:number)=>{
+     try {
+      if (confirm("Are you sure")){
+        const {data} = await axios.delete(`http://localhost:3000/products/${id}`)
+        setProduct(products.filter((product:IProduct)=>product.id !== id))
         alert("Xóa thành công")
-      })    
-  }
-  }
-  const changeStatus = (id:number|string)=>{
-     const newtodos = todos.map(todo=>{
-        if (todo.id==id){
-          todo.complete = !todo.complete
-        }
-        return todo
-     })
-     setTodos(newtodos)
-  }
-  const updateTodo =(id:number|string)=>{
-    const todo = {title:newtodo,complete:true}
-    fetch("http://localhost:3000/todos/"+id,{
-      method: "PUT",
-      body: JSON.stringify(todo),
-      headers: {'Content-Type': 'application/json'}
-    }).then(res=>res.json())
-    .then((data:ITodo)=>{
-      const newtodos = todos.map(todo=>{
-        if (todo.id==id){
-          todo.title = newtodo
-          todo.complete = !todo.complete
-        }
-        return todo
-     })
-     setTodos(newtodos)
-    })
+      }
+     } catch (error) {
+      
+     }
   }
   return (
     <>
-    <input type='text' onChange={(e)=>setTodoValue(e.target.value)}/>
-    <button onClick={handleAddTodo}>Thêm vào danh sách</button>
-    <ul>
-    {todos.map(todo=>(
-      (todo.complete)?
-      <li>{todo.title} <button onClick={()=>{deleTodo(todo.id)}}>Xóa</button><button onClick={()=>changeStatus(todo.id)}>Sửa</button></li>
-      : <li><input type='text' defaultValue={todo.title} onChange={(e)=>setTodoValue(e.target.value)}/> <button onClick={()=>updateTodo(todo.id)}>Lưu</button><button onClick={()=>changeStatus(todo.id)}>Hủy</button></li>
-    ))}
-    </ul>
-    {count}
-     <button onClick={handclick}>Thay đổi state</button>
+    <form onSubmit={handleSubmit(onSubmit)}>
+        <input type='text' {...register("name")}/>
+        <input type='text' {...register("image")}/>
+        <input type='text' {...register("category")}/>
+        <input type='number' {...register("price")}/>
+        <button type='submit'>Thêm mới sản phẩm</button>
+    </form>
+    <h1>Danh sách sản phẩm</h1>
+    {(isLoading)?<div className="lds-ripple"><div></div><div></div></div>:
+    <table>
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Ảnh</th>
+          <th>Tên sp</th>
+          <th>Danh mục</th>
+          <th>Giá tiền</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        {products.map((product:IProduct,index:number)=>(
+          <tr key={product.id}>
+              <td>{index+1}</td>
+              <td><img width={90} src={product.image}/></td>
+              <td>{product.name}</td>
+              <td>{product.category}</td>
+              <td>{product.price}</td>
+              <td><button>Sửa</button><button onClick={()=>onDelete(product.id)}>Xóa</button></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    }
     </>
   )
 }

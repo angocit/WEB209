@@ -15,5 +15,28 @@
       "complete": true,
       "id": 6
     }
+  ],
+  "products": [
+    {
+      "id": 4,
+      "name": "Sản phẩm 4",
+      "image": "url_image_4",
+      "price": 400000,
+      "category": "Mỹ phẩm"
+    },
+    {
+      "id": 5,
+      "name": "Sản phẩm 5",
+      "image": "url_image_5",
+      "price": 500000,
+      "category": "Thực phẩm"
+    },
+    {
+      "name": "sadfasdfads",
+      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
+      "category": "3432",
+      "price": "23423432",
+      "id": 6
+    }
   ]
 }
