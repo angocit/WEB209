@@ -2,76 +2,79 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-interface ITodo {
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+interface IProduct {
   id: number;
-  title: string;
-  complete: boolean;
+  name: string;
+  image: string;
+  price: number;
+  category: string;
 }
 function App() {
-  const [count, setCount] = useState(0)
-  const [flag,setFlag] = useState(0)
-  const [todolist,setTodolist] = useState<ITodo[]>([])
+  const {register,handleSubmit,reset}= useForm()
+  const [products,setProduct] = useState<IProduct[]>([])
+  const [isLoading,setLoading] = useState<boolean>(true)
   useEffect(()=>{
-    fetch("http://localhost:3000/todos").then(res=>res.json())
-    .then((data:ITodo[])=>{
-      setTodolist(data)
-    })
-  },[])
-  const [newtodo,setNewtodo] = useState('')
-  const DeleteTodo =(id:number)=>{
-    if(confirm("Are you sure you want to delete")){
-      fetch("http://localhost:3000/todos/"+id,{method: "DELETE"}).then(res=>res.json())
-      .then((data:ITodo)=>{
-        const newtodolist = todolist.filter(todo=>todo.id !== id)
-        setTodolist(newtodolist) 
-        alert("Xóa thành công")
-      })      
-    }
-  }
-  const handleAdd=()=>{
-    fetch("http://localhost:3000/todos",{
-      method: "POST",
-      body:JSON.stringify({title:newtodo,complete:true}),
-      headers:{"Content-Type": "application/json"}
-    }).then(res=>res.json())
-    .then((data:ITodo)=>{
-      setTodolist([...todolist,data])
-      alert("Thêm thành công")
-    })
-  }
-  const onChangetodo = (id:number)=>{
-    setFlag(id)
-  }
-  const updateTodo = (id:number)=>{
-    fetch("http://localhost:3000/todos/"+id,{
-      method:"PUT",
-      body:JSON.stringify({title:newtodo,complete:true}),
-      headers:{"Content-Type": "application/json"}
-    }).then(res=>res.json())
-    .then((data:ITodo)=>{
-      const newtodos = todolist.map(todo=>{
-        if (todo.id==id){
-          todo.title = newtodo
+    (async()=>{
+        try {
+            const {data} = await axios.get("http://localhost:3000/products")
+            setProduct(data)
+            setTimeout(()=>{
+              setLoading(false)
+            },5000)
+        } catch (error) {
+          console.log(error);
+          
         }
-        return todo
-      })
-      setFlag(0)
-      setTodolist(newtodos)
-    })
-   
+    })()
+  },[])
+  const onSubmit = async (Frmdata:any)=>{
+    try {
+      const {data}=await axios.post("http://localhost:3000/products",Frmdata)
+      alert("Thêm mới thành công")      
+      setProduct([...products,data])
+    } catch (error) {
+      console.log(error);
+    }    
   }
   return (
     <>
-     <h1>Danh sách các việc đã làm</h1>
-     <input type='text' placeholder='Nhập gì đó vào đây' onChange={(e)=>{setNewtodo(e.target.value)}}/>
-     <button onClick={handleAdd}>Thêm</button>
-     <ul>
-     {todolist.map(todo=>(
-        (todo.id!==flag)?
-        <li>{todo.title} <button onClick={()=>{onChangetodo(todo.id)}}>Sửa</button><button onClick={()=>DeleteTodo(todo.id)}>Xóa</button></li>
-      :<li><input type='text' defaultValue={todo.title} onChange={(e)=>{setNewtodo(e.target.value)}}/> <button onClick={()=>updateTodo(todo.id)}>Lưu</button><button onClick={()=>{onChangetodo(0)}}>Hủy</button></li>
-      ))}
-     </ul>
+      <form onSubmit={handleSubmit(onSubmit)}>
+         <input type='text' {...register("name")} placeholder='Tên sản phẩm'/>
+         <input type='text' {...register("image")} placeholder='Ảnh sản phẩm'/>
+         <input type='number' {...register("price")} placeholder='Giá sản phẩm'/>
+         <input type='text' {...register("category")} placeholder='Danh mục'/>
+         <button type='submit'>Thêm mới sản phẩm</button>
+      </form>
+      <h3>Danh sách sản phẩm</h3>
+      {(isLoading)?<div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>:
+      <table>
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Danh mục</th>
+            <th>Giá tiền</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+      
+      <tbody>
+      {products.map((product:IProduct,index:number)=>
+          <tr key={product.id}>
+              <td>{index+1}</td>
+              <td><img width={90} src={product.image}/></td>
+              <td>{product.name}</td>
+              <td>{product.category}</td>
+              <td>{product.price}</td>
+              <td><button>Sửa</button><button>Xóa</button></td>
+          </tr>
+        )}
+      </tbody>   
+      </table>
+}
     </>
   )
 }

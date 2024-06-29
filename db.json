@@ -15,5 +15,63 @@
       "complete": true,
       "id": 4
     }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Sản phẩm 1",
+      "image": "url_image_1",
+      "price": 100000,
+      "category": "Điện tử"
+    },
+    {
+      "id": 2,
+      "name": "Sản phẩm 2",
+      "image": "url_image_2",
+      "price": 200000,
+      "category": "Thời trang"
+    },
+    {
+      "id": 3,
+      "name": "Sản phẩm 3",
+      "image": "url_image_3",
+      "price": 300000,
+      "category": "Đồ gia dụng"
+    },
+    {
+      "id": 4,
+      "name": "Sản phẩm 4",
+      "image": "url_image_4",
+      "price": 400000,
+      "category": "Mỹ phẩm"
+    },
+    {
+      "id": 5,
+      "name": "Sản phẩm 5",
+      "image": "url_image_5",
+      "price": 500000,
+      "category": "Thực phẩm"
+    },
+    {
+      "name": "Sản phẩm 1",
+      "image": "adfadsfsad",
+      "price": "23432432",
+      "category": "sdfsd",
+      "id": 6
+    },
+    {
+      "name": "Giày nữ ABC",
+      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
+      "price": "243",
+      "category": "dsfsd",
+      "id": 7
+    },
+    {
+      "name": "Giày nữ ABC 34324324",
+      "image": "https://cf.shopee.vn/file/fa067f9c701d940ba98ccb05d2d2f438",
+      "price": "34343423",
+      "category": "dsfsd",
+      "id": 8
+    }
   ]
 }
