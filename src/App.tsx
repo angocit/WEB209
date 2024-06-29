@@ -56,14 +56,22 @@ function App() {
      setTodos(newtodos)
   }
   const updateTodo =(id:number|string)=>{
-    const newtodos = todos.map(todo=>{
-      if (todo.id==id){
-        todo.title = newtodo
-        todo.complete = !todo.complete
-      }
-      return todo
-   })
-   setTodos(newtodos)
+    const todo = {title:newtodo,complete:true}
+    fetch("http://localhost:3000/todos/"+id,{
+      method: "PUT",
+      body: JSON.stringify(todo),
+      headers: {'Content-Type': 'application/json'}
+    }).then(res=>res.json())
+    .then((data:ITodo)=>{
+      const newtodos = todos.map(todo=>{
+        if (todo.id==id){
+          todo.title = newtodo
+          todo.complete = !todo.complete
+        }
+        return todo
+     })
+     setTodos(newtodos)
+    })
   }
   return (
     <>
