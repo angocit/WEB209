@@ -18,20 +18,6 @@
   ],
   "products": [
     {
-      "id": 1,
-      "name": "Sản phẩm 1",
-      "image": "url_image_1",
-      "price": 100000,
-      "category": "Điện tử"
-    },
-    {
-      "id": 2,
-      "name": "Sản phẩm 2",
-      "image": "url_image_2",
-      "price": 200000,
-      "category": "Thời trang"
-    },
-    {
       "id": 3,
       "name": "Sản phẩm 3",
       "image": "url_image_3",

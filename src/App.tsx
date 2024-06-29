@@ -22,7 +22,7 @@ function App() {
             setProduct(data)
             setTimeout(()=>{
               setLoading(false)
-            },5000)
+            },2000)
         } catch (error) {
           console.log(error);
           
@@ -37,6 +37,17 @@ function App() {
     } catch (error) {
       console.log(error);
     }    
+  }
+  const onDelete =async(id:number)=>{
+    try {
+      if (confirm("Are you sure you want to delete")){
+        const {data}=await axios.delete(`http://localhost:3000/products/${id}`)
+        alert("Xóa thành công")
+        setProduct(products.filter((p:IProduct) => p.id !== id))
+      }
+    } catch (error) {
+      
+    }
   }
   return (
     <>
@@ -69,7 +80,7 @@ function App() {
               <td>{product.name}</td>
               <td>{product.category}</td>
               <td>{product.price}</td>
-              <td><button>Sửa</button><button>Xóa</button></td>
+              <td><button>Sửa</button><button onClick={()=>onDelete(product.id)}>Xóa</button></td>
           </tr>
         )}
       </tbody>   
