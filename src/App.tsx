@@ -41,23 +41,24 @@ function App() {
   }
   const onChangetodo = (id:number)=>{
     setFlag(id)
-    // const newtodos = todolist.map(todo=>{
-    //   if (todo.id==id){
-    //     todo.complete = !todo.complete;
-    //   }
-    //   return todo
-    // })
-    // setTodolist(newtodos)
   }
   const updateTodo = (id:number)=>{
-    const newtodos = todolist.map(todo=>{
-      if (todo.id==id){
-        todo.title = newtodo
-        todo.complete = !todo.complete;
-      }
-      return todo
+    fetch("http://localhost:3000/todos/"+id,{
+      method:"PUT",
+      body:JSON.stringify({title:newtodo,complete:true}),
+      headers:{"Content-Type": "application/json"}
+    }).then(res=>res.json())
+    .then((data:ITodo)=>{
+      const newtodos = todolist.map(todo=>{
+        if (todo.id==id){
+          todo.title = newtodo
+        }
+        return todo
+      })
+      setFlag(0)
+      setTodolist(newtodos)
     })
-    setTodolist(newtodos)
+   
   }
   return (
     <>
@@ -68,7 +69,7 @@ function App() {
      {todolist.map(todo=>(
         (todo.id!==flag)?
         <li>{todo.title} <button onClick={()=>{onChangetodo(todo.id)}}>Sửa</button><button onClick={()=>DeleteTodo(todo.id)}>Xóa</button></li>
-      :<li><input type='text' defaultValue={todo.title} onChange={(e)=>{setNewtodo(e.target.value)}}/> <button onClick={()=>updateTodo(todo.id)}>Lưu</button><button onClick={()=>{onChangetodo(todo.id)}}>Hủy</button></li>
+      :<li><input type='text' defaultValue={todo.title} onChange={(e)=>{setNewtodo(e.target.value)}}/> <button onClick={()=>updateTodo(todo.id)}>Lưu</button><button onClick={()=>{onChangetodo(0)}}>Hủy</button></li>
       ))}
      </ul>
     </>
