@@ -4,13 +4,9 @@ import viteLogo from '/vite.svg'
 import { useForm, SubmitHandler } from "react-hook-form"
 import axios from 'axios'
 import './App.css'
-interface IProduct {
-  id: number;
-  name: string;
-  image: string;
-  price: number;
-  category: string;
-}
+import { IProduct } from './interface/product'
+import AddProduct from './components/addProduct'
+
 type formType = Pick<IProduct,'name'|'price'|'image'|'category'>
 function App() {
   const [products,setProducts] = useState<IProduct[]>([])
@@ -21,18 +17,7 @@ function App() {
         const {data} = await axios.get("http://localhost:3000/products")
         setProducts(data)
      })()
-  },[])
-  const onSubmit =async(formData:any)=>{
-      // console.log(data);
-      try {
-        const {data} = await axios.post("http://localhost:3000/products",formData) 
-        setProducts([...products,data])
-        reset()
-      } catch (error) {
-        console.log(error);
-        
-      }        
-  } 
+  },[]) 
   const onDelete = async(id:number)=>{
     try {
       if (confirm("Are you sure you want to delete")){
@@ -76,13 +61,7 @@ function App() {
   }
   return (
     <>
-    <form onSubmit={handleSubmit(onSubmit)}>
-        <input type='text' {...register("name")} placeholder='Tên sản phẩm'/>
-        <input type='text' {...register("image")} placeholder='Ảnh sản phẩm'/>
-        <input type='number' {...register("price")} placeholder='Giá sản phẩm'/>
-        <input type='text' {...register("category")} placeholder='Danh mục'/>
-        <button type='submit'>Thêm mới</button>  
-    </form>   
+     <AddProduct title='Thêm mới sản phẩm' products={products} setProducts={setProducts}/>
     <h1>Danh sách sản phẩm</h1> 
         <table>
             <thead>
@@ -99,14 +78,16 @@ function App() {
                 (product.id===flag)?
                 <tr key={product.id}>
                   <td colSpan={5}>
-                  <form onSubmit={handleSubmit(onSubmitUpdate)}>
-                    <input type='text' {...register("name")} placeholder='Tên sản phẩm'/>
-                    <input type='text' {...register("image")} placeholder='Ảnh sản phẩm'/>
-                    <input type='number' {...register("price")} placeholder='Giá sản phẩm'/>
-                    <input type='text' {...register("category")} placeholder='Danh mục'/>
-                    <button type='submit'>Update</button>  
-                    <button type='button' onClick={()=>setFlag(0)}>Hủy</button>  
-                </form> 
+                    <div className='bg'>
+                        <form onSubmit={handleSubmit(onSubmitUpdate)}>
+                          <input type='text' {...register("name")} placeholder='Tên sản phẩm'/>
+                          <input type='text' {...register("image")} placeholder='Ảnh sản phẩm'/>
+                          <input type='number' {...register("price")} placeholder='Giá sản phẩm'/>
+                          <input type='text' {...register("category")} placeholder='Danh mục'/>
+                          <button type='submit'>Update</button>  
+                          <button type='button' onClick={()=>setFlag(0)}>Hủy</button>  
+                      </form> 
+                  </div>
                 </td>
               </tr>
                 :

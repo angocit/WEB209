@@ -34,7 +34,7 @@
       "id": 3
     },
     {
-      "name": "Product 4 update 233434",
+      "name": "Product 4",
       "image": "image_product_4.jpg",
       "price": 400000,
       "category": "Books",
@@ -67,6 +67,13 @@
       "image": "image_product_10.jpg",
       "price": 1000000,
       "category": "Garden"
+    },
+    {
+      "name": "Sản phẩm 11",
+      "image": "ầdsfadsfdsa",
+      "price": "234234",
+      "category": "sdfsdf",
+      "id": 11
     }
   ]
 }
