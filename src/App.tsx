@@ -38,7 +38,7 @@ function App() {
       console.log(error);
     }    
   }
-  const onUpdate = async (Frmdata:any)=>{
+  const onUpdate = async (Frmdata:FormData)=>{
     try {
       const {data}=await axios.put("http://localhost:3000/products/"+flag,Frmdata)
       alert("Cập nhật thành công")      
@@ -98,14 +98,16 @@ function App() {
       {products.map((product:IProduct,index:number)=>
         (product.id===flag)?<tr>
           <td colSpan={6}>
+            <div id='popup'>
             <form onSubmit={handleSubmit(onUpdate)}>
-         <input type='text' {...register("name")} placeholder='Tên sản phẩm'/>
-         <input type='text' {...register("image")} placeholder='Ảnh sản phẩm'/>
-         <input type='number' {...register("price")} placeholder='Giá sản phẩm'/>
-         <input type='text' {...register("category")} placeholder='Danh mục'/>
-         <button type='submit'>Cập nhật</button>
-         <button type='button' onClick={()=>setFlag(0)}>Hủy</button>
-        </form>
+            <input type='text' {...register("name")} placeholder='Tên sản phẩm'/>
+            <input type='text' {...register("image")} placeholder='Ảnh sản phẩm'/>
+            <input type='number' {...register("price")} placeholder='Giá sản phẩm'/>
+            <input type='text' {...register("category")} placeholder='Danh mục'/>
+            <button type='submit'>Cập nhật</button>
+            <button type='button' onClick={()=>setFlag(0)}>Hủy</button>
+            </form>
+            </div>
         </td>        
         </tr>:
           <tr key={product.id}>
