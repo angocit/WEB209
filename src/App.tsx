@@ -4,14 +4,9 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-interface IProduct {
-  id: number;
-  name: string;
-  image: string;
-  price: number;
-  category: string;
-}
-type FormData = Pick<IProduct,'name'|'image'|'price'|'category'>
+import { IProduct,FormData } from './interface/product';
+import AddProduct from './components/addProduct';
+
 function App() {
   const {register,handleSubmit,reset}= useForm<FormData>()
   const [products,setProduct] = useState<IProduct[]>([])
@@ -29,7 +24,7 @@ function App() {
         }
     })()
   },[])
-  const onSubmit = async (Frmdata:FormData)=>{
+  const onAdd = async (Frmdata:FormData)=>{
     try {
       const {data}=await axios.post("http://localhost:3000/products",Frmdata)
       alert("Thêm mới thành công")      
@@ -73,13 +68,7 @@ function App() {
   }
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-         <input type='text' {...register("name")} placeholder='Tên sản phẩm'/>
-         <input type='text' {...register("image")} placeholder='Ảnh sản phẩm'/>
-         <input type='number' {...register("price")} placeholder='Giá sản phẩm'/>
-         <input type='text' {...register("category")} placeholder='Danh mục'/>
-         <button type='submit'>Thêm mới sản phẩm</button>
-      </form>
+      <AddProduct onAdd={onAdd}/>
       <h3>Danh sách sản phẩm</h3>
       {(isLoading)?<div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>:
       <table>
