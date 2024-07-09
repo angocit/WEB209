@@ -18,18 +18,18 @@
   ],
   "products": [
     {
-      "id": 4,
       "name": "Sản phẩm 4",
-      "image": "url_image_4",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2sK-vCdQkyU7aXl7BE9FMrBuJfBCSNyAh0A&s",
       "price": 400000,
-      "category": "Mỹ phẩm"
+      "category": "Mỹ phẩm",
+      "id": 4
     },
     {
-      "id": 5,
       "name": "Sản phẩm 5",
-      "image": "url_image_5",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQibr_FJjXgUeS1Etzs6t8YI5fHFlG-HAR7Hg&s",
       "price": 500000,
-      "category": "Thực phẩm"
+      "category": "Thực phẩm",
+      "id": 5
     },
     {
       "name": "sadfasdfads",
