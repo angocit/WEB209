@@ -99,14 +99,18 @@ function App() {
       <tbody>
         {products.map((product:IProduct,index:number)=>(
           (product.id===flag)?<tr>
-            <td colSpan={6}><form onSubmit={handleSubmit(onUpdate)}>
-            <input type='text' {...register("name")}/>
-            <input type='text' {...register("image")}/>
-            <input type='text' {...register("category")}/>
-            <input type='number' {...register("price")}/>
-            <button type='submit'>Cập nhật sản phẩm</button>
-            <button type='button' onClick={()=>setFlag(0)}>Hủy</button>
-            </form></td>           
+            <td colSpan={6}>
+              <div id='popup'>
+              <form onSubmit={handleSubmit(onUpdate)}>
+                <input type='text' {...register("name")}/>
+                <input type='text' {...register("image")}/>
+                <input type='text' {...register("category")}/>
+                <input type='number' {...register("price")}/>
+                <button type='submit'>Cập nhật sản phẩm</button>
+                <button type='button' onClick={()=>setFlag(0)}>Hủy</button>
+                </form>
+                </div>
+            </td>           
           </tr>:
           <tr key={product.id}>
               <td>{index+1}</td>
