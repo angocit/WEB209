@@ -11,29 +11,40 @@ interface IProduct {
   price: number;
   category: string;
 }
+type FormData = Pick<IProduct,'name'|'image'|'price'|'category'>
 function App() {
-  const {register,handleSubmit,reset}= useForm()
+  const {register,handleSubmit,reset}= useForm<FormData>()
   const [products,setProduct] = useState<IProduct[]>([])
   const [isLoading,setLoading] = useState<boolean>(true)
+  const [flag,setFlag] = useState<number|string>(0)
   useEffect(()=>{
     (async()=>{
         try {
             const {data} = await axios.get("http://localhost:3000/products")
             setProduct(data)
-            setTimeout(()=>{
-              setLoading(false)
-            },2000)
+            setLoading(false)
         } catch (error) {
           console.log(error);
           
         }
     })()
   },[])
-  const onSubmit = async (Frmdata:any)=>{
+  const onSubmit = async (Frmdata:FormData)=>{
     try {
       const {data}=await axios.post("http://localhost:3000/products",Frmdata)
       alert("Thêm mới thành công")      
       setProduct([...products,data])
+    } catch (error) {
+      console.log(error);
+    }    
+  }
+  const onUpdate = async (Frmdata:any)=>{
+    try {
+      const {data}=await axios.put("http://localhost:3000/products/"+flag,Frmdata)
+      alert("Cập nhật thành công")      
+      const newproducts = products.map(product=>(product.id===flag)?data:product)
+      setProduct(newproducts)
+      setFlag(0)
     } catch (error) {
       console.log(error);
     }    
@@ -48,6 +59,17 @@ function App() {
     } catch (error) {
       
     }
+  }
+  const onEdit = (id:number|string)=>{
+    setFlag(id)
+    // Lấy thông tin sản phẩm theo ID
+    const [product] = products.filter(product=>product.id===id)
+    reset({
+      name:product.name,
+      image:product.image,
+      price:product.price,
+      category:product.category
+    })
   }
   return (
     <>
@@ -74,13 +96,25 @@ function App() {
       
       <tbody>
       {products.map((product:IProduct,index:number)=>
+        (product.id===flag)?<tr>
+          <td colSpan={6}>
+            <form onSubmit={handleSubmit(onUpdate)}>
+         <input type='text' {...register("name")} placeholder='Tên sản phẩm'/>
+         <input type='text' {...register("image")} placeholder='Ảnh sản phẩm'/>
+         <input type='number' {...register("price")} placeholder='Giá sản phẩm'/>
+         <input type='text' {...register("category")} placeholder='Danh mục'/>
+         <button type='submit'>Cập nhật</button>
+         <button type='button' onClick={()=>setFlag(0)}>Hủy</button>
+        </form>
+        </td>        
+        </tr>:
           <tr key={product.id}>
               <td>{index+1}</td>
               <td><img width={90} src={product.image}/></td>
               <td>{product.name}</td>
               <td>{product.category}</td>
               <td>{product.price}</td>
-              <td><button>Sửa</button><button onClick={()=>onDelete(product.id)}>Xóa</button></td>
+              <td><button onClick={()=>onEdit(product.id)}>Sửa</button><button onClick={()=>onDelete(product.id)}>Xóa</button></td>
           </tr>
         )}
       </tbody>   

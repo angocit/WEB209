@@ -25,21 +25,14 @@
       "category": "Đồ gia dụng"
     },
     {
-      "id": 4,
-      "name": "Sản phẩm 4",
+      "name": "Sản phẩm 4 update lần 2",
       "image": "url_image_4",
       "price": 400000,
-      "category": "Mỹ phẩm"
+      "category": "Mỹ phẩm",
+      "id": 4
     },
     {
-      "id": 5,
-      "name": "Sản phẩm 5",
-      "image": "url_image_5",
-      "price": 500000,
-      "category": "Thực phẩm"
-    },
-    {
-      "name": "Sản phẩm 1",
+      "name": "Sản phẩm 1 update",
       "image": "adfadsfsad",
       "price": "23432432",
       "category": "sdfsd",
