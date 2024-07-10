@@ -74,6 +74,20 @@
       "price": "234234",
       "category": "sdfsdf",
       "id": 11
+    },
+    {
+      "name": "Sản phẩm 12",
+      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
+      "price": "123123",
+      "category": "sdfds",
+      "id": 12
+    },
+    {
+      "name": "Sản phẩm 13",
+      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
+      "price": "2112",
+      "category": "21312",
+      "id": 13
     }
   ]
 }

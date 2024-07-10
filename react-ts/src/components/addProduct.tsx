@@ -5,22 +5,14 @@ import axios from 'axios'
 
 type Props = {
     title:string,
-    products:IProduct[],
-    setProducts:(data:IProduct[])=>void
+    onAdd:(data:formType)=>void
 }
 type formType = Pick<IProduct,'name'|'price'|'image'|'category'>
-const AddProduct = ({title,products,setProducts}: Props) => {
+const AddProduct = ({title,onAdd}: Props) => {
     const {register,handleSubmit,reset} = useForm<formType>()
     const onSubmit =async(formData:any)=>{
-        // console.log(data);
-        try {
-          const {data} = await axios.post("http://localhost:3000/products",formData) 
-          setProducts([...products,data])
-          reset()
-        } catch (error) {
-          console.log(error);
-          
-        }        
+      onAdd(formData)  
+      reset()    
     }
   return (
     <>

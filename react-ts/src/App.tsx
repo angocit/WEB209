@@ -6,12 +6,14 @@ import axios from 'axios'
 import './App.css'
 import { IProduct } from './interface/product'
 import AddProduct from './components/addProduct'
+import Sidebar from './components/sidebar'
 
 type formType = Pick<IProduct,'name'|'price'|'image'|'category'>
 function App() {
   const [products,setProducts] = useState<IProduct[]>([])
   const {register,handleSubmit,reset} = useForm<formType>()
   const [flag,setFlag] = useState<string|number>(0)
+  const [click, setClick] = useState<boolean>(false)
   useEffect(()=>{
      (async ()=>{
         const {data} = await axios.get("http://localhost:3000/products")
@@ -59,9 +61,21 @@ function App() {
         category:product[0].category
     })
   }
+  const onAdd = async (dataproduct:formType)=>{
+    try {
+      const {data} = await axios.post("http://localhost:3000/products",dataproduct) 
+      setProducts([...products,data])
+      alert('Thêm mới thành công')
+    } catch (error) {
+      console.log(error);
+      
+    }      
+  }
   return (
     <>
-     <AddProduct title='Thêm mới sản phẩm' products={products} setProducts={setProducts}/>
+    <button onClick={()=>setClick(!click)}>Giỏ hàng</button>
+    <Sidebar isActive={click}/>
+     <AddProduct title='Thêm mới sản phẩm' onAdd={onAdd}/>
     <h1>Danh sách sản phẩm</h1> 
         <table>
             <thead>
