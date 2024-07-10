@@ -4,11 +4,11 @@ import { useForm } from 'react-hook-form'
 
 type Props = {
     product:IProduct,
-    onEdit:(data:formType)=>void,
+    onUpdate:(data:formType)=>void,
     setFlag:(id:string|number)=>void
 }
 
-const EditProduct = ({product,onEdit,setFlag}: Props) => {
+const EditProduct = ({product,onUpdate,setFlag}: Props) => {
     const {register,handleSubmit,reset} = useForm<formType>({
         defaultValues: {
             name: product.name,
@@ -18,7 +18,7 @@ const EditProduct = ({product,onEdit,setFlag}: Props) => {
           }
     })
     const onSubmitUpdate = (product:formType)=>{
-        onEdit(product)
+        onUpdate(product)
     }
   return (
     <div className='bg'>

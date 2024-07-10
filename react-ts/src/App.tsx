@@ -94,7 +94,7 @@ function App() {
                 (product.id===flag)?
                 <tr key={product.id}>
                   <td colSpan={5}>
-                    <EditProduct product={product} onEdit={onSubmitUpdate} setFlag={setFlag}/> 
+                    <EditProduct product={product} onUpdate={onSubmitUpdate} setFlag={setFlag}/> 
                 </td>
               </tr>
                 :
