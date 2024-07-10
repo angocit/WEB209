@@ -8,6 +8,7 @@ import { IProduct } from './interface/product'
 import AddProduct from './components/addProduct'
 import Sidebar from './components/sidebar'
 import EditProduct from './components/editProduct'
+import CustomElement from './components/button'
 
 type formType = Pick<IProduct,'name'|'price'|'image'|'category'>
 function App() {
@@ -76,7 +77,9 @@ function App() {
   return (
     <>
     <button onClick={()=>setClick(!click)}>Giỏ hàng</button>
-    <Sidebar isActive={click}/>
+    {/* <Sidebar isActive={click}/> */}
+    <h2>Đây là button <CustomElement el='button' title='Xem thêm' type='submit'/></h2>
+    <h2>Đây là thẻ a <CustomElement el='anchor' title='Xem thêm' href='https://google.com' target='_blank'/></h2>
      <AddProduct title='Thêm mới sản phẩm' onAdd={onAdd}/>
     <h1>Danh sách sản phẩm</h1> 
         <table>
