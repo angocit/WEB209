@@ -7,7 +7,6 @@ type Props = {
     title:string,
     onAdd:(data:formType)=>void
 }
-type formType = Pick<IProduct,'name'|'price'|'image'|'category'>
 const AddProduct = ({title,onAdd}: Props) => {
     const {register,handleSubmit,reset} = useForm<formType>()
     const onSubmit =async(formData:any)=>{

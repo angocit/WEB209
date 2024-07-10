@@ -7,6 +7,7 @@ import './App.css'
 import { IProduct } from './interface/product'
 import AddProduct from './components/addProduct'
 import Sidebar from './components/sidebar'
+import EditProduct from './components/editProduct'
 
 type formType = Pick<IProduct,'name'|'price'|'image'|'category'>
 function App() {
@@ -45,7 +46,8 @@ function App() {
        })      
       setProducts(newproduct)
       setFlag(0)
-      reset()
+      alert('Cập nhật thành công')
+      // reset()
     } catch (error) {
       console.log(error);
       
@@ -92,16 +94,7 @@ function App() {
                 (product.id===flag)?
                 <tr key={product.id}>
                   <td colSpan={5}>
-                    <div className='bg'>
-                        <form onSubmit={handleSubmit(onSubmitUpdate)}>
-                          <input type='text' {...register("name")} placeholder='Tên sản phẩm'/>
-                          <input type='text' {...register("image")} placeholder='Ảnh sản phẩm'/>
-                          <input type='number' {...register("price")} placeholder='Giá sản phẩm'/>
-                          <input type='text' {...register("category")} placeholder='Danh mục'/>
-                          <button type='submit'>Update</button>  
-                          <button type='button' onClick={()=>setFlag(0)}>Hủy</button>  
-                      </form> 
-                  </div>
+                    <EditProduct product={product} onEdit={onSubmitUpdate} setFlag={setFlag}/> 
                 </td>
               </tr>
                 :

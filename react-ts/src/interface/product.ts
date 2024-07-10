@@ -5,3 +5,4 @@ export interface IProduct {
     price: number;
     category: string;
   }
+ export type formType = Pick<IProduct,'name'|'price'|'image'|'category'>

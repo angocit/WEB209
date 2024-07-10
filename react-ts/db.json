@@ -34,9 +34,9 @@
       "id": 3
     },
     {
-      "name": "Product 4",
+      "name": "Product 4 update",
       "image": "image_product_4.jpg",
-      "price": 400000,
+      "price": "400000",
       "category": "Books",
       "id": 4
     },
