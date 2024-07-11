@@ -7,6 +7,7 @@ import axios from 'axios';
 import { IProduct,FormData } from './interface/product';
 import AddProduct from './components/addProduct';
 import EditProduct from './components/editProduct';
+import CustomElement from './components/customElement';
 
 function App() {
   const {register,handleSubmit,reset}= useForm<FormData>()
@@ -69,6 +70,10 @@ function App() {
   }
   return (
     <>
+    <h1>Đây là button</h1>
+    <CustomElement el='button' title='Xem ngay' type='submit'/>
+    <h1>Đây là thẻ Anchor</h1>
+    <CustomElement el='anchor' title='Click here' href='https://google.com'/>
       <AddProduct onAdd={onAdd}/>
       <h3>Danh sách sản phẩm</h3>
       {(isLoading)?<div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>:
