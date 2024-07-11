@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { IProduct,FormData } from './interface/product';
 import AddProduct from './components/addProduct';
+import EditProduct from './components/editProduct';
 
 function App() {
   const {register,handleSubmit,reset}= useForm<FormData>()
@@ -87,16 +88,7 @@ function App() {
       {products.map((product:IProduct,index:number)=>
         (product.id===flag)?<tr>
           <td colSpan={6}>
-            <div id='popup'>
-            <form onSubmit={handleSubmit(onUpdate)}>
-            <input type='text' {...register("name")} placeholder='Tên sản phẩm'/>
-            <input type='text' {...register("image")} placeholder='Ảnh sản phẩm'/>
-            <input type='number' {...register("price")} placeholder='Giá sản phẩm'/>
-            <input type='text' {...register("category")} placeholder='Danh mục'/>
-            <button type='submit'>Cập nhật</button>
-            <button type='button' onClick={()=>setFlag(0)}>Hủy</button>
-            </form>
-            </div>
+            <EditProduct product={product} setFlag={setFlag} onUpdate={onUpdate}/>
         </td>        
         </tr>:
           <tr key={product.id}>
