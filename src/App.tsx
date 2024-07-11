@@ -6,6 +6,7 @@ import './App.css'
 import { useForm } from 'react-hook-form'
 import { IProduct,FormData } from './interface/product'
 import Addproduct from './components/addproduct'
+import EditProduct from './components/editProduct'
 
 function App() {
   const [products,setProduct]=useState<IProduct[]>([])
@@ -35,7 +36,7 @@ function App() {
       }
       
   }
-  const onUpdate = async(product:any)=>{
+  const onUpdate = async(product:FormData)=>{
     // console.log(data);
     try {
         const {data} = await axios.put("http://localhost:3000/products/"+flag,product)
@@ -89,16 +90,7 @@ function App() {
         {products.map((product:IProduct,index:number)=>(
           (product.id===flag)?<tr>
             <td colSpan={6}>
-              <div id='popup'>
-              <form onSubmit={handleSubmit(onUpdate)}>
-                <input type='text' {...register("name")}/>
-                <input type='text' {...register("image")}/>
-                <input type='text' {...register("category")}/>
-                <input type='number' {...register("price")}/>
-                <button type='submit'>Cập nhật sản phẩm</button>
-                <button type='button' onClick={()=>setFlag(0)}>Hủy</button>
-                </form>
-                </div>
+                <EditProduct product={product} setFlag={setFlag} onUpdate={onUpdate}/>
             </td>           
           </tr>:
           <tr key={product.id}>
