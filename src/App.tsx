@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import { IProduct,FormData } from './interface/product'
 import Addproduct from './components/addproduct'
 import EditProduct from './components/editProduct'
+import CustomElement from './components/customElement'
 
 function App() {
   const [products,setProduct]=useState<IProduct[]>([])
@@ -72,6 +73,10 @@ function App() {
   }
   return (
     <>
+    <h1>Đây là nút</h1>
+    <CustomElement el='button' title='Đăng ký' type='submit'/>
+    <h1>Đây là thẻ anchor</h1>
+    <CustomElement el='anchor' title='Click here' href='https://google.com'/>
     <Addproduct onAdd={onAdd}/>
     <h1>Danh sách sản phẩm</h1>
     {(isLoading)?<div className="lds-ripple"><div></div><div></div></div>:
