@@ -1,5 +1,5 @@
 import React from 'react'
-import { IProduct } from '../interface/product'
+import { formType, IProduct } from '../interface/product'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 

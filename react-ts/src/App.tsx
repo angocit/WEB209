@@ -9,6 +9,12 @@ import AddProduct from './components/addProduct'
 import Sidebar from './components/sidebar'
 import EditProduct from './components/editProduct'
 import CustomElement from './components/button'
+import { Route, Routes, useRoutes } from 'react-router-dom'
+import Home from './components/home'
+import Detail from './components/detail'
+import Dashboard from './layout/dashboard'
+import Products from './components/products'
+import Client from './layout/client'
 
 type formType = Pick<IProduct,'name'|'price'|'image'|'category'>
 function App() {
@@ -74,45 +80,27 @@ function App() {
       
     }      
   }
-  return (
-    <>
-    <button onClick={()=>setClick(!click)}>Giỏ hàng</button>
-    {/* <Sidebar isActive={click}/> */}
-    <h2>Đây là button <CustomElement el='button' title='Xem thêm' type='submit'/></h2>
-    <h2>Đây là thẻ a <CustomElement el='anchor' title='Xem thêm' href='https://google.com' target='_blank'/></h2>
-     <AddProduct title='Thêm mới sản phẩm' onAdd={onAdd}/>
-    <h1>Danh sách sản phẩm</h1> 
-        <table>
-            <thead>
-              <tr>
-                <th>STT</th>
-                <th>Tên sản phẩm</th>
-                <th>Danh mục</th>
-                <th>Giá tiền</th>
-                <th>Thao tác</th>
-              </tr>
-            </thead>
-            <tbody>
-               {products.map((product:IProduct,index)=>(
-                (product.id===flag)?
-                <tr key={product.id}>
-                  <td colSpan={5}>
-                    <EditProduct product={product} onUpdate={onSubmitUpdate} setFlag={setFlag}/> 
-                </td>
-              </tr>
-                :
-                <tr key={product.id}>
-                    <td>{index+1}</td>
-                    <td>{product.name}</td>
-                    <td>{product.category}</td>
-                    <td>{product.price}</td>
-                    <td><button onClick={()=>onEdit(product.id)}>Sửa</button><button onClick={()=>onDelete(product.id)}>Xóa</button></td>
-                </tr>
-               ))}
-            </tbody>
-        </table>  
-    </>
-  )
+    const routes = useRoutes([
+      {path:'',Component:Client,children:[
+        {path: '',Component:Home},
+        {path: 'detail',Component:Detail}
+      ]},      
+      {path: 'dashboard',Component:Dashboard,children:[
+        {path:'product',Component:Products}
+      ]},
+    ])
+    return routes
+  //  (
+  //   <>
+  //   <Routes>
+  //       <Route path='/' Component={Home}/>
+  //       <Route path='detail' Component={Detail}/>
+  //       <Route path='dashboard' Component={Dashboard}>
+  //           <Route path='product' Component={Products}/>
+  //       </Route>
+  //   </Routes>
+  //   </>
+  // )
 }
 
 export default App
