@@ -15,6 +15,7 @@ import Detail from './components/detail'
 import Dashboard from './layout/dashboard'
 import Products from './components/products'
 import Client from './layout/client'
+import { GetAllProduct } from './service/product'
 
 type formType = Pick<IProduct,'name'|'price'|'image'|'category'>
 function App() {
@@ -24,7 +25,7 @@ function App() {
   const [click, setClick] = useState<boolean>(false)
   useEffect(()=>{
      (async ()=>{
-        const {data} = await axios.get("http://localhost:3000/products")
+        const data = await GetAllProduct()
         setProducts(data)
      })()
   },[]) 
@@ -82,7 +83,7 @@ function App() {
   }
     const routes = useRoutes([
       {path:'',Component:Client,children:[
-        {path: '',Component:Home},
+        {path: '',element:<Home products={products}/>},
         {path: 'detail',Component:Detail}
       ]},      
       {path: 'dashboard',Component:Dashboard,children:[
