@@ -1,11 +1,9 @@
 import React from 'react'
 import { IProduct } from '../interface/product'
 import ProductItem from './product/productItem'
-
 type Props = {
     products:IProduct[]
 }
-
 const Home = ({products}: Props) => {
   return (
     <>
