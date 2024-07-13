@@ -8,6 +8,12 @@ import { IProduct,FormData } from './interface/product'
 import Addproduct from './components/addproduct'
 import EditProduct from './components/editProduct'
 import CustomElement from './components/customElement'
+import { Route, Routes, useRoutes } from 'react-router-dom'
+import Home from './components/home'
+import Detail from './components/detail'
+import Dashboard from './components/dashboard'
+import Client from './layout/client'
+import { GetAllProducts } from './services/product'
 
 function App() {
   const [products,setProduct]=useState<IProduct[]>([])
@@ -16,14 +22,8 @@ function App() {
   const [flag,setFlag]=useState<number|string>(0)
   useEffect(()=>{
       (async ()=>{
-        try {
-          const {data} = await axios.get("http://localhost:3000/products")
-          setProduct(data)
-          setLoading(false)
-        } catch (error) {
-            console.log(error);
-            
-        }          
+         const data = await GetAllProducts()    
+         setProduct(data)     
       })()
   },[])
   const onAdd = async(product:FormData)=>{
@@ -71,47 +71,16 @@ function App() {
       category:product.category
     })
   }
-  return (
-    <>
-    <h1>Đây là nút</h1>
-    <CustomElement el='button' title='Đăng ký' type='submit'/>
-    <h1>Đây là thẻ anchor</h1>
-    <CustomElement el='anchor' title='Click here' href='https://google.com'/>
-    <Addproduct onAdd={onAdd}/>
-    <h1>Danh sách sản phẩm</h1>
-    {(isLoading)?<div className="lds-ripple"><div></div><div></div></div>:
-    <table>
-      <thead>
-        <tr>
-          <th>STT</th>
-          <th>Ảnh</th>
-          <th>Tên sp</th>
-          <th>Danh mục</th>
-          <th>Giá tiền</th>
-          <th>Thao tác</th>
-        </tr>
-      </thead>
-      <tbody>
-        {products.map((product:IProduct,index:number)=>(
-          (product.id===flag)?<tr>
-            <td colSpan={6}>
-                <EditProduct product={product} setFlag={setFlag} onUpdate={onUpdate}/>
-            </td>           
-          </tr>:
-          <tr key={product.id}>
-              <td>{index+1}</td>
-              <td><img width={90} src={product.image}/></td>
-              <td>{product.name}</td>
-              <td>{product.category}</td>
-              <td>{product.price}</td>
-              <td><button onClick={()=>onEdit(product.id)}>Sửa</button><button onClick={()=>onDelete(product.id)}>Xóa</button></td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-    }
-    </>
-  )
+  const element = useRoutes([
+    {path:'',Component:Client,children:[
+        {path:'',element:<Home products={products}/>},
+        {path:'detail',element:<Detail/>}
+    ]},
+    {path:'dashboard',element:<Dashboard/>,children:[
+      {path:'product',element:<Home products={products}/>}
+    ]},
+  ])
+  return element
 }
 
 export default App
