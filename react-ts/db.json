@@ -13,14 +13,14 @@
   ],
   "products": [
     {
-      "name": "Product 1 update",
+      "name": "Product 1 ud333",
       "image": "https://cdn.gumac.vn/image/01/thoi-trang/dam/shop-thoi-trang-phong-cach-co-dien270520201045135082.jpg",
       "price": 100000,
       "category": "Electronics",
       "id": 1
     },
     {
-      "name": "Product 23 uodate 2",
+      "name": "Product 23 uodate 2 23333",
       "image": "https://cdn.gumac.vn/image/01/2020/tin-tuc-dot-1/bai-8-xu-huong-thoi-trang-2020/du-doan-xu-huong-thoi-trang-2020250220201136321510.jpg",
       "price": 200000,
       "category": "Fashion",
@@ -48,11 +48,18 @@
       "id": 12
     },
     {
-      "name": "Sản phẩm 13",
-      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
-      "price": "2112",
-      "category": "21312",
+      "name": "Sản phẩm mới 1",
+      "image": "https://beyono.vn/wp-content/uploads/2023/08/ao-thoi-trang-bong-chuyen-volley-passion-01-trang-8.webp",
+      "price": "10000",
+      "category": "abc",
       "id": 13
+    },
+    {
+      "name": "Giày nữ ABC3",
+      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
+      "price": "10000",
+      "category": "1111",
+      "id": 14
     }
   ]
 }

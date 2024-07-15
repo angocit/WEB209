@@ -2,6 +2,7 @@ import React from 'react'
 import { formType, IProduct } from '../interface/product'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 type Props = {
     title:string,
@@ -9,8 +10,10 @@ type Props = {
 }
 const AddProduct = ({title,onAdd}: Props) => {
     const {register,handleSubmit,reset} = useForm<formType>()
+    const navigate = useNavigate()
     const onSubmit =async(formData:any)=>{
       onAdd(formData)  
+      navigate('/products')
       reset()    
     }
   return (

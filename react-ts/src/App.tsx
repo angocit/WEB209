@@ -15,7 +15,8 @@ import Detail from './components/detail'
 import Dashboard from './layout/dashboard'
 import Products from './components/products'
 import Client from './layout/client'
-import { GetAllProduct } from './service/product'
+import { GetAllProduct, updateProduct } from './service/product'
+import ProductList from './components/product-list'
 
 type formType = Pick<IProduct,'name'|'price'|'image'|'category'>
 function App() {
@@ -29,7 +30,7 @@ function App() {
         setProducts(data)
      })()
   },[]) 
-  const onDelete = async(id:number)=>{
+  const onDelete = async(id:number|string)=>{
     try {
       if (confirm("Are you sure you want to delete")){
         const {data}= await axios.delete(`http://localhost:3000/products/${id}`)
@@ -40,26 +41,15 @@ function App() {
       
     }
   }
-  const onSubmitUpdate =async(formData:any)=>{
-    // console.log(data);
+  const onSubmitUpdate =async(formData:formType,id:string|number)=>{
     try {
-      const {data} = await axios.put("http://localhost:3000/products/"+flag,formData)
-      //  console.log(data);
-       console.log(flag);
-       const newproduct = products.map((product:IProduct)=>{
-             if (product.id==flag){
-              product = data
-          }
-            return product
-       })      
-      setProducts(newproduct)
-      setFlag(0)
-      alert('Cập nhật thành công')
-      // reset()
-    } catch (error) {
-      console.log(error);
+        const data = await updateProduct(formData,id)
+        const newproducts = products.map(product=>(product.id==id)?data:product)
+        setProducts(newproducts)
+        alert("Cập nhật thành công")
+      } catch (error) {
       
-    }        
+    }       
 }
   const onEdit = (id:number|string) => {
     setFlag(id)
@@ -84,6 +74,9 @@ function App() {
     const routes = useRoutes([
       {path:'',Component:Client,children:[
         {path: '',element:<Home products={products}/>},
+        {path: 'products',element:<ProductList onDelete={onDelete} products={products}/>},
+        {path: 'product/add',element:<AddProduct title='Thêm mới sản phẩm' onAdd={onAdd} />},
+        {path: 'product/edit/:id',element:<EditProduct title='Sửa sản phẩm' onUpdate={onSubmitUpdate} />},
         {path: 'detail',Component:Detail}
       ]},      
       {path: 'dashboard',Component:Dashboard,children:[

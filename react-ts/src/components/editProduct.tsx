@@ -1,34 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { formType, IProduct } from '../interface/product'
 import { useForm } from 'react-hook-form'
+import { useNavigate, useParams } from 'react-router-dom'
+import { GetProductByID } from '../service/product'
 
 type Props = {
-    product:IProduct,
-    onUpdate:(data:formType)=>void,
-    setFlag:(id:string|number)=>void
+    title:string,
+    onUpdate:(data:formType,id:number|string)=>void
 }
 
-const EditProduct = ({product,onUpdate,setFlag}: Props) => {
-    const {register,handleSubmit,reset} = useForm<formType>({
-        defaultValues: {
-            name: product.name,
-            image: product.image,
-            price: product.price,
-            category: product.category
-          }
-    })
+const EditProduct = ({title,onUpdate}: Props) => {
+    const {register,handleSubmit,reset} = useForm<formType>()
+    const navigate = useNavigate()
+    const param = useParams()
+    useEffect(()=>{
+      (async ()=>{
+        const product = await GetProductByID(param.id as string|number)
+        reset({
+          name:product.name,
+          image:product.image,
+          price:product.price,
+          category:product.category
+        })
+      })()
+    },[])
     const onSubmitUpdate = (product:formType)=>{
-        onUpdate(product)
+        onUpdate(product,param.id as string|number)
+        navigate('/products')
     }
   return (
-    <div className='bg'>
+    <div>
                         <form onSubmit={handleSubmit(onSubmitUpdate)}>
                           <input type='text' {...register("name")} placeholder='Tên sản phẩm'/>
                           <input type='text' {...register("image")} placeholder='Ảnh sản phẩm'/>
                           <input type='number' {...register("price")} placeholder='Giá sản phẩm'/>
                           <input type='text' {...register("category")} placeholder='Danh mục'/>
-                          <button type='submit'>Update</button>  
-                          <button type='button' onClick={()=>setFlag(0)}>Hủy</button>  
+                          <button type='submit'>Update</button> 
                       </form> 
                   </div>
   )
