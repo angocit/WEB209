@@ -12,7 +12,7 @@ const AddProduct = ({title,onAdd}: Props) => {
     const {register,handleSubmit,reset} = useForm<formType>()
     const navigate = useNavigate()
     const onSubmit =async(formData:any)=>{
-      onAdd(formData)  
+     await onAdd(formData)  
       navigate('/products')
       reset()    
     }

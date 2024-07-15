@@ -24,8 +24,8 @@ const EditProduct = ({title,onUpdate}: Props) => {
         })
       })()
     },[])
-    const onSubmitUpdate = (product:formType)=>{
-        onUpdate(product,param.id as string|number)
+    const onSubmitUpdate = async (product:formType)=>{
+       await onUpdate(product,param.id as string|number)
         navigate('/products')
     }
   return (

@@ -6,7 +6,7 @@ export const GetAllProduct = async ()=>{
         const {data} = await instance.get('products')
         return data
     } catch (error) {
-        console.log(error);        
+        throw new Error("Lỗi")       
     }
 }
 export const GetProductByID = async (id:number|string)=>{
@@ -14,7 +14,7 @@ export const GetProductByID = async (id:number|string)=>{
         const {data} = await instance.get(`products/${id}`)
         return data
     } catch (error) {
-        console.log(error); 
+        throw new Error("Lỗi")      
     }
 }
 export const AddProduct = async (productdata:formType)=>{
@@ -22,7 +22,7 @@ export const AddProduct = async (productdata:formType)=>{
         const {data} = await instance.post('products',productdata)
         return data
     } catch (error) {
-        console.log(error);        
+        throw new Error("Lỗi")         
     }
 }
 export const updateProduct = async (productdata:formType,id:string|number)=>{
@@ -30,7 +30,7 @@ export const updateProduct = async (productdata:formType,id:string|number)=>{
         const {data} = await instance.put(`products/${id}`,productdata)
         return data
     } catch (error) {
-        console.log(error);        
+        throw new Error("Lỗi")              
     }
 }
 export const DeleteProduct = async (id:string|number)=>{
@@ -38,6 +38,6 @@ export const DeleteProduct = async (id:string|number)=>{
         const {data} = await instance.delete(`products/${id}`)
         return data
     } catch (error) {
-        console.log(error);        
+        throw new Error("Lỗi")            
     }
 }

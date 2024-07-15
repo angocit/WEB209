@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import axios from 'axios'
 import './App.css'
 import { IProduct } from './interface/product'
-import AddProduct from './components/addProduct'
+import AddProductElement from './components/addProduct'
 import Sidebar from './components/sidebar'
 import EditProduct from './components/editProduct'
 import CustomElement from './components/button'
@@ -15,7 +15,7 @@ import Detail from './components/detail'
 import Dashboard from './layout/dashboard'
 import Products from './components/products'
 import Client from './layout/client'
-import { GetAllProduct, updateProduct } from './service/product'
+import { AddProduct, GetAllProduct, updateProduct } from './service/product'
 import ProductList from './components/product-list'
 
 type formType = Pick<IProduct,'name'|'price'|'image'|'category'>
@@ -63,7 +63,7 @@ function App() {
   }
   const onAdd = async (dataproduct:formType)=>{
     try {
-      const {data} = await axios.post("http://localhost:3000/products",dataproduct) 
+      const data = await AddProduct(dataproduct)
       setProducts([...products,data])
       alert('Thêm mới thành công')
     } catch (error) {
@@ -75,7 +75,7 @@ function App() {
       {path:'',Component:Client,children:[
         {path: '',element:<Home products={products}/>},
         {path: 'products',element:<ProductList onDelete={onDelete} products={products}/>},
-        {path: 'product/add',element:<AddProduct title='Thêm mới sản phẩm' onAdd={onAdd} />},
+        {path: 'product/add',element:<AddProductElement title='Thêm mới sản phẩm' onAdd={onAdd} />},
         {path: 'product/edit/:id',element:<EditProduct title='Sửa sản phẩm' onUpdate={onSubmitUpdate} />},
         {path: 'detail',Component:Detail}
       ]},      
