@@ -4,7 +4,6 @@ import { IProduct } from '../interface/product'
 type Props = {
     product:IProduct
 }
-
 const ProductItem = ({product}: Props) => {
   return (
     <div>
@@ -19,5 +18,4 @@ const ProductItem = ({product}: Props) => {
     </div>
   )
 }
-
 export default ProductItem

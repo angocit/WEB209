@@ -1,26 +1,28 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { IProduct,FormData } from '../interface/product';
+import {FormData} from '../interface/product'
+
 type Props = {
     onAdd:(data:FormData)=>void
 }
 
-const AddProduct = ({onAdd}: Props) => {
-    const {register,handleSubmit,reset}= useForm<FormData>()
-    const onSubmit =(product:FormData)=>{
-        onAdd(product)
+const Addproduct = ({onAdd}: Props) => {
+    const {register,handleSubmit} = useForm<FormData>()
+    const onsubmit = (data:FormData)=>{
+        onAdd(data)
     }
   return (
     <>
-    <form onSubmit={handleSubmit(onSubmit)}>
-         <input type='text' {...register("name")} placeholder='Tên sản phẩm'/>
-         <input type='text' {...register("image")} placeholder='Ảnh sản phẩm'/>
-         <input type='number' {...register("price")} placeholder='Giá sản phẩm'/>
-         <input type='text' {...register("category")} placeholder='Danh mục'/>
-         <button type='submit'>Thêm mới sản phẩm</button>
-      </form>
+        <h1>Thêm mới sản phẩm</h1>
+        <form onSubmit={handleSubmit(onsubmit)}>
+            <input type='text' placeholder='Tên sản phẩm' {...register('name')}/>
+            <input type='text' placeholder='Ảnh sản phẩm' {...register('image')}/>
+            <input type='number' placeholder='Giá sản phẩm' {...register('price')}/>
+            <input type='text' placeholder='Danh mục' {...register('category')}/>
+            <button type='submit'>Thêm mới</button>
+        </form>
     </>
   )
 }
 
-export default AddProduct
+export default Addproduct

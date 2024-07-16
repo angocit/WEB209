@@ -1,38 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { FormData, IProduct } from '../interface/product'
+import {FormData} from '../interface/product'
+import { useParams } from 'react-router-dom'
+import { GetProductByID } from '../services/product'
 type Props = {
-    product:IProduct,
-    setFlag:(value:number|string) => void,
-    onUpdate:(data:FormData)=>void
+    onUpdate:(data:FormData,id:string|number) => void
 }
 
-const EditProduct = ({product,setFlag,onUpdate}: Props) => {
-    const {register,handleSubmit,reset}= useForm<FormData>({
-        defaultValues:{
-            name:product.name,
-            image:product.image,
-            price:product.price,
-            category:product.category
-        }
-    })
-const onSubmit = (data:FormData)=>{
-    onUpdate(data)
-} 
+const Editproduct = ({onUpdate}: Props) => {
+    const {register,handleSubmit,reset} = useForm<FormData>()
+    const param = useParams()
+    useEffect(()=>{
+        (async ()=>{
+            const product = await GetProductByID(param?.id as number|string)
+            reset({
+                name: product.name,
+                image: product.image,
+                price: product.price,
+                category: product.category
+            })
+        })()
+    },[])
+    const onsubmit = (data:FormData)=>{
+        onUpdate(data,param?.id as number|string)
+    }
   return (
     <>
-    <div id='popup'>
-            <form onSubmit={handleSubmit(onSubmit)}>
-            <input type='text' {...register("name")} placeholder='Tên sản phẩm'/>
-            <input type='text' {...register("image")} placeholder='Ảnh sản phẩm'/>
-            <input type='number' {...register("price")} placeholder='Giá sản phẩm'/>
-            <input type='text' {...register("category")} placeholder='Danh mục'/>
+        <h1>Cập nhật sản phẩm</h1>
+        <form onSubmit={handleSubmit(onsubmit)}>
+            <input type='text' placeholder='Tên sản phẩm' {...register('name')}/>
+            <input type='text' placeholder='Ảnh sản phẩm' {...register('image')}/>
+            <input type='number' placeholder='Giá sản phẩm' {...register('price')}/>
+            <input type='text' placeholder='Danh mục' {...register('category')}/>
             <button type='submit'>Cập nhật</button>
-            <button type='button' onClick={()=>setFlag(0)}>Hủy</button>
-            </form>
-            </div>
+        </form>
     </>
   )
 }
 
-export default EditProduct
+export default Editproduct

@@ -6,7 +6,7 @@ export const GetAllProducts = async ()=>{
         const {data} = await api.get("products")
         return data
     } catch (error) {
-        console.log(error);        
+        throw new Error('Lỗi')     
     }
 }
 export const GetProductByID = async (id:number|string)=>{
@@ -14,7 +14,7 @@ export const GetProductByID = async (id:number|string)=>{
         const {data} = await api.get(`products/${id}`)
         return data
     } catch (error) {
-        console.log(error);        
+        throw new Error('Lỗi')       
     }
 }
 export const AddProduct = async (productData:FormData)=>{
@@ -22,7 +22,7 @@ export const AddProduct = async (productData:FormData)=>{
         const {data} = await api.post(`products`,productData)
         return data
     } catch (error) {
-        console.log(error);        
+        throw new Error('Lỗi')       
     }
 }
 export const UpdateProduct = async (productData:FormData,id:number|string)=>{
@@ -30,7 +30,7 @@ export const UpdateProduct = async (productData:FormData,id:number|string)=>{
         const {data} = await api.put(`products/${id}`,productData)
         return data
     } catch (error) {
-        console.log(error);        
+        throw new Error('Lỗi')       
     }
 }
 export const DeleteProduct = async (id:number|string)=>{
@@ -38,6 +38,6 @@ export const DeleteProduct = async (id:number|string)=>{
         const {data} = await api.delete(`products/${id}`)
         return data
     } catch (error) {
-        console.log(error);        
+        throw new Error('Lỗi')       
     }
 }

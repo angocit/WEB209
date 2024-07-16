@@ -5,95 +5,78 @@ import './App.css'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { IProduct,FormData } from './interface/product';
-import AddProduct from './components/addProduct';
-import EditProduct from './components/editProduct';
 import CustomElement from './components/customElement';
-import { Route, Routes, useRoutes } from 'react-router-dom';
+import { Route, Routes, useNavigate, useRoutes } from 'react-router-dom';
 import Home from './components/home';
 import Detail from './components/detail';
 import Dashboard from './components/dashboard';
 import Productlist from './components/productlist';
 import Client from './layout/client';
 import Admin from './layout/Admin';
-import { GetAllProducts } from './services/product';
+import { AddProduct, DeleteProduct, GetAllProducts, UpdateProduct } from './services/product';
+import Addproduct from './components/addproduct';
+import Editproduct from './components/editproduct';
 
 function App() {
-  const {register,handleSubmit,reset}= useForm<FormData>()
   const [products,setProduct] = useState<IProduct[]>([])
   const [isLoading,setLoading] = useState<boolean>(true)
   const [flag,setFlag] = useState<number|string>(0)
+  const navigate = useNavigate()
   useEffect(()=>{
     (async()=>{
         const data = await GetAllProducts()
-        setProduct(data)
+        setProduct(data)       
     })()
   },[])
-  const onAdd = async (Frmdata:FormData)=>{
+  const onDelete =async (id:number|string)=>{
+    if(confirm('Bạn chắc chứ?')){
     try {
-      const {data}=await axios.post("http://localhost:3000/products",Frmdata)
-      alert("Thêm mới thành công")      
-      setProduct([...products,data])
-    } catch (error) {
-      console.log(error);
-    }    
-  }
-  const onUpdate = async (Frmdata:FormData)=>{
-    try {
-      const {data}=await axios.put("http://localhost:3000/products/"+flag,Frmdata)
-      alert("Cập nhật thành công")      
-      const newproducts = products.map(product=>(product.id===flag)?data:product)
-      setProduct(newproducts)
-      setFlag(0)
-    } catch (error) {
-      console.log(error);
-    }    
-  }
-  const onDelete =async(id:number)=>{
-    try {
-      if (confirm("Are you sure you want to delete")){
-        const {data}=await axios.delete(`http://localhost:3000/products/${id}`)
-        alert("Xóa thành công")
-        setProduct(products.filter((p:IProduct) => p.id !== id))
-      }
+        const product =await DeleteProduct(id)
+        alert('Xóa thành công')
+        const newproducts = products.filter(product=>product.id!==id)
+        setProduct(newproducts)
     } catch (error) {
       
     }
   }
-  const onEdit = (id:number|string)=>{
-    setFlag(id)
-    // Lấy thông tin sản phẩm theo ID
-    const [product] = products.filter(product=>product.id===id)
-    reset({
-      name:product.name,
-      image:product.image,
-      price:product.price,
-      category:product.category
-    })
+  }
+  const onAdd = async (data:FormData)=>{
+    try {
+        const product = await AddProduct(data)
+        alert('Thêm mới thành công')
+        setProduct([...products,product])
+        navigate('/product-list')
+    } catch (error) {
+      
+    }
+  }
+  const onUpdate = async (data:FormData,id:number|string)=>{
+    try {
+        const resdata = await UpdateProduct(data,id)
+        alert('Cập nhật thành công')
+        const newproduct = products.map(product=>(product.id==id)?resdata:product)
+        setProduct(newproduct)
+        navigate('/product-list')
+    } catch (error) {
+      
+    }
   }
   const router = useRoutes([
     {path:'',Component:Client,children:[
       {path:'',element:<Home products={products}/>},
+      {path:'product-list',element:<Productlist onDelete={onDelete} products = {products}/>},
+      {path:'product/add',element:<Addproduct onAdd = {onAdd}/>},
+      {path:'product/edit/:id',element:<Editproduct onUpdate={onUpdate}/>},
       {path:'detail',Component:Detail}
     ]},
    
     {path:'dashboard',Component:Admin,children:
       [
-        {path:'product',Component:Productlist}
+        // {path:'product',Component:Productlist}
       ]
     }
   ])
   return router
-  // (
-  //   <>
-  //       <Routes>
-  //           <Route path='/' Component={Home}/>
-  //           <Route path='detail' Component={Detail}/>
-  //           <Route path='dashboard' Component={Dashboard}>
-  //               <Route path='product' Component={Productlist}/>
-  //           </Route>
-  //       </Routes>
-  //   </>
-  // )
 }
 
 export default App
