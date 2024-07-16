@@ -157,3 +157,4 @@
     opacity: 1;
   }
 }
+a.active{color: yellow; font-weight: 700;}
