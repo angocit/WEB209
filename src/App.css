@@ -119,3 +119,4 @@
   animation: popup 0.2s ease-in-out;
 }
 #popup form input{padding: 8px 10px; border: 1px solid #eee}
+a.active{color: #fff;font-weight: 700;}

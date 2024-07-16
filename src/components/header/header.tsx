@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 type Props = {};
 
@@ -10,13 +10,13 @@ const Header = (props: Props) => {
         <nav className="max-w-[1200px] mx-auto">
           <ul className="flex gap-6">
             <li>
-              <Link className="block p-6" to={""}>Trang chủ</Link>
+              <NavLink className="block p-6" to={""}>Trang chủ</NavLink>
             </li>
             <li>
-              <Link className="block p-6" to={""}>Giới thiệu</Link>
+              <NavLink className="block p-6" to={"/product/add"}>Thêm mới</NavLink>
             </li>
             <li>
-              <Link className="block p-6" to={""}>Sản phẩm</Link>
+              <NavLink className="block p-6" to={"/product-list"}>Sản phẩm</NavLink>
             </li>
             <li>
               <Link className="block p-6" to={""}>Tin tức</Link>
