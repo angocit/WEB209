@@ -18,7 +18,7 @@
   ],
   "products": [
     {
-      "name": "Sản phẩm 4",
+      "name": "Sản phẩm 4 update",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2sK-vCdQkyU7aXl7BE9FMrBuJfBCSNyAh0A&s",
       "price": 400000,
       "category": "Mỹ phẩm",
@@ -46,10 +46,10 @@
       "id": 7
     },
     {
-      "name": "Giày nữ ABC 2",
+      "name": "Sna rphamar mới",
       "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
-      "category": "sfasdf",
-      "price": "10000",
+      "price": "1000",
+      "category": "Áo",
       "id": 8
     }
   ]

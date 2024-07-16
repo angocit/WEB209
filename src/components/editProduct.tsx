@@ -1,39 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { IProduct,FormData } from '../interface/product'
-
+import {FormData} from '../interface/product'
+import { useParams } from 'react-router-dom'
+import { GetProductByID } from '../services/product'
 type Props = {
-    product:IProduct;
-    setFlag:(flag:number|string)=>void;
-    onUpdate:(data:FormData)=>void
+    onUpdate:(data:FormData,id:number|string) => void
 }
 
-const EditProduct = ({product,setFlag,onUpdate}: Props) => {
-    const {register,handleSubmit,reset} = useForm<FormData>({
-            defaultValues: {
-                name:product.name,
-                image:product.image,
-                price:product.price,
-                category:product.category
-            }
-        }
-    )
+const EditProduct = ({onUpdate}: Props) => {
+    const {register,handleSubmit,reset}=useForm<FormData>()
+    const param = useParams()
+    useEffect(()=>{
+        (async ()=>{
+            const product = await GetProductByID(param?.id as number|string)
+            reset({
+                name: product.name,
+                image: product.image,
+                price: product.price,
+                category: product.category
+            })
+        })()
+    },[])
     const onSubmit = (data:FormData)=>{
-        onUpdate(data)
-        setFlag(0)
+        onUpdate(data,param?.id as number|string)
     }
   return (
     <>
-    <div id='popup'>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <input type='text' {...register("name")}/>
-                <input type='text' {...register("image")}/>
-                <input type='text' {...register("category")}/>
-                <input type='number' {...register("price")}/>
-                <button type='submit'>Cập nhật sản phẩm</button>
-                <button type='button' onClick={()=>setFlag(0)}>Hủy</button>
-                </form>
-                </div>
+        <h1>Cập nhật sản phẩm</h1>
+        <form className='flex flex-col' onSubmit={handleSubmit(onSubmit)}>
+            <input type='text' {...register('name')} placeholder='Tên sản phẩm' />
+            <input type='text' {...register('image')} placeholder='Ảnh sản phẩm' />
+            <input type='number' {...register('price')} placeholder='Giá' />
+            <input type='text' {...register('category')} placeholder='Danh mục' />
+            <button type='submit'>Cập nhật</button>
+        </form>
     </>
   )
 }
