@@ -13,14 +13,7 @@
   ],
   "products": [
     {
-      "name": "Product 1 ud3335",
-      "image": "https://cdn.gumac.vn/image/01/thoi-trang/dam/shop-thoi-trang-phong-cach-co-dien270520201045135082.jpg",
-      "price": 100000,
-      "category": "Electronics",
-      "id": 1
-    },
-    {
-      "name": "Product 23 uodate 2 23333",
+      "name": "Product 23abc",
       "image": "https://cdn.gumac.vn/image/01/2020/tin-tuc-dot-1/bai-8-xu-huong-thoi-trang-2020/du-doan-xu-huong-thoi-trang-2020250220201136321510.jpg",
       "price": 200000,
       "category": "Fashion",
@@ -60,6 +53,13 @@
       "price": "10000",
       "category": "1111",
       "id": 14
+    },
+    {
+      "name": "Sanr phaamr context",
+      "image": "asdfasd",
+      "price": "11221",
+      "category": "232",
+      "id": 15
     }
   ]
 }

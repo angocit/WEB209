@@ -19,66 +19,16 @@ import { AddProduct, GetAllProduct, updateProduct } from './service/product'
 import ProductList from './components/product-list'
 import Countcontext from './context/countcontext'
 import Privaterouter from './privaterouter'
+import ProductContext from './context/productContext'
 
 type formType = Pick<IProduct,'name'|'price'|'image'|'category'>
 function App() {
-  const [products,setProducts] = useState<IProduct[]>([])
-  const {register,handleSubmit,reset} = useForm<formType>()
-  const [flag,setFlag] = useState<string|number>(0)
-  const [click, setClick] = useState<boolean>(false)
-  useEffect(()=>{
-     (async ()=>{
-        const data = await GetAllProduct()
-        setProducts(data)
-     })()
-  },[]) 
-  const onDelete = async(id:number|string)=>{
-    try {
-      if (confirm("Are you sure you want to delete")){
-        const {data}= await axios.delete(`http://localhost:3000/products/${id}`)
-        alert("Xóa thành công")
-        setProducts(products.filter((product:IProduct)=>product.id!==id))
-      }
-      } catch (error) {
-      
-    }
-  }
-  const onSubmitUpdate =async(formData:formType,id:string|number)=>{
-    try {
-        const data = await updateProduct(formData,id)
-        const newproducts = products.map(product=>(product.id==id)?data:product)
-        setProducts(newproducts)
-        alert("Cập nhật thành công")
-      } catch (error) {
-      
-    }       
-}
-  const onEdit = (id:number|string) => {
-    setFlag(id)
-    const product = products.filter((p:IProduct)=>p.id===id)
-    reset({
-        name:product[0].name,
-        image:product[0].image,
-        price:product[0].price,
-        category:product[0].category
-    })
-  }
-  const onAdd = async (dataproduct:formType)=>{
-    try {
-      const data = await AddProduct(dataproduct)
-      setProducts([...products,data])
-      alert('Thêm mới thành công')
-    } catch (error) {
-      console.log(error);
-      
-    }      
-  }
     const routes = useRoutes([
-      {path:'',element:<Countcontext><Client/></Countcontext>,children:[
-        {path: '',element:<Home products={products}/>},
-        {path: 'products',element:<ProductList onDelete={onDelete} products={products}/>},
-        {path: 'product/add',element:<AddProductElement title='Thêm mới sản phẩm' onAdd={onAdd} />},
-        {path: 'product/edit/:id',element:<EditProduct title='Sửa sản phẩm' onUpdate={onSubmitUpdate} />},
+      {path:'',element:<ProductContext><Client/></ProductContext>,children:[
+        {path: '',element:<Home/>},
+        {path: 'products',element:<ProductList/>},
+        {path: 'product/add',element:<AddProductElement/>},
+        {path: 'product/edit/:id',element:<EditProduct/>},
         {path: 'detail',Component:Detail}
       ]},      
       {path: 'dashboard',element:<Privaterouter userID={2}><Dashboard/></Privaterouter>,children:[

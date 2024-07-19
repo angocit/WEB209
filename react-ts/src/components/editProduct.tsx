@@ -1,15 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { formType, IProduct } from '../interface/product'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { GetProductByID } from '../service/product'
+import { productCT } from '../context/productContext'
 
-type Props = {
-    title:string,
-    onUpdate:(data:formType,id:number|string)=>void
-}
 
-const EditProduct = ({title,onUpdate}: Props) => {
+const EditProduct = () => {
+  const {onSubmitUpdate} = useContext(productCT)
     const {register,handleSubmit,reset} = useForm<formType>()
     const navigate = useNavigate()
     const param = useParams()
@@ -24,13 +22,13 @@ const EditProduct = ({title,onUpdate}: Props) => {
         })
       })()
     },[])
-    const onSubmitUpdate = async (product:formType)=>{
-       await onUpdate(product,param.id as string|number)
+    const onSubmit = async (product:formType)=>{
+       await onSubmitUpdate(product,param.id as string|number)
         navigate('/products')
     }
   return (
     <div>
-                        <form onSubmit={handleSubmit(onSubmitUpdate)}>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                           <input type='text' {...register("name")} placeholder='Tên sản phẩm'/>
                           <input type='text' {...register("image")} placeholder='Ảnh sản phẩm'/>
                           <input type='number' {...register("price")} placeholder='Giá sản phẩm'/>
