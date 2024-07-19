@@ -17,6 +17,8 @@ import Products from './components/products'
 import Client from './layout/client'
 import { AddProduct, GetAllProduct, updateProduct } from './service/product'
 import ProductList from './components/product-list'
+import Countcontext from './context/countcontext'
+import Privaterouter from './privaterouter'
 
 type formType = Pick<IProduct,'name'|'price'|'image'|'category'>
 function App() {
@@ -72,14 +74,14 @@ function App() {
     }      
   }
     const routes = useRoutes([
-      {path:'',Component:Client,children:[
+      {path:'',element:<Countcontext>Client</Countcontext>,children:[
         {path: '',element:<Home products={products}/>},
         {path: 'products',element:<ProductList onDelete={onDelete} products={products}/>},
         {path: 'product/add',element:<AddProductElement title='Thêm mới sản phẩm' onAdd={onAdd} />},
         {path: 'product/edit/:id',element:<EditProduct title='Sửa sản phẩm' onUpdate={onSubmitUpdate} />},
         {path: 'detail',Component:Detail}
       ]},      
-      {path: 'dashboard',Component:Dashboard,children:[
+      {path: 'dashboard',element:<Privaterouter userID={2}><Dashboard/></Privaterouter>,children:[
         {path:'product',Component:Products}
       ]},
     ])

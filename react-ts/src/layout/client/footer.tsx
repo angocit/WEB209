@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { countCT } from '../../context/countcontext'
 
 type Props = {}
 
 const Footer = (props: Props) => {
+  const count = useContext(countCT)
   return (
-    <div>Footer</div>
+    <div>Footer {count}</div>
   )
 }
 

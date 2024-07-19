@@ -29,3 +29,4 @@ gap: 20px;
 #sidebar.active{
   transform:translateX(0);
 }
+a.active{color: red;}
