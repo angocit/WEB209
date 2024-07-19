@@ -74,7 +74,7 @@ function App() {
     }      
   }
     const routes = useRoutes([
-      {path:'',element:<Countcontext>Client</Countcontext>,children:[
+      {path:'',element:<Countcontext><Client/></Countcontext>,children:[
         {path: '',element:<Home products={products}/>},
         {path: 'products',element:<ProductList onDelete={onDelete} products={products}/>},
         {path: 'product/add',element:<AddProductElement title='Thêm mới sản phẩm' onAdd={onAdd} />},
