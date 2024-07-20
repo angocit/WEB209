@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import {FormData} from '../interface/product'
 import { useParams } from 'react-router-dom'
 import { GetProductByID } from '../services/product'
-type Props = {
-    onUpdate:(data:FormData,id:string|number) => void
-}
+import { ProductCT } from '../context/product'
 
-const Editproduct = ({onUpdate}: Props) => {
+const Editproduct = () => {
+    const {onUpdate} = useContext(ProductCT)
     const {register,handleSubmit,reset} = useForm<FormData>()
     const param = useParams()
     useEffect(()=>{

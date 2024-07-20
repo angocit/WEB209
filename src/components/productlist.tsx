@@ -1,13 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { IProduct } from '../interface/product'
 import { Link } from 'react-router-dom'
+import { ProductCT } from '../context/product'
 
-type Props = {
-  products:IProduct[],
-  onDelete:(id:string|number) => void
-}
 
-const Productlist = ({products,onDelete}: Props) => {
+const Productlist = () => {
+  const {products,onDelete} = useContext(ProductCT)
   return (
     <>
       <h1>Danh sách sản phẩm</h1>
@@ -22,7 +20,7 @@ const Productlist = ({products,onDelete}: Props) => {
           </tr>
         </thead>
         <tbody>
-            {products.map((product,index:number)=>(
+            {products.map((product:IProduct,index:number)=>(
               <tr key={product.id}>
                   <td>{index+1}</td>
                   <td><img width={90} src={product.image}/></td>
