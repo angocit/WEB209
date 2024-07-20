@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { IProduct } from '../interface/product'
+import { CartCT } from '../context/cart'
 
 type Props = {
     product:IProduct
 }
 const ProductItem = ({product}: Props) => {
+  const {cart, setCart} = useContext(CartCT)
   return (
     <div>
         <div className='h-[300px] w-full overflow-hidden'>
@@ -15,6 +17,7 @@ const ProductItem = ({product}: Props) => {
             <span className='text-[12px] text-[#777777]'>{product.category}</span>
             <span className='text-[12px] text-[#665345] font-semibold'>{product.price}</span>
         </div>
+        <button onClick={()=>setCart(cart+1)}>Thêm giỏ hàng</button>
     </div>
   )
 }

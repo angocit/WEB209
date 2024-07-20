@@ -18,13 +18,6 @@
   ],
   "products": [
     {
-      "name": "Sản phẩm 4",
-      "image": "url_image_4",
-      "price": 400000,
-      "category": "Mỹ phẩm",
-      "id": 4
-    },
-    {
       "name": "Giày nữ ABC UP2 3432432",
       "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
       "price": "243",
@@ -44,13 +37,6 @@
       "price": "10000",
       "category": "DH",
       "id": 9
-    },
-    {
-      "name": "Sản pohaamr mới",
-      "image": "sdafasdfads",
-      "price": "324234",
-      "category": "dfsdf",
-      "id": 10
     }
   ]
 }

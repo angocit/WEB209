@@ -16,6 +16,7 @@ import Admin from './layout/Admin';
 import { AddProduct, DeleteProduct, GetAllProducts, UpdateProduct } from './services/product';
 import Addproduct from './components/addproduct';
 import Editproduct from './components/editproduct';
+import CartContext from './context/cart';
 
 function App() {
   const [products,setProduct] = useState<IProduct[]>([])
@@ -62,7 +63,7 @@ function App() {
     }
   }
   const router = useRoutes([
-    {path:'',Component:Client,children:[
+    {path:'',element:<CartContext><Client/></CartContext>,children:[
       {path:'',element:<Home products={products}/>},
       {path:'product-list',element:<Productlist onDelete={onDelete} products = {products}/>},
       {path:'product/add',element:<Addproduct onAdd = {onAdd}/>},
