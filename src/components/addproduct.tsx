@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {FormData} from '../interface/product'
 import { useForm } from 'react-hook-form'
-type Props = {
-    onAdd:(data:FormData) => void
-}
+import { ProductCT } from '../context/product'
 
-const Addproduct = ({onAdd}: Props) => {
+const Addproduct = () => {
+    const {onAdd} = useContext(ProductCT)
     const {register,handleSubmit}=useForm<FormData>()
     const onSubmit = (data:FormData)=>{
         onAdd(data)

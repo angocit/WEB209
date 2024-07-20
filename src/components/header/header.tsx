@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { cartCT } from "../../context/cart";
 
 type Props = {};
 
 const Header = (props: Props) => {
+  const {cart} = useContext(cartCT)
   return (
     <>
       <header className="bg-gradient-to-r from-[#4E7C32] to-[#b0b5a1]">
@@ -13,16 +15,16 @@ const Header = (props: Props) => {
               <NavLink className="block p-6" to={""}>Trang chủ</NavLink>
             </li>
             <li>
-              <NavLink className="block p-6" to={"/product/add"}>Thêm mới</NavLink>
+              <NavLink className="block p-6" to={"/dashboard/product/add"}>Thêm mới</NavLink>
             </li>
             <li>
-              <NavLink className="block p-6" to={"/product-list"}>Sản phẩm</NavLink>
+              <NavLink className="block p-6" to={"/dashboard/product-list"}>Sản phẩm</NavLink>
             </li>
             <li>
               <Link className="block p-6" to={""}>Tin tức</Link>
             </li>
             <li>
-              <Link className="block p-6" to={""}>Liên hệ</Link>
+              <Link className="block p-6" to={""}>Giỏ hàng ({cart})</Link>
             </li>
           </ul>
         </nav>
