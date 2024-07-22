@@ -33,23 +33,23 @@ const CartTable = ({ cartdetail, edit }: Props) => {
       }
       return item;
     });
-    // console.log(products);
-    const { data } = await api.put("cart/" + cart._id, {
+    // console.log(products); // products  là mảng sau khi đã cập nhật số lượng
+    const { data } = await api.put("cart/" + cart._id, {  // Lưu thông giỏ hàng vào DB
       ...cart,
       products: products,
     });
-    setCart(data);
+    setCart(data); // Set lại state giỏ hàng được share qua Context
   };
   const DeleteProductInCart = async (productid: number | string) => {
     if (confirm("Bạn chắc chứ?")) {
       const products = cart.products.filter(
         (item: any) => item.ProductId != productid
-      );
+      );  // Loại bỏ sản phẩm có id muốn xóa ở trong mảng
       const { data } = await api.put("cart/" + cart._id, {
         ...cart,
         products: products,
-      });
-      setCart(data);
+      });  // Lưu thông tin giỏ hàng
+      setCart(data); // Set lại state giỏ hàng được share qua Context
     }
   };
   return (

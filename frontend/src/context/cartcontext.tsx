@@ -10,7 +10,7 @@ const CartContext = ({children}: Props) => {
   useEffect(()=>{
     (async()=>{
       try {
-        const {data} = await api.get('cart/userid/1')                
+        const {data} = await api.get('cart/userid/1')    // Hardcode userid = 1            
         if (data){
           setCart(data)
         }

@@ -37,16 +37,16 @@ const Checkout = () => {
         if (cart._id){
         (async ()=>{
             try {
-                const {data} = await api.get(`cart/${cart._id}`)
+                const {data} = await api.get(`cart/${cart._id}`)  // Call API lấy chi tiết giỏ hàng có đầy đủ thông tin sản phẩm
                 console.log(data);
                 const total = data.products.reduce((sum:{subtotal: number,quantity: number},product:any)=>{
                     sum.subtotal += product.ProductId.price*product.quantity
                     sum.quantity += product.quantity
                     return sum
                 },{subtotal: 0,quantity: 0})
-                setCartdetail(data)
-                setSubTotal(total.subtotal)
-                setQuantityTotal(total.quantity)
+                setCartdetail(data) // Giống bên cart
+                setSubTotal(total.subtotal) // Set state tổng tiền tạm tính
+                setQuantityTotal(total.quantity)  // Set state tổng số lượng
             } catch (error) {
               
             }
@@ -78,10 +78,10 @@ const Checkout = () => {
         status:'Đang xử lý'
       }
       try {
-        const {data} = await api.post('/order',order)
-        api.delete(`cart/${cart._id}`)
+        const {data} = await api.post('/order',order) // Lưu thông tin đơn hàng vào DB
+        api.delete(`cart/${cart._id}`)  // Xóa giỏ hàng
         console.log(data);
-        setCart({})    
+        setCart({})    // Đặt state giỏ hàng
         alert('Đặt hàng thành công')    
       } catch (error) {
           console.log(error);
@@ -90,7 +90,7 @@ const Checkout = () => {
     }
     const changeShippingMethod = (data:FormCheckOut)=>{
        if (data.shipping_method==2){
-          setShipping_fee(20000)
+          setShipping_fee(20000)  // Nếu phương thức vận chuyển là nhanh thì tính phí 20k
        }else {
         setShipping_fee(0)
        }        
@@ -121,8 +121,8 @@ const Checkout = () => {
             </select>
             <label>Phương thức vận chuyển</label>
             <select className='border border-solid' {...register('shipping_method',{required:true})}>
-                <option onSelect={()=>alert('1')} value={1}>Tiêu chuẩn</option>
-                <option  onSelect={()=>alert('2')} value={2}>Vận chuyển nhanh</option>                
+                <option value={1}>Tiêu chuẩn</option>
+                <option value={2}>Vận chuyển nhanh</option>                
             </select>
             <button type='submit' className='bg-slate-900 text-white py-2 px-6 mr-0'>Hoàn tất đơn hàng</button>
         </form>
