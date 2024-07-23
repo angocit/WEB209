@@ -9,10 +9,11 @@ import Addproduct from './components/addproduct';
 import Editproduct from './components/editproduct';
 import CartContext from './context/cart';
 import ProductContext from './context/product';
+import AppContext from './context/appContext';
 
 function App() {
   const router = useRoutes([
-    {path:'',element:<CartContext><ProductContext><Client/></ProductContext></CartContext>,children:[
+    {path:'',element:<CartContext><ProductContext><AppContext><Client/></AppContext></ProductContext></CartContext>,children:[
       {path:'',element:<Home/>},
       {path:'product-list',element:<Productlist/>},
       {path:'product/add',element:<Addproduct/>},
