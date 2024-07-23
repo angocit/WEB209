@@ -120,3 +120,10 @@
 }
 #popup form input{padding: 8px 10px; border: 1px solid #eee}
 a.active{color: #fff;font-weight: 700;}
+.box-user{
+  background-color: #fff;
+  max-width: 500px;
+  margin: auto;
+  padding: 50px;
+  box-shadow: 0 0 5px #666;
+}
