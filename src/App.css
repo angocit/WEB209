@@ -62,7 +62,6 @@
   100% {
     margin-top: 0;
     opacity: 1;
-    margin-left: 0;
   }
 }
 @keyframes lds-ripple {
@@ -126,4 +125,5 @@ a.active{color: #fff;font-weight: 700;}
   margin: auto;
   padding: 50px;
   box-shadow: 0 0 5px #666;
+  animation: popup 0.2s ease;
 }
