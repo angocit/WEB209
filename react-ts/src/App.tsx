@@ -20,11 +20,12 @@ import ProductList from './components/product-list'
 import Countcontext from './context/countcontext'
 import Privaterouter from './privaterouter'
 import ProductContext from './context/productContext'
+import AppContext from './context/AppContext'
 
 type formType = Pick<IProduct,'name'|'price'|'image'|'category'>
 function App() {
     const routes = useRoutes([
-      {path:'',element:<ProductContext><Client/></ProductContext>,children:[
+      {path:'',element:<ProductContext><AppContext><Client/></AppContext></ProductContext>,children:[
         {path: '',element:<Home/>},
         {path: 'products',element:<ProductList/>},
         {path: 'product/add',element:<AddProductElement/>},
