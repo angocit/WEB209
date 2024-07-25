@@ -4,14 +4,14 @@ export interface IUserReducer{
 }
 export interface IUserAction {
     type:string;
-    payload: {value:boolean}
+    value:boolean
 }
 export const UserReducer = (state:IUserReducer,action:IUserAction)=>{
     if (action.type=='login'){
-        return {...state,isLogin:action.payload.value}
+        return {...state,isLogin:action.value}
     }
     else if (action.type=='register'){
-        return {...state,isRegister:action.payload.value}
+        return {...state,isRegister:action.value}
     }
     else {
         return state

@@ -29,10 +29,10 @@ const Header = (props: Props) => {
               <Link className="block p-6" to={""}>Giỏ hàng ({cart})</Link>
             </li>
             <li>
-              <button onClick={()=>{dispatch({type:'register',payload:{value:true}});dispatch({type:'login',payload:{value:false}})}} className="block p-6">Đăng ký</button>
+              <button onClick={()=>{dispatch({type:'register',value:true});dispatch({type:'login',value:false})}} className="block p-6">Đăng ký</button>
             </li>
             <li>
-            <button onClick={()=>{dispatch({type:'login',payload:{value:true}});dispatch({type:'register',payload:{value:false}})}} className="block p-6">Đăng nhập</button>
+            <button onClick={()=>{dispatch({type:'login',value:true});dispatch({type:'register',value:false})}} className="block p-6">Đăng nhập</button>
             </li>
           </ul>
         </nav>
