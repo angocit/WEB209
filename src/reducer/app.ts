@@ -1,12 +1,13 @@
 type IAppReducer = {
     isLogin:boolean;
     isRegister:boolean;
-    Message:{status:boolean,text?:string}
+    Message:{status:boolean,message?:{type?:string,text?:string}}
 }
 type IAction = {
     type:'register'|'login';
     value:boolean;
-    text?:string
+    message?:{type?:string,text?:string}
+
 }
 export const AppReducer = (state:IAppReducer,action:IAction)=>{
     if (action.type=='register'){
@@ -16,7 +17,7 @@ export const AppReducer = (state:IAppReducer,action:IAction)=>{
         return {...state,isLogin:action.value}
     }
     else if(action.type=='message'){
-        return {...state,Message:{status:action.value,text:action.text}}
+        return {...state,Message:{status:action.value,message:{type:action.message?.type,text:action.message?.text}}}
     }
     else {
         return state

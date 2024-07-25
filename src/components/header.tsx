@@ -27,10 +27,10 @@ const Header = (props: Props) => {
             </li>
             <li><a className='text-white py-4 block'>Giỏ hàng ({cart})</a></li>
             <li>
-              <button onClick={()=>{dispatch({type:'register',value:true});dispatch({type:'login',value:false})}}>Đăng ký</button>
+              <button className='text-white py-4 block' onClick={()=>{dispatch({type:'register',value:true});dispatch({type:'login',value:false})}}>Đăng ký</button>
             </li>
             <li>
-              <button onClick={()=>{dispatch({type:'login',value:true});dispatch({type:'register',value:false})}}>Đăng nhập</button>
+              <button className='text-white py-4 block' onClick={()=>{dispatch({type:'login',value:true});dispatch({type:'register',value:false})}}>Đăng nhập</button>
             </li>
           </ul>
         </nav>
