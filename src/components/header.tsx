@@ -4,6 +4,7 @@ import { CartCT } from '../context/cart'
 import { AppCT } from '../context/appContext'
 import Login from './login'
 import Register from './register'
+import MessageBox from './message'
 
 type Props = {}
 
@@ -39,6 +40,9 @@ const Header = (props: Props) => {
       }
       {
          (AppState.isRegister) && <><Register/></>
+      }
+      {
+         (AppState.Message.status) && <><MessageBox/></>
       }
     </>
   )
