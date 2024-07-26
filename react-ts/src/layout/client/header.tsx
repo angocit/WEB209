@@ -4,6 +4,7 @@ import { countCT } from '../../context/countcontext'
 import { AppCT } from '../../context/AppContext'
 import Login from '../../components/login'
 import Register from '../../components/register'
+import MessageBox from '../../components/message'
 
 type Props = {}
 
@@ -40,6 +41,9 @@ const Header = (props: Props) => {
       }
       {(appState.isRegister) && 
       <Register/>
+      }
+      {(appState.Message.status) && 
+      <MessageBox/>
       }
     </>
   )

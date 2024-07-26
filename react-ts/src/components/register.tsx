@@ -12,7 +12,7 @@ const Register = () => {
                 <input className='py-2 px-4 rounded border border-solid' type='text' placeholder='Email'/>
                 <input className='py-2 px-4 rounded border border-solid' type='password' placeholder='Password'/>
                 <div className='flex justify-center gap-6'>
-                    <button className='py-2 px-4 rounded border border-solid'>Đăng ký</button>
+                    <button type='button' onClick={()=>dispatch({type:'message',value:true,text:'Đăng ký thành công'})} className='py-2 px-4 rounded border border-solid'>Đăng ký</button>
                     <button onClick={()=>dispatch({type:'register',value:false})} className='py-2 px-4 rounded border border-solid'>Hủy</button>
                 </div>
             </form>
