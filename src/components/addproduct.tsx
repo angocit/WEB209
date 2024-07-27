@@ -5,7 +5,7 @@ import { ProductCT } from '../context/product'
 
 const Addproduct = () => {
     const {onAdd} = useContext(ProductCT)
-    const {register,handleSubmit}=useForm<FormData>()
+    const {register,handleSubmit,formState:{errors}}=useForm<FormData>()
     const onSubmit = (data:FormData)=>{
         onAdd(data)
     }
@@ -13,10 +13,13 @@ const Addproduct = () => {
     <>
         <h1>Thên mới sản phẩm</h1>
         <form className='flex flex-col' onSubmit={handleSubmit(onSubmit)}>
-            <input type='text' {...register('name')} placeholder='Tên sản phẩm' />
+            <input type='text' {...register('name',{required:true,minLength:6})} placeholder='Tên sản phẩm' />
+            {(errors.name) && <span className='text-red-700 text-[12px]'>Tên không để trống và lớn hơn 6 kí tự</span>}
             <input type='text' {...register('image')} placeholder='Ảnh sản phẩm' />
-            <input type='number' {...register('price')} placeholder='Giá' />
-            <input type='text' {...register('category')} placeholder='Danh mục' />
+            <input type='text' {...register('price',{required:true,pattern:/^\d*$/})} placeholder='Giá' />
+            {(errors.price) && <span className='text-red-700 text-[12px]'>Giá phải là số và không âm</span>}
+            <input type='text' {...register('category',{required:true,pattern:/^\S+@(\S+\.)+\S{2,6}$/})} placeholder='Danh mục' />
+            {(errors.category) && <span className='text-red-700 text-[12px]'>Email không đúng định dạng</span>}
             <button type='submit'>Thêm mới</button>
         </form>
     </>
