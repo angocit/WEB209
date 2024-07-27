@@ -12,10 +12,10 @@ const Footer = (props: Props) => {
     {(userAction.isLogin)&&
     <><Login/></>
     }
-    {
+    {/* {
     (userAction.isRegister)&&
     <><Register/></>
-    }
+    } */}
     <div>Footer</div>
     </>
   )
