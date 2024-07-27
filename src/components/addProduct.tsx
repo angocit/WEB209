@@ -18,8 +18,9 @@ const Addproduct = () => {
             <input type='text' placeholder='Ảnh sản phẩm' {...register('image')}/>
             <input type='text' placeholder='Giá sản phẩm' {...register('price',{required:true,pattern:/^\d*$/})}/>
             {(errors.price) && <span className='text-red-600 text-[12px]'>Giá là số không âm</span>}
-            <input type='text' placeholder='Danh mục' {...register('category',{required:true,pattern:/^\S+@(\S+\.)+\S{2,6}$/})}/>
-            {(errors.category) && <span className='text-red-600 text-[12px]'>Email không đúng định dạng</span>}
+            <input type='text' placeholder='Danh mục' {...register('category',{required:true})}/>
+            {/* <input type='text' placeholder='Danh mục' {...register('category',{required:true,pattern:/^\S+@(\S+\.)+\S{2,6}$/})}/>
+            {(errors.category) && <span className='text-red-600 text-[12px]'>Email không đúng định dạng</span>} */}
             <button type='submit'>Thêm mới</button>
         </form>
     </>
