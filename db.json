@@ -25,7 +25,7 @@
       "id": 7
     },
     {
-      "name": "Giày nữ ABC 34324324",
+      "name": "Giày nữ ABC update",
       "image": "https://cf.shopee.vn/file/fa067f9c701d940ba98ccb05d2d2f438",
       "price": "34343423",
       "category": "dsfsd",
@@ -37,13 +37,6 @@
       "price": "10000",
       "category": "DH",
       "id": 9
-    },
-    {
-      "name": "Giày nữ ABC reactQuery",
-      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
-      "price": "22323",
-      "category": "dsfdsf",
-      "id": 10
     }
   ]
 }

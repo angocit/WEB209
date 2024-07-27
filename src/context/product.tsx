@@ -30,31 +30,37 @@ const ProductContext = ({children}: Props) => {
         navigate('/product-list')
       }
     })
+    const deleteMutation = useMutation({
+      mutationFn: async (id:number|string)=>{
+         await DeleteProduct(id)
+      },
+      onSuccess: ()=>{
+        alert('Xóa thành thành công')
+        // setProduct([...products,product])
+        queryClient.invalidateQueries({ queryKey: ['products'] })
+        // navigate('/product-list')
+      }
+    })
+    const UpdateMutation = useMutation({
+      mutationFn: async (data:{productData:FormData,id:number|string})=>{
+         await UpdateProduct(data.productData,data.id)
+      },
+      onSuccess: ()=>{
+        alert('Cập nhật thành thành công')
+        queryClient.invalidateQueries({ queryKey: ['products'] })
+        navigate('/product-list')
+      }
+    })
     const onDelete =async (id:number|string)=>{
       if(confirm('Bạn chắc chứ?')){
-      try {
-          const product =await DeleteProduct(id)
-          alert('Xóa thành công')
-          // const newproducts = products.filter(product=>product.id!==id)
-          // setProduct(newproducts)
-      } catch (error) {
-        
+        deleteMutation.mutate(id)
       }
-    }
     }
     const onAdd = async (data:FormData)=>{
       mutations.mutate(data)
      }
     const onUpdate = async (data:FormData,id:number|string)=>{
-      try {
-          const resdata = await UpdateProduct(data,id)
-          alert('Cập nhật thành công')
-          // const newproduct = products.map(product=>(product.id==id)?resdata:product)
-          // setProduct(newproduct)
-          navigate('/product-list')
-      } catch (error) {
-        
-      }
+      UpdateMutation.mutate({productData:data,id:id})
     }
   return (
     <ProductCT.Provider value={{products,onDelete,onAdd,onUpdate,isLoading}}>{children}</ProductCT.Provider>

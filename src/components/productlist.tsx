@@ -9,6 +9,7 @@ const Productlist = () => {
   return (
     <>
       <h1>Danh sách sản phẩm</h1>
+      {(products) &&
       <table>
         <thead>
           <tr>
@@ -31,6 +32,7 @@ const Productlist = () => {
             ))}
         </tbody>
       </table>
+    }
     </>
   )
 }
