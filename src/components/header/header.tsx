@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { cartCT } from "../../context/cart";
 import { ActionCT } from "../../context/action";
 import Register from "../user/register";
@@ -10,6 +10,7 @@ type Props = {};
 const Header = (props: Props) => {
   const {cart} = useContext(cartCT)
   const {userAction,dispatch} = useContext(ActionCT)
+  const navigate = useNavigate()
   return (
     <>
     {console.log(userAction)
@@ -44,6 +45,7 @@ const Header = (props: Props) => {
             </li>
           </ul>
         </nav>
+        <button onClick={()=>navigate('/search?keyword=ngoc')}>sdfsdf</button>
       </header>
       {(userAction.Message.status) &&
         <Message/>
