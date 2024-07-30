@@ -1,14 +1,26 @@
-import React, { useContext } from 'react'
-import {FormData} from '../interface/product'
+import React, { useContext, useEffect, useState } from 'react'
+import {FormData, ICategory} from '../interface/product'
 import { useForm } from 'react-hook-form'
 import { ProductCT } from '../context/product'
+import api from '../config/axios'
 
 const Addproduct = () => {
     const {onAdd} = useContext(ProductCT)
     const {register,handleSubmit,formState:{errors}}=useForm<FormData>()
+    const [categorys,SetCategory] = useState<ICategory[]>([])
     const onSubmit = (data:FormData)=>{
         onAdd(data)
     }
+    useEffect(()=>{
+        (async()=>{
+           try {
+            const {data} = await api.get('categorys')
+            SetCategory(data)
+           } catch (error) {
+            
+           }
+        })()
+    },[])
   return (
     <>
         <h1>Thên mới sản phẩm</h1>
@@ -18,8 +30,15 @@ const Addproduct = () => {
             <input type='text' {...register('image')} placeholder='Ảnh sản phẩm' />
             <input type='text' {...register('price',{required:true,pattern:/^\d*$/})} placeholder='Giá' />
             {(errors.price) && <span className='text-red-700 text-[12px]'>Giá phải là số và không âm</span>}
-            <input type='text' {...register('category',{required:true,pattern:/^\S+@(\S+\.)+\S{2,6}$/})} placeholder='Danh mục' />
-            {(errors.category) && <span className='text-red-700 text-[12px]'>Email không đúng định dạng</span>}
+            {/* <input type='text' {...register('category',{required:true,pattern:/^\S+@(\S+\.)+\S{2,6}$/})} placeholder='Danh mục' />
+            {(errors.category) && <span className='text-red-700 text-[12px]'>Email không đúng định dạng</span>} */}
+            <select className='border border-solid w-full' {...register('category')}>
+                {
+                  categorys.map((category) =>(
+                    <option key={category.id} value={category.id}>{category.name}</option>
+                  ))
+                }
+            </select>
             <button type='submit'>Thêm mới</button>
         </form>
     </>

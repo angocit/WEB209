@@ -6,3 +6,7 @@ export interface IProduct {
     category: string;
   }
   export type FormData = Pick<IProduct,'name'|'image'|'price'|'category'>
+  export interface ICategory{
+    id:number|string,
+    name:string
+  }
