@@ -4,17 +4,19 @@ import ProductItem from './product/productItem'
 import { ProductCT } from '../context/product'
 
 const Home = () => {
-  const {products} = useContext(ProductCT)
+  const {products,isLoading} = useContext(ProductCT)
   return (
     <>
        <h1 className="text-3xl text-center py-10">
        Danh sách sản phẩm
         </h1>
+        {isLoading?<>Đang tải...</>:
         <div className='grid grid-cols-4 gap-6'>
             {products.map((product:IProduct)=>(
-              <ProductItem product={product}/>
+              <ProductItem key={product.id} product={product}/>
             ))}
         </div>
+        }
     </>
   )
 }
