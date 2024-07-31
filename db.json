@@ -1,0 +1,19 @@
+{
+  "students": [
+    {
+      "name": "Ngoc",
+      "age": "21",
+      "email": "angocit@gmail.com",
+      "phone": "324234324",
+      "id": 1
+    }
+  ],
+  "users": [
+    {
+      "email": "angocit@gmail.com",
+      "password": "$2a$10$aOGppJubKWKmpSOmKIww6.J5.4uT5Ye4vBBFD0We0KijIrR4SHbm2",
+      "name": "Ngoc",
+      "id": 1
+    }
+  ]
+}
