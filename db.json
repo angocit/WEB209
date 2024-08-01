@@ -46,28 +46,28 @@
       "id": 7
     },
     {
-      "name": "Sna rphamar mới",
-      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
-      "price": "1000",
-      "category": "Áo",
-      "id": 8
-    },
-    {
       "name": "Giày nữ ABC context udate",
       "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
       "price": "11111",
       "category": "dfsdf",
       "id": 10
-    }
-  ],
-  "categorys":[
-    {
-      "id":1,
-      "name":"Quần áo"
     },
     {
-      "id":2,
-      "name":"Giày dép"
+      "name": "Sản phẩm useMutation update",
+      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
+      "price": "343434",
+      "category": "2",
+      "id": 11
+    }
+  ],
+  "categorys": [
+    {
+      "id": 1,
+      "name": "Quần áo"
+    },
+    {
+      "id": 2,
+      "name": "Giày dép"
     }
   ]
 }
