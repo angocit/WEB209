@@ -1,30 +1,42 @@
+import axios from 'axios';
 import React, { useState } from 'react'
-
-// type Props = {}
-type Itodo = {
-    id:number,
-    name:string
+import { useForm } from 'react-hook-form';
+interface IProduct {
+  id?: number;
+  name: string;
+  price: number;
 }
+
 const HomeComponent = () => {
-    // const [count, setCount] = useState<number>(0)
-    const [todos,setTodo] = useState<Itodo[]>([
-        {id:1,name:"Todo 1"}
-    ])
-    // console.log("Render");    
-    const addTodo = ()=>{
-        // const todo2 = [...todos,{id:2,name:"Todo 2"}]
-        // setTodo(todo2)
-        setTodo([...todos,{id:2,name:"Todo 2"}])
+  const [products,setProduct] = useState<IProduct[]>([])
+  const {register,handleSubmit} = useForm<IProduct>()
+  const handleLoad = async ()=>{
+      try {
+          const {data} = await axios.get(`http://localhost:3000/products`)
+          setProduct(data)
+      } catch (error) {
+        
+      }
+  }
+  const onAddProduct = async (productdata:IProduct)=>{
+      const {data} = await axios.post(`http://localhost:3000/products`,productdata)
+      setProduct([...products,data])
   }
   return (
     <>
-      <h1>Danh sách việc là:</h1>
+      <button onClick={handleLoad}>Tải danh sách</button>
+    <form onSubmit={handleSubmit(onAddProduct)}>
+        <input type='text'{...register("name")} placeholder='Tên sản phẩm'/>
+        <input type='text'{...register("price")} placeholder='Giá sản phẩm'/>
+        <button>Thêm mới</button>
+    </form>
+    
+      <h1>Danh sách sản phẩm:</h1>
       {
-        todos.map(item=>(
-            <p>{item.name}</p>
-        ))
-      } 
-      <button onClick={addTodo}>Thêm việc</button>
+          products.map((item,index)=>(
+            <p>{item.name} Giá: {item.price}</p>
+          ))
+      }
     </>
   )
 }
