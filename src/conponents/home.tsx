@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 interface IProduct {
   id?: number;
@@ -18,13 +18,16 @@ const HomeComponent = () => {
         
       }
   }
+  useEffect(()=>{
+    handleLoad()
+  },[])
   const onAddProduct = async (productdata:IProduct)=>{
       const {data} = await axios.post(`http://localhost:3000/products`,productdata)
       setProduct([...products,data])
   }
   return (
     <>
-      <button onClick={handleLoad}>Tải danh sách</button>
+      {/* <button onClick={handleLoad}>Tải danh sách</button> */}
     <form onSubmit={handleSubmit(onAddProduct)}>
         <input type='text'{...register("name")} placeholder='Tên sản phẩm'/>
         <input type='text'{...register("price")} placeholder='Giá sản phẩm'/>
