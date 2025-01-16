@@ -3,7 +3,10 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import HomeComponent from './conponents/home.tsx'
+import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')!).render(
-    <HomeComponent/>
+    <BrowserRouter>
+        <App/>
+    </BrowserRouter>
 )

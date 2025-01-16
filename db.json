@@ -14,6 +14,16 @@
       "name": "Sản phẩm 3",
       "price": "90000",
       "id": 3
+    },
+    {
+      "name": "sdfasfdsa",
+      "price": "11111",
+      "id": 4
+    },
+    {
+      "name": "Sản phảm 5",
+      "price": "500000",
+      "id": 5
     }
   ]
 }
