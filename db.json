@@ -1,9 +1,9 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Sản phẩm 1",
-      "price": 1000
+      "name": "Sản phẩm 1 update",
+      "price": 1000,
+      "id": 1
     },
     {
       "id": 2,

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 interface IProduct {
   id?: number;
   name: string;
@@ -25,7 +26,7 @@ const HomeComponent = () => {
   return (
     <>     
       <h1 className='text-[36px] text-[#acaa13] mb-[60px]'>Danh sách sản phẩm:</h1>
-      <table className='[&_*]:text-left [&_td]:px-[10px] [&_th]:px-[10px] max-w-[500px] mx-auto border [&_td]:border [&_th]:border'>
+      <table className='[&_*]:text-left [&_td]:px-[10px] [&_td]:py-2 [&_th]:px-[10px] max-w-[500px] mx-auto border [&_td]:border [&_th]:border'>
         <thead>
           <tr>
             <th className='w-[50px]'>STT</th>
@@ -42,7 +43,7 @@ const HomeComponent = () => {
                   <td>{item.name}</td>
                   <td>{item.price}</td>
                   <td className='flex gap-2'>
-                      <button className='bg-[#3c11e8] text-white px-[15px] py-[4px] rounded'>Sửa</button>
+                      <Link to={`/edit-product/${item.id}`} className='bg-[#3c11e8] text-white px-[15px] py-[4px] rounded'>Sửa</Link>
                       <button className='bg-[#7a0a0c] text-white px-[15px] py-[4px] rounded'>Xóa</button>
                   </td>
               </tr>
