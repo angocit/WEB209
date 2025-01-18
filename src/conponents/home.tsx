@@ -24,12 +24,32 @@ const HomeComponent = () => {
   },[])
   return (
     <>     
-      <h1>Danh sách sản phẩm:</h1>
-      {
-          products.map((item,index)=>(
-            <p key={item.id}>{item.name} Giá: {item.price}</p>
-          ))
-      }
+      <h1 className='text-[36px] text-[#acaa13] mb-[60px]'>Danh sách sản phẩm:</h1>
+      <table className='[&_*]:text-left [&_td]:px-[10px] [&_th]:px-[10px] max-w-[500px] mx-auto border [&_td]:border [&_th]:border'>
+        <thead>
+          <tr>
+            <th className='w-[50px]'>STT</th>
+            <th className='w-[300px]'>Tên sản phẩm</th>
+            <th className='w-[100px]'>Giá tiền</th>
+            <th className='w-[150px]'>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            products.map((item,index)=>(
+              <tr key={item.id}>
+                  <td>{index+1}</td>
+                  <td>{item.name}</td>
+                  <td>{item.price}</td>
+                  <td className='flex gap-2'>
+                      <button className='bg-[#3c11e8] text-white px-[15px] py-[4px] rounded'>Sửa</button>
+                      <button className='bg-[#7a0a0c] text-white px-[15px] py-[4px] rounded'>Xóa</button>
+                  </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>      
     </>
   )
 }
