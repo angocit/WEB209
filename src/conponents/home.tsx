@@ -23,6 +23,20 @@ const HomeComponent = () => {
     
     handleLoad()
   },[])
+  const onDelete = async(id:number|string)=>{
+    try {
+      // confirm
+      if (confirm("Bạn chắc chứ?")){
+          await axios.delete(`http://localhost:3000/products/${id}`)        
+          const newproducts = products.filter(item=>item.id!=id)          
+          alert('Xóa thành công')
+          // Set lại state
+          setProduct(newproducts)
+      }
+    } catch (error) {
+        console.log(error);        
+    }
+  }
   return (
     <>     
       <h1 className='text-[36px] text-[#acaa13] mb-[60px]'>Danh sách sản phẩm:</h1>
@@ -44,7 +58,7 @@ const HomeComponent = () => {
                   <td>{item.price}</td>
                   <td className='flex gap-2'>
                       <Link to={`/edit-product/${item.id}`} className='bg-[#3c11e8] text-white px-[15px] py-[4px] rounded'>Sửa</Link>
-                      <button className='bg-[#7a0a0c] text-white px-[15px] py-[4px] rounded'>Xóa</button>
+                      <button onClick={()=>onDelete(`${item.id}`)} className='bg-[#7a0a0c] text-white px-[15px] py-[4px] rounded'>Xóa</button>
                   </td>
               </tr>
             ))

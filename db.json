@@ -1,11 +1,6 @@
 {
   "products": [
     {
-      "name": "Sản phẩm 1 update",
-      "price": 1000,
-      "id": 1
-    },
-    {
       "id": 2,
       "name": "Sản phẩm 2",
       "price": 2000
@@ -14,16 +9,6 @@
       "name": "Sản phẩm 3",
       "price": "90000",
       "id": 3
-    },
-    {
-      "name": "sdfasfdsa",
-      "price": "11111",
-      "id": 4
-    },
-    {
-      "name": "Sản phảm 5",
-      "price": "500000",
-      "id": 5
     }
   ]
 }
