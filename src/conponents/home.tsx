@@ -39,7 +39,7 @@ const HomeComponent = () => {
   }
   return (
     <>     
-      <h1 className='text-[36px] text-[#acaa13] mb-[60px]'>Danh sách sản phẩm:</h1>
+      <h1 className='text-[36px] text-[#acaa13] mb-[60px] text-center'>Danh sách sản phẩm:</h1>
       <table className='[&_*]:text-left [&_td]:px-[10px] [&_td]:py-2 [&_th]:px-[10px] max-w-[500px] mx-auto border [&_td]:border [&_th]:border'>
         <thead>
           <tr>
@@ -57,7 +57,7 @@ const HomeComponent = () => {
                   <td>{item.name}</td>
                   <td>{item.price}</td>
                   <td className='flex gap-2'>
-                      <Link to={`/edit-product/${item.id}`} className='bg-[#3c11e8] text-white px-[15px] py-[4px] rounded'>Sửa</Link>
+                      <Link to={`/dashboard/edit-product/${item.id}`} className='bg-[#3c11e8] text-white px-[15px] py-[4px] rounded'>Sửa</Link>
                       <button onClick={()=>onDelete(`${item.id}`)} className='bg-[#7a0a0c] text-white px-[15px] py-[4px] rounded'>Xóa</button>
                   </td>
               </tr>

@@ -6,6 +6,7 @@ import EditProduct from './conponents/editproduct'
 import Client from './layout/client'
 import Detail from './conponents/client/detail'
 import Dashboard from './layout/admin'
+import Register from './conponents/client/register'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,7 +14,8 @@ function App() {
  const routes = useRoutes([
     {path:'',element:<Client/>,children:[
       {path:'',element:<HomeComponent/>},
-      {path:'detail',element:<Detail/>}
+      {path:'detail',element:<Detail/>},
+      {path:'register',element:<Register/>}
     ]},
     {path:'dashboard',element:<Dashboard/>,children:[
       {path:'add-product',element:<AddProduct/>},

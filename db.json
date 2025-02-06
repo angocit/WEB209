@@ -10,5 +10,13 @@
       "price": "90000",
       "id": 3
     }
+  ],
+  "users": [
+    {
+      "email": "angocit@gmail.com",
+      "password": "$2a$10$eA.Sh32oSkQJOmO0DsEtDO5D31TFLIwFm5/c3aO3ydm/r1lcSI15a",
+      "name": "Ngọc",
+      "id": 1
+    }
   ]
 }
