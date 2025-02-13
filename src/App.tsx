@@ -17,7 +17,8 @@ function App() {
       {path:'',element:<HomeComponent/>},
       {path:'detail',element:<Detail/>},
       {path:'register',element:<Register/>},
-      {path:'login',element:<Login/>}
+      {path:'login',element:<Login/>},
+      {path:'add-product',element:<AddProduct/>},
     ]},
     {path:'dashboard',element:<Dashboard/>,children:[
       {path:'add-product',element:<AddProduct/>},
