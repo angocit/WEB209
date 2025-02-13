@@ -1,12 +1,13 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { IUser } from '../../interface/user'
+import { IRegisterForm, IUser } from '../../interface/user'
 import axios from 'axios'
 
 const Register = () => {
-    const {register,handleSubmit,formState:{errors}} = useForm<IUser>()
-    const onsubmit = async (user:IUser)=>{
+    const {register,handleSubmit,watch,formState:{errors}} = useForm<IRegisterForm>()
+    const onsubmit = async (user:IRegisterForm)=>{
         try {
+            user.repassword = undefined
             const {data} = await axios.post(`http://localhost:3000/register`,user)
             alert('Đăng ký thành công')
         } catch (error:any) {
@@ -16,6 +17,14 @@ const Register = () => {
             }        
         }
     }
+    const CheckRepass = (value:string)=>{
+        let check = false
+        handleSubmit((data:IRegisterForm)=>{
+            console.log(data);            
+            if (data.password==value) check=true;
+        })
+        return check;
+    }
   return (
     <div className='max-w-3xl mx-auto py-4'>
         <h1 className='text-red-700 text-center font-bold text-[24px]'>Đăng ký tài khoản</h1>
@@ -24,6 +33,11 @@ const Register = () => {
             <input {...register('email',{required:true,pattern:/^\S+\@(\S+\.)+[a-zA-Z]{2,6}$/})} type='text' placeholder='Email'/>
             {(errors.email)&&<span className='text-red-600 text-[12px]'>Email không đúng định dạng</span>}
             <input {...register('password')} type='text' placeholder='Mật khẩu'/>
+            <input {...register('repassword',{validate:(value:any)=>{
+                if (watch("password")==value) return true
+                else return false
+            }})} type='text' placeholder='Nhập lại khẩu'/>
+            {(errors.repassword)&&<span>Mật khẩu không khớp</span>}
             <div className='flex justify-center'>
             <button className='bg-green-900 text-white px-4 py-2'>Đăng ký tài khoản</button>
             </div>
