@@ -17,14 +17,6 @@ const Register = () => {
             }        
         }
     }
-    const CheckRepass = (value:string)=>{
-        let check = false
-        handleSubmit((data:IRegisterForm)=>{
-            console.log(data);            
-            if (data.password==value) check=true;
-        })
-        return check;
-    }
   return (
     <div className='max-w-3xl mx-auto py-4'>
         <h1 className='text-red-700 text-center font-bold text-[24px]'>Đăng ký tài khoản</h1>

@@ -8,6 +8,7 @@ import Detail from './conponents/client/detail'
 import Dashboard from './layout/admin'
 import Register from './conponents/client/register'
 import { Login } from './conponents/client/login'
+import HomeAdmin from './conponents/admin/home'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -21,6 +22,7 @@ function App() {
       {path:'add-product',element:<AddProduct/>},
     ]},
     {path:'dashboard',element:<Dashboard/>,children:[
+      {path:'',element:<HomeAdmin/>},
       {path:'add-product',element:<AddProduct/>},
       {path:'edit-product/:id',element:<EditProduct/>}
     ]}    
