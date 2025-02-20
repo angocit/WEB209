@@ -8,6 +8,32 @@
     {
       "name": "Sản phẩm 3",
       "price": "90000",
+      "id": 3,
+      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
+      "category": "2"
+    },
+    {
+      "name": "Sản phẩm 1212213",
+      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
+      "price": "122222",
+      "category": "3",
+      "id": 4
+    }
+  ],
+  "categorys": [
+    {
+      "name": "Quần áo",
+      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
+      "id": 1
+    },
+    {
+      "name": "Giày dép",
+      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
+      "id": 2
+    },
+    {
+      "name": "Đồ gia dụng",
+      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
       "id": 3
     }
   ],
@@ -16,7 +42,15 @@
       "email": "angocit@gmail.com",
       "password": "$2a$10$eA.Sh32oSkQJOmO0DsEtDO5D31TFLIwFm5/c3aO3ydm/r1lcSI15a",
       "name": "Ngọc",
+      "role":"user",
       "id": 1
+    },
+    {
+      "email": "ngocnv34@fpt.edu.vn",
+      "password": "$2a$10$fLnhLdsiqc94ittjVlFUhuoIC0/.OgTTYp/Xt4/n8vEdcjMyEiUyO",
+      "name": "Ngọc",
+      "role":"admin",
+      "id": 2
     }
   ]
 }

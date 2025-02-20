@@ -9,6 +9,8 @@ import Dashboard from './layout/admin'
 import Register from './conponents/client/register'
 import { Login } from './conponents/client/login'
 import HomeAdmin from './conponents/admin/home'
+import AddCategory from './conponents/admin/category/add'
+import Privaterouter from './privaterouter'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -21,8 +23,9 @@ function App() {
       {path:'login',element:<Login/>},
       {path:'add-product',element:<AddProduct/>},
     ]},
-    {path:'dashboard',element:<Dashboard/>,children:[
+    {path:'dashboard',element:<Privaterouter><Dashboard/></Privaterouter>,children:[
       {path:'',element:<HomeAdmin/>},
+      {path:'add-category',element:<AddCategory/>},
       {path:'add-product',element:<AddProduct/>},
       {path:'edit-product/:id',element:<EditProduct/>}
     ]}    

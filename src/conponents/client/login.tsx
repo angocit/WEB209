@@ -9,7 +9,8 @@ export const Login = () => {
         try {
             const {data} = await axios.post(`http://localhost:3000/login`,user)
             console.log(data);  
-            localStorage.setItem("token",data.accessToken)         
+            localStorage.setItem("token",data.accessToken) 
+            localStorage.setItem("user",JSON.stringify(data.user))        
             alert('Đăng nhập thành công')
         } catch (error:any) {
             // console.log(error);   
