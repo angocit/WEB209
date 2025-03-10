@@ -26,12 +26,15 @@ const GetInfoById = (id,collection)=>{
   return data.filter(item=>item.id==id).shift()
 }
 const GetInfoVariantProduct = (product)=>{
+  if (product.variant){
     const variant = product.variant.map(item=>{
       const info = GetInfoById(item.type,"variants")
       info.items = undefined
       return {...item, type:info}
     })
     return {...product,variant}
+  }
+  else return product
 }
 const Permission = (req,res,next)=>{
   const authHeader = req.headers.authorization;
