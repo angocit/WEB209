@@ -1,7 +1,39 @@
 {
   "books": [],
-  "products": [],
+  "products": [
+    {
+      "id": 1,
+      "name": "ABC",
+      "image": "Link",
+      "price": 10000,
+      "type": "simple",
+      "parent": 0
+    }
+  ],
   "variants": [],
-  "carts": [],
-  "orders": []
+  "carts": [
+    {
+      "id": 1,
+      "userId": 1,
+      "Items": [
+        {
+          "productId": 1,
+          "quantity": 2
+        }
+      ]
+    }
+  ],
+  "orders": [],
+  "users": [
+    {
+      "email": "angocit@gmail.com",
+      "password": "$2a$10$mUc1H/gnjo5gzQTWK/uW3O.pUi8nO36K3mjTOx4aSK6uOF7/3N21a",
+      "id": 1
+    },
+    {
+      "email": "angocit2@gmail.com",
+      "password": "$2a$10$JrV4oOOxPsLlvX21FyRs9.aZtz2MYaxWHAX6K68G38hASMLjGdCsG",
+      "id": 2
+    }
+  ]
 }
