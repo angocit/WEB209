@@ -9,6 +9,7 @@ interface ICart {
 }
 const Details = () => {
     const [product,setProduct] = useState<IProduct>()
+    const [quantity,setQuantity] = useState<number>(0)
     const {register,handleSubmit,reset} = useForm<ICart>()
     const params = useParams()
     useEffect(()=>{
@@ -24,7 +25,33 @@ const Details = () => {
             } catch (error) {
                 console.log(error);                
             }
-        })()
+        })();
+    },[])
+    const CountQuantity = (CartItem:any)=>{       
+        const result = CartItem.reduce((total:any,item:any)=>{
+            return total+Number(item.quantity)
+        },0)
+        return result
+    }
+    useEffect(()=>{
+        //IIFE
+        (async()=>{
+            try {
+                const token = localStorage.getItem("token")
+            const headers = {
+                headers:{"Authorization":"Bearer "+token}
+            }
+                const {data} = await axios.get(`http://localhost:4000/carts`,headers)
+                if (data){
+                    const total = CountQuantity(data.data.Items)                    
+                    console.log('Tổng Giỏ hàng',total);
+                    setQuantity(total)
+                }
+                                
+            } catch (error) {
+                console.log(error);                
+            }
+        })();
     },[])
     const addTocart = async(cartdata:ICart)=>{
         try {
@@ -34,6 +61,11 @@ const Details = () => {
             }
             const {data} = await axios.post("http://localhost:4000/carts",cartdata,headers)
             alert(data.message)
+            if (data){
+                const total = CountQuantity(data.data.Items)                    
+                console.log('Tổng Giỏ hàng',total);
+                setQuantity(total)
+            }
             console.log(data);            
         } catch (error) {
             console.log(error);            
@@ -41,6 +73,9 @@ const Details = () => {
     }
   return (
     <div className='flex flex-col gap-2 max-w-xl mx-auto'>
+        <p>
+            Số lượng sản phẩm trong giỏ hàng: {quantity}
+        </p>
         <h1>{product?.name}</h1>
         <span>Giá: {product?.price}</span>
         <img src={product?.images} width={500}/>

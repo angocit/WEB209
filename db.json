@@ -26,11 +26,11 @@
       "Items": [
         {
           "productId": 2,
-          "quantity": 3
+          "quantity": 4
         },
         {
           "productId": 1,
-          "quantity": 1
+          "quantity": 16
         }
       ]
     }
