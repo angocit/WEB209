@@ -1,0 +1,51 @@
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import React from 'react'
+
+const ProductList = () => {
+    const {data,isLoading} = useQuery({ 
+        queryKey: ['products'], 
+        queryFn: async ()=>{
+            try {
+                const {data} = await axios.get("http://localhost:3000/products")
+                return data
+            } catch (error) {
+                console.log(error);
+                
+            }
+        } 
+    })
+  return (
+    <div className='bg-white px-4 py-2'>
+        <h1 className='text-[24px] text-center'>Danh sách sản phẩm</h1>
+        {(isLoading)?<div>Đang tải</div>:
+        <table className='w-full'>
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>Ảnh sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá tiền</th>
+                <th>Thao tác</th>
+            </tr>
+            </thead>
+            <tbody>
+                {
+                    data.map((product:any,index:any)=>(
+                        <tr key={product.id}>
+                            <td>{index+1}</td>
+                            <td>{product.name}</td>
+                            <td>sdfds</td>
+                            <td>sdf</td>
+                            <td>sdf</td>
+                        </tr>
+                    ))
+                }
+            </tbody>
+        </table>
+        }
+    </div>
+  )
+}
+
+export default ProductList

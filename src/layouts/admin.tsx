@@ -9,7 +9,7 @@ const AdminLayout = () => {
         <AdminHeader/>
         <div className='flex'>
         <AdminSidebar/>
-        <div className='content w-4/5'>
+        <div className='content w-4/5 p-6'>
             <Outlet/>
         </div>
         </div>
