@@ -1,14 +1,12 @@
 import React from 'react';
 import './App.css'
 import { Routes, useRoutes } from 'react-router-dom';
-import Register from './components/register';
-import Login from './components/login';
-import DetailProduct from './components/detail';
+import ClientLayout from './layouts/client';
+import AdminLayout from './layouts/admin';
 function App() {
   const routes = useRoutes([
-    {path:"register",element:<Register/>},
-    {path:"login",element:<Login/>},
-    {path:"product/:id",element:<DetailProduct/>}
+      {path:"/",element:<ClientLayout/>},
+      {path:"/dashboard",element:<AdminLayout/>}
   ]) 
   return routes     
 }
