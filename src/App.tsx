@@ -1,18 +1,19 @@
 import React from 'react'
 import { useRoutes } from 'react-router-dom'
-import Add from './components/Add'
-import Details from './components/Details'
-import Register from './components/Register'
-import Login from './components/Login'
+import ClientLayout from './layout/client'
+import AdminLayout from './layout/admin'
+import Home from './components/client/home'
+import Detail from './components/client/detail'
 
 type Props = {}
 
 const App = (props: Props) => {
   const routes = useRoutes([
-    {path:"/add",element:<Add/>},
-    {path:"/detail/:id",element:<Details/>},
-    {path:"/register",element:<Register/>},
-    {path:"/login",element:<Login/>}
+      {path:"/",element:<ClientLayout/>,children:[
+        {path:"",element:<Home/>},
+        {path:"detail",element:<Detail/>}
+      ]},
+      {path:"/dashboard",element:<AdminLayout/>},
   ])
   return routes
 }
