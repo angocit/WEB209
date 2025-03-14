@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 const ProductEdit = () => {
   const {register,handleSubmit,reset} = useForm<IProduct>()
   const params = useParams()
-  const {data} = useQuery<IProduct>({
+  const query = useQuery<IProduct>({
     queryKey:['product',params.id],
     queryFn:async()=>{
       try {
@@ -40,6 +40,9 @@ const ProductEdit = () => {
     mutation.mutate(productData)
     // console.log(productData);
     
+  }
+  if (query.isLoading){
+    return <>Đang tải</>
   }
   return (
     <div className='w-full'>
