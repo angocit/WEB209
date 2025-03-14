@@ -2,14 +2,6 @@
   "books": [],
   "products": [
     {
-      "id": 1,
-      "name": "ABC1",
-      "image": "Link",
-      "price": 10000,
-      "type": "simple",
-      "parent": 0
-    },
-    {
       "id": 4,
       "name": "ABC4",
       "image": "Link",

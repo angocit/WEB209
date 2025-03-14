@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const ProductList = () => {
     const {data,isLoading} = useQuery({ 
@@ -53,10 +54,12 @@ const ProductList = () => {
                     data.map((product:any,index:any)=>(
                         <tr key={product.id}>
                             <td>{index+1}</td>
+                            <td>{product.image}</td>
                             <td>{product.name}</td>
-                            <td>sdfds</td>
-                            <td>sdf</td>
-                            <td><button onClick={()=>DeleteProduct(product.id)}>Xóa</button></td>
+                            <td>{product.price}</td>
+                            <td>
+                                <Link to={`/dashboard/product-edit/${product.id}`}>Sửa</Link>
+                                <button onClick={()=>DeleteProduct(product.id)}>Xóa</button></td>
                         </tr>
                     ))
                 }
