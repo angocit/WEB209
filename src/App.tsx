@@ -4,6 +4,7 @@ import ClientLayout from './layout/client'
 import AdminLayout from './layout/admin'
 import Home from './components/client/home'
 import Detail from './components/client/detail'
+import ProductList from './components/admin/productlist'
 
 type Props = {}
 
@@ -13,7 +14,9 @@ const App = (props: Props) => {
         {path:"",element:<Home/>},
         {path:"detail",element:<Detail/>}
       ]},
-      {path:"/dashboard",element:<AdminLayout/>},
+      {path:"/dashboard",element:<AdminLayout/>,children:[
+          {path:"product-list",element:<ProductList/>}
+      ]},
   ])
   return routes
 }
