@@ -21,7 +21,7 @@ const ProductList = () => {
     }
   return (
     <div>
-        <h1>Danh sách sản phẩm</h1>
+        <h1 className='text-[2rem] text-center mb-5'>Danh sách sản phẩm</h1>
         <table className='w-full [&_td]:border [&_th]:border [&_td]:p-2 [&_th]:p2 [&_th]:bg-slate-400'>
             <thead>
                 <tr>
