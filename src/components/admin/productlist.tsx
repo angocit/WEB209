@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
 
@@ -15,6 +15,25 @@ const ProductList = () => {
             }
         } 
     })
+    const queryClient = useQueryClient()
+    const mutation = useMutation({
+        mutationFn: async(id:number)=>{
+            try {
+                await axios.delete(`http://localhost:3000/products/${id}`)
+            } catch (error) {
+                console.log(error);                
+            }
+        },
+        onSuccess:()=>{
+            alert("Xóa thành công")
+            queryClient.invalidateQueries({ queryKey: ['products'] })
+        }
+    })
+    const DeleteProduct = (id:number)=>{
+        if (confirm("Bạn chắc chứ")){
+            mutation.mutate(id)
+        }
+    }
   return (
     <div className='bg-white px-4 py-2'>
         <h1 className='text-[24px] text-center'>Danh sách sản phẩm</h1>
@@ -37,7 +56,7 @@ const ProductList = () => {
                             <td>{product.name}</td>
                             <td>sdfds</td>
                             <td>sdf</td>
-                            <td>sdf</td>
+                            <td><button onClick={()=>DeleteProduct(product.id)}>Xóa</button></td>
                         </tr>
                     ))
                 }
