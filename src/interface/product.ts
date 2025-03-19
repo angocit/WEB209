@@ -5,4 +5,5 @@ export interface IProduct {
   price: string;
   type: string;
   parent: number;
+  score:number
 }

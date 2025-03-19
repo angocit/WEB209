@@ -7,7 +7,8 @@
       "images": "https://cdn.shopify.com/s/files/1/1404/4249/files/2021-05-06.GRC02_480x480.jpg?v=1620294739",
       "price": "10000",
       "type": "simple",
-      "parent": 0
+      "parent": 0,
+      "score":3
     },
     {
       "id": 2,
@@ -15,7 +16,8 @@
       "images": "https://cdn.shopify.com/s/files/1/1404/4249/files/2021-05-06.GRC02_480x480.jpg?v=1620294739",
       "price": "12222",
       "type": "simple",
-      "parent": 0
+      "parent": 0,
+      "score":3.8
     },
     {
       "id": 3,
@@ -23,7 +25,8 @@
       "images": "https://cdn.shopify.com/s/files/1/1404/4249/files/2021-05-06.GRC02_480x480.jpg?v=1620294739",
       "price": "10000",
       "type": "simple",
-      "parent": 0
+      "parent": 0,
+      "score":3.2
     },
     {
       "id": 4,
@@ -31,7 +34,8 @@
       "images": "https://hellomida.vn/wp-content/uploads/2023/09/624f423a-6ba2-48ee-a659-4e7529ef0c61-600x900.jpg",
       "price": "2323232",
       "type": "simple",
-      "parent": 0
+      "parent": 0,
+      "score":5
     }
   ],
   "variants": [],
