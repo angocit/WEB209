@@ -6,9 +6,12 @@ import AdminLayout from './layouts/admin';
 import ProductAdd from './components/admin/productadd';
 import ProductEdit from './components/admin/productedit';
 import ProductList from './components/admin/productlist';
+import HomeClient from './components/client/home';
 function App() {
   const routes = useRoutes([
-      {path:"/",element:<ClientLayout/>},
+      {path:"/",element:<ClientLayout/>,children:[
+        {path:"",element:<HomeClient/>}
+      ]},
       {path:"/dashboard",element:<AdminLayout/>,children:[
         {path:"product-list",element:<ProductList/>},
         {path:"product-add",element:<ProductAdd/>},
