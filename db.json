@@ -12,8 +12,16 @@
     {
       "id": 5,
       "name": "dfgdfgdfg",
-      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
-      "price": "345345",
+      "image": "sdfsdf",
+      "price": "324234",
+      "type": "simple",
+      "parent": 0
+    },
+    {
+      "id": 6,
+      "name": "23432432",
+      "image": "234234",
+      "price": "23432432",
       "type": "simple",
       "parent": 0
     }

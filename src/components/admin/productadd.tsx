@@ -3,13 +3,14 @@ import { useForm } from 'react-hook-form'
 import { IProduct } from '../../interface/product'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
+import { createData } from '../../services/data'
 
 const ProductAdd = () => {
   const {register,handleSubmit} = useForm<IProduct>()
   const mutation = useMutation({
     mutationFn: async (data:IProduct)=>{
         try {
-            const {data:product} = await axios.post("http://localhost:3000/products",data)
+            const {data:product} = await createData<IProduct>({route:"products",data:data})
             return product
           } catch (error) {
           console.log(error);

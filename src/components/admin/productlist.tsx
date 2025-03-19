@@ -2,13 +2,15 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { ListData } from '../../services/data'
+import { IProduct } from '../../interface/product'
 
 const ProductList = () => {
-    const {data,isLoading} = useQuery({ 
+    const {data,isLoading} = useQuery<IProduct[]>({ 
         queryKey: ['products'], 
         queryFn: async ()=>{
             try {
-                const {data} = await axios.get("http://localhost:3000/products")
+                const {data} = await ListData("products")
                 return data
             } catch (error) {
                 console.log(error);
@@ -51,7 +53,7 @@ const ProductList = () => {
             </thead>
             <tbody>
                 {
-                    data.map((product:any,index:any)=>(
+                    (data)&&data.map((product,index:any)=>(
                         <tr key={product.id}>
                             <td>{index+1}</td>
                             <td>{product.image}</td>
