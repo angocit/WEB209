@@ -4,6 +4,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { IProduct } from '../../interface/product'
+import { api } from '../../config/axios'
 
 const ProductEdit = () => {
     const {register,handleSubmit,reset} = useForm<IProduct>()
@@ -11,7 +12,7 @@ const ProductEdit = () => {
     const {data,isLoading} = useQuery<IProduct>({
         queryKey: ["product",params.id],
         queryFn: async()=>{
-            const {data:product} = await axios.get(`http://localhost:4000/products/${params.id}`)
+            const {data:product} = await api.get(`products/${params.id}`)
             // reset(product)
             return product
         }

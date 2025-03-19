@@ -3,13 +3,14 @@ import React from 'react'
 import { IProduct } from '../../interface/product'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { api } from '../../config/axios'
 
 const ProductList = () => {
     const {data,isLoading} = useQuery<IProduct[]>({
         queryKey:["products"],
         queryFn:async ()=>{
             try {
-                const {data:products} = await axios.get("http://localhost:4000/products")
+                const {data:products} = await api.get("products")
                 return products
             } catch (error) {
                 return []

@@ -4,6 +4,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { IProduct } from '../../interface/product'
 import { useNavigate } from 'react-router-dom'
+import { api } from '../../config/axios'
 
 const ProductAdd = () => {
     const {register,handleSubmit} = useForm<IProduct>()
@@ -12,7 +13,7 @@ const ProductAdd = () => {
     const mutation = useMutation({
         mutationFn: async(product:IProduct)=>{
             try {
-                const {data} =await axios.post(`http://localhost:4000/products`,product)
+                const {data} =await api.post(`products`,product)
                 return data
             } catch (error) {
                 console.log(error);                
