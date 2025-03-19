@@ -3,7 +3,7 @@
   "products": [
     {
       "id": 1,
-      "name": "Giày nữ ABC",
+      "name": "Giày nữ ABC update",
       "images": "https://cdn.shopify.com/s/files/1/1404/4249/files/2021-05-06.GRC02_480x480.jpg?v=1620294739",
       "price": "10000",
       "type": "simple",
@@ -11,9 +11,25 @@
     },
     {
       "id": 2,
+      "name": "Giày nữ ABC",
+      "images": "https://cdn.shopify.com/s/files/1/1404/4249/files/2021-05-06.GRC02_480x480.jpg?v=1620294739",
+      "price": "12222",
+      "type": "simple",
+      "parent": 0
+    },
+    {
+      "id": 3,
+      "name": "Giày nữ ABC 3",
+      "images": "https://cdn.shopify.com/s/files/1/1404/4249/files/2021-05-06.GRC02_480x480.jpg?v=1620294739",
+      "price": "10000",
+      "type": "simple",
+      "parent": 0
+    },
+    {
+      "id": 4,
       "name": "Đồng hồ thời trang",
       "images": "https://hellomida.vn/wp-content/uploads/2023/09/624f423a-6ba2-48ee-a659-4e7529ef0c61-600x900.jpg",
-      "price": "121000",
+      "price": "2323232",
       "type": "simple",
       "parent": 0
     }
