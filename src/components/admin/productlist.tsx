@@ -68,7 +68,7 @@ const ProductList = () => {
             dataIndex:'id',
             render: (id:any)=><>
                 {/* <Link to={`/dashboard/product-edit/${id}`}>Sửa</Link> */}
-                <Button type="primary" onClick={()=>navigate(`/dashboard/product-edit/${id}`)}><EditOutlined /> Sửa</Button>
+                <Button className='mr-2' type="primary" onClick={()=>navigate(`/dashboard/product-edit/${id}`)}><EditOutlined /> Sửa</Button>
                 <Popconfirm
                  title="Thông báo"
                  description="Bạn chắc chứ?"
