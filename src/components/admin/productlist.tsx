@@ -9,7 +9,7 @@ import { IProduct } from "../../interface/product";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { api } from "../../config/axios";
-import { Table } from "antd";
+import { Button, message, Popconfirm, Table } from "antd";
 
 const ProductList = () => {
   const { data, isLoading } = useQuery<IProduct[]>({
@@ -33,7 +33,7 @@ const ProductList = () => {
       }
     },
     onSuccess: () => {
-      alert("Xóa thành công");
+        message.success("Xóa thành công")
       queryclient.invalidateQueries({ queryKey: ["products"] });
     },
   });
@@ -42,9 +42,9 @@ const ProductList = () => {
   }
 
   const DelProduct = (id: number) => {
-    if (confirm("Bạn chắc chứ?")) {
+    // if (confirm("Bạn chắc chứ?")) {
       mutation.mutate(id);
-    }
+    // }
   };
   const columns = [
     {
@@ -72,12 +72,23 @@ const ProductList = () => {
       title: "Action",
       dataIndex: "id",
       key: "action",
+      render: (id:number)=><>
+        <Popconfirm
+            title="Thông báo"
+            description="Bạn thực sự muốn xóa sản phẩm này?"
+            onConfirm={()=>DelProduct(id)}
+            okText="Đồng ý xóa"
+            cancelText="Hủy"
+        >
+            <Button danger>Xóa</Button>
+        </Popconfirm>
+      </>
     },
   ];
   return (
     <div>
       <h1 className="text-[2rem] text-center mb-5">Danh sách sản phẩm</h1>
-      {(data)&&<Table dataSource={data} columns={columns} />}
+      {(data)&&<Table dataSource={data} columns={columns} rowKey={(data)=>data.id}/>}
     </div>
   );
 };

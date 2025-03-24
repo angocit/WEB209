@@ -8,25 +8,7 @@
       "price": "10000",
       "type": "simple",
       "parent": 0,
-      "score":2
-    },
-    {
-      "id": 2,
-      "name": "Giày nữ ABC",
-      "images": "https://cdn.shopify.com/s/files/1/1404/4249/files/2021-05-06.GRC02_480x480.jpg?v=1620294739",
-      "price": "12222",
-      "type": "simple",
-      "parent": 0,
-      "score":3.8
-    },
-    {
-      "id": 3,
-      "name": "Giày nữ ABC 3",
-      "images": "https://cdn.shopify.com/s/files/1/1404/4249/files/2021-05-06.GRC02_480x480.jpg?v=1620294739",
-      "price": "10000",
-      "type": "simple",
-      "parent": 0,
-      "score":3.2
+      "score": 2
     },
     {
       "id": 4,
@@ -35,7 +17,7 @@
       "price": "2323232",
       "type": "simple",
       "parent": 0,
-      "score":5
+      "score": 5
     }
   ],
   "variants": [],
