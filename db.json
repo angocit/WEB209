@@ -1,6 +1,15 @@
 {
   "books": [],
-  "products": [],
+  "products": [
+    {
+      "id": 1,
+      "name": "Đồng hồ thời trang",
+      "image": "https://product.hstatic.net/200000289371/product/dong-ho-thong-minh-tre-em-kids-life-xanh_e5df97f5e1c54474a2c2fe0146775174_master.jpg",
+      "price": "100000",
+      "type": "simple",
+      "parent": 0
+    }
+  ],
   "variants": [],
   "carts": [
     {

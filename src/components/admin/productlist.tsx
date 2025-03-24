@@ -3,6 +3,8 @@ import axios from 'axios'
 import { ListData } from '../../services/data'
 import { IProduct } from '../../interface/product'
 import { Button, message, Popconfirm, Table } from 'antd'
+import { CheckCircleFilled, DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import { Link, useNavigate } from 'react-router-dom'
 
 const ProductList = () => {
     const {data,isLoading} = useQuery<IProduct[]>({ 
@@ -17,6 +19,7 @@ const ProductList = () => {
             }
         } 
     })
+    const navigate = useNavigate()
     const queryClient = useQueryClient()
     const mutation = useMutation({
         mutationFn: async(id:number)=>{
@@ -64,14 +67,17 @@ const ProductList = () => {
             key: 'action',
             dataIndex:'id',
             render: (id:any)=><>
+                {/* <Link to={`/dashboard/product-edit/${id}`}>Sửa</Link> */}
+                <Button type="primary" onClick={()=>navigate(`/dashboard/product-edit/${id}`)}><EditOutlined /> Sửa</Button>
                 <Popconfirm
                  title="Thông báo"
                  description="Bạn chắc chứ?"
+                 icon={<DeleteOutlined />}
                  onConfirm={()=>DeleteProduct(id)}
                  okText="Yes"
                 cancelText="No"
                 >
-                        <Button danger>Xóa</Button>
+                        <Button danger><DeleteOutlined /> Xóa</Button>
                 </Popconfirm>
             </>
         }
