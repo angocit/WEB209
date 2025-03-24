@@ -4,6 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ListData } from '../../services/data'
 import { IProduct } from '../../interface/product'
+import { Table } from 'antd'
 
 const ProductList = () => {
     const {data,isLoading} = useQuery<IProduct[]>({ 
@@ -37,36 +38,41 @@ const ProductList = () => {
             mutation.mutate(id)
         }
     }
+    const columns = [
+        {
+          title: 'STT',
+          key: 'stt',
+          render: (_:any,item:IProduct,index:any)=>index+1
+        },
+        {
+          title: 'Ảnh sản phẩm',
+          dataIndex: 'image',
+          key: 'image',
+          render: (image:string)=><img src={image} width={90}/>
+        },
+        {
+          title: 'Tên sản phẩm',
+          dataIndex: 'name',
+          key: 'name',
+        },
+        {
+            title: 'Giá tiền',
+            dataIndex: 'price',
+            key: 'price',
+        },
+        {
+            title: 'Thao tác',
+            key: 'action',
+        }
+      ];
   return (
     <div className='bg-white px-4 py-2'>
         <h1 className='text-[24px] text-center'>Danh sách sản phẩm</h1>
         {(isLoading)?<div>Đang tải</div>:
-        <table className='w-full'>
-            <thead>
-            <tr>
-                <th>STT</th>
-                <th>Ảnh sản phẩm</th>
-                <th>Tên sản phẩm</th>
-                <th>Giá tiền</th>
-                <th>Thao tác</th>
-            </tr>
-            </thead>
-            <tbody>
-                {
-                    (data)&&data.map((product,index:any)=>(
-                        <tr key={product.id}>
-                            <td>{index+1}</td>
-                            <td>{product.image}</td>
-                            <td>{product.name}</td>
-                            <td>{product.price}</td>
-                            <td>
-                                <Link to={`/dashboard/product-edit/${product.id}`}>Sửa</Link>
-                                <button onClick={()=>DeleteProduct(product.id)}>Xóa</button></td>
-                        </tr>
-                    ))
-                }
-            </tbody>
-        </table>
+        <>  {
+            (data)&&<Table dataSource={data} columns={columns} />
+            }
+        </>
         }
     </div>
   )
