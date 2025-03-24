@@ -7,10 +7,10 @@ import {
 import React from "react";
 import { IProduct } from "../../interface/product";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../config/axios";
 import { Button, message, Popconfirm, Table } from "antd";
-
+import {DeleteFilled, EditFilled, WarningFilled} from '@ant-design/icons'
 const ProductList = () => {
   const { data, isLoading } = useQuery<IProduct[]>({
     queryKey: ["products"],
@@ -23,6 +23,7 @@ const ProductList = () => {
       }
     },
   });
+  const navigate= useNavigate()
   const queryclient = useQueryClient();
   const mutation = useMutation({
     mutationFn: async (id: number) => {
@@ -73,14 +74,16 @@ const ProductList = () => {
       dataIndex: "id",
       key: "action",
       render: (id:number)=><>
+        <Button className="mr-2" type="primary" onClick={()=>navigate(`/dashboard/product-edit/${id}`)}><EditFilled /> Sửa</Button>
         <Popconfirm
             title="Thông báo"
+            icon = {<WarningFilled />}
             description="Bạn thực sự muốn xóa sản phẩm này?"
             onConfirm={()=>DelProduct(id)}
             okText="Đồng ý xóa"
             cancelText="Hủy"
         >
-            <Button danger>Xóa</Button>
+            <Button danger><DeleteFilled /> Xóa</Button>
         </Popconfirm>
       </>
     },
