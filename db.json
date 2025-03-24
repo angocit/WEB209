@@ -1,34 +1,6 @@
 {
   "books": [],
-  "products": [
-    {
-      "id": 4,
-      "name": "ABC4",
-      "image": "https://product.hstatic.net/1000026602/product/dsc03170_2dfd2355eeec459b8d7d634b0214d5ca.jpg",
-      "price": 10000,
-      "type": "simple",
-      "parent": 0,
-      "rating": 3
-    },
-    {
-      "id": 5,
-      "name": "dfgdfgdfg",
-      "image": "https://pos.nvncdn.com/2865a9-85186/ps/20240128_hMm4MN1XOD.jpeg",
-      "price": "324234",
-      "type": "simple",
-      "parent": 0,
-      "rating": 4
-    },
-    {
-      "id": 6,
-      "name": "23432432",
-      "image": "https://wetrek.vn/pic/products/ao-co-djo-sao-vang-viet-nam-1-10_638611468807420567.jpg",
-      "price": "23432432",
-      "type": "simple",
-      "parent": 0,
-      "rating": 5
-    }
-  ],
+  "products": [],
   "variants": [],
   "carts": [
     {

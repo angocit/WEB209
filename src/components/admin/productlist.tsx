@@ -1,10 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
-import React from 'react'
-import { Link } from 'react-router-dom'
 import { ListData } from '../../services/data'
 import { IProduct } from '../../interface/product'
-import { Table } from 'antd'
+import { Button, message, Popconfirm, Table } from 'antd'
 
 const ProductList = () => {
     const {data,isLoading} = useQuery<IProduct[]>({ 
@@ -29,14 +27,15 @@ const ProductList = () => {
             }
         },
         onSuccess:()=>{
-            alert("Xóa thành công")
+            // alert("Xóa thành công")
+            message.success('Xóa thành công');
             queryClient.invalidateQueries({ queryKey: ['products'] })
         }
     })
     const DeleteProduct = (id:number)=>{
-        if (confirm("Bạn chắc chứ")){
+        // if (confirm("Bạn chắc chứ")){
             mutation.mutate(id)
-        }
+        // }
     }
     const columns = [
         {
@@ -63,6 +62,18 @@ const ProductList = () => {
         {
             title: 'Thao tác',
             key: 'action',
+            dataIndex:'id',
+            render: (id:any)=><>
+                <Popconfirm
+                 title="Thông báo"
+                 description="Bạn chắc chứ?"
+                 onConfirm={()=>DeleteProduct(id)}
+                 okText="Yes"
+                cancelText="No"
+                >
+                        <Button danger>Xóa</Button>
+                </Popconfirm>
+            </>
         }
       ];
   return (
