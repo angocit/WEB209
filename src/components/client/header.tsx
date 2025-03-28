@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-
+import { cartContext } from '../../layouts/client'
 const ClientHeader = () => {
+    const {count} = useContext(cartContext)
   return (
     <header className='bg-green-950 text-white'>
         <div className='max-w-7xl mx-auto flex justify-between items-center'>
@@ -20,6 +21,7 @@ const ClientHeader = () => {
                     <li><Link to={'#'}>Shop</Link></li>
                     <li><Link to={'#'}>Tin tức</Link></li>
                     <li><Link to={'#'}>Liên hệ</Link></li>
+                    <li><Link to={'#'}>Giỏ hàng ({count})</Link></li>
                 </ul>
             </nav>
             </div>

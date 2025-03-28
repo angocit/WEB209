@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
-import React from 'react'
+import React, { useState } from 'react'
 import { IProduct } from '../../interface/product'
 import { ListData } from '../../services/data'
 import ItemProduct from './product/item'
+import Counter from './counter/counter'
 
 const HomeClient = () => {
+    const [counter,setCounter] = useState<number>(0)
     const {data,isLoading} = useQuery<IProduct[]>({
         queryKey:["products"],
         queryFn: async ()=>{
@@ -17,7 +19,9 @@ const HomeClient = () => {
     }
   return (
     <div>
-        <h1>Sản phẩm nổi bật</h1>
+        <h2>Khu vực hiển thị counter</h2>
+        <Counter counter={counter} setCounter={setCounter}/>
+        <h2>Sản phẩm nổi bật</h2>
         <div className='grid grid-cols-5'>
         {
             (data)&&data.map(product=>(
