@@ -26,7 +26,7 @@ const GetInfoById = (id,collection)=>{
   return data.filter(item=>item.id==id).shift()
 }
 const GetInfoVariantProduct = (product)=>{
-  if (product.variant){
+  if (product?.variant){
     const variant = product.variant.map(item=>{
       const info = GetInfoById(item.type,"variants")
       info.items = undefined
