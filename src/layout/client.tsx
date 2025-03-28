@@ -2,7 +2,11 @@ import React, { createContext, useState } from 'react'
 import ClientHeader from '../components/client/header'
 import ClientFooter from '../components/client/footer'
 import { Outlet } from 'react-router-dom'
-export const cartContext = createContext({} as any)
+type TypeContext = {
+  cart:ICart[],
+  setCart:(value:ICart[])=>void
+}
+export const cartContext = createContext({} as TypeContext)
 type ICart = {
   productid: number,
   quantity:number
