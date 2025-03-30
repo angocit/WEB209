@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { IProduct } from '../../../interface/product'
 import StarRating from './starrating'
-import { cartContext } from '../../../layouts/client'
+import {cartContext} from '../../../context/cartContext'
 
 type Props = {
     product:IProduct

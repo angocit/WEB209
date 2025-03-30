@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { cartContext } from '../../layouts/client'
+import {cartContext} from '../../context/cartContext'
 const ClientHeader = () => {
     const {count} = useContext(cartContext)
   return (

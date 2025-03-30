@@ -4,19 +4,10 @@ import { IProduct } from '../../interface/product'
 import { ListData } from '../../services/data'
 import ItemProduct from './product/item'
 import Counter from './counter/counter'
+import { reducer } from '../../reducer/count'
 
 const HomeClient = () => {
     const [counter,setCounter] = useState<number>(0)
-    const reducer = (state:number,action:{type:string,payload:{value:number}})=>{
-        switch (action.type){
-            case "tang":
-                return state+action.payload.value
-            case "giam":
-                return state-action.payload.value
-            default:
-                return state
-        }
-    }
     const [count, dispatch] = useReducer(reducer,0)   
     const {data,isLoading} = useQuery<IProduct[]>({
         queryKey:["products"],
