@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import { cartContext } from '../../context/Cart'
 
 const ClientFooter = () => {
-  const [count,setCount] = useContext(cartContext)
+  const [count,dispatch] = useContext(cartContext)
   return (
-    <div>ClientFooter <button onClick={()=>setCount(count+1)}>Tăng</button></div>
+    <div>ClientFooter <button onClick={()=>dispatch({type:"giam"})}>Tăng</button></div>
   )
 }
 

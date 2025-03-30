@@ -1,22 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
-import React, { useReducer } from 'react'
+import React, { useContext, useReducer } from 'react'
 import { IProduct } from '../../interface/product'
 import { api } from '../../config/axios'
 import ProductItem from './products/item'
+import { cartContext } from '../../context/Cart'
 
 const Home = () => {
-  const reducer = (state:number,action:{type:string})=>{
-      switch (action.type){
-          case "tang":
-            return state+1
-          case "giam":
-           return state-1
-          default:
-           return state
-      }
-  }
-  const [count,dispatch] = useReducer(reducer,0)
-  const {data,isLoading} = useQuery<IProduct[]>({
+    const [count,dispatch] = useContext(cartContext)
+    const {data,isLoading} = useQuery<IProduct[]>({
     queryKey: ["products"],
     queryFn: async ()=>{
         try {

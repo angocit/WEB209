@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { cartContext } from '../../context/Cart'
 const ClientHeader = () => {
-    const [count,setCount] = useContext(cartContext)
+    const [count] = useContext(cartContext)
   return (
     <header className='bg-green-900 text-white'>
         <div className='max-w-7xl mx-auto flex justify-between items-center'>
