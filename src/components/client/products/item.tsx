@@ -1,16 +1,16 @@
 import React, { useContext } from 'react'
 import { IProduct } from '../../../interface/product'
 import StarRating from './starrating'
-import { cartContext } from '../../../layout/client'
+import { cartContext } from '../../../context/Cart'
 
 type Props = {
     product:IProduct
 }
 
 const ProductItem = ({product}: Props) => {
-  const {cart,setCart} = useContext(cartContext)
+  const [count,setCount] = useContext(cartContext)
   const AddToCart = (id:number)=>{
-  setCart([...cart,{productid:id,quantity:1}])
+    setCount(count+1)
   }
   return (
     <div className='product-item'>

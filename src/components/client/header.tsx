@@ -1,15 +1,11 @@
 import React, { useContext } from 'react'
-import { cartContext } from '../../layout/client'
-type Props = {
-    count:number,
-    setCount: (value:number)=>void
-}
-const ClientHeader = ({count,setCount}:Props) => {
-    const {cart,setCart} = useContext(cartContext)
+import { cartContext } from '../../context/Cart'
+const ClientHeader = () => {
+    const [count,setCount] = useContext(cartContext)
   return (
     <header className='bg-green-900 text-white'>
         <div className='max-w-7xl mx-auto flex justify-between items-center'>
-            <div>LOGO <button onClick={()=>setCount(count+1)}>Tăng</button></div>
+            <div>LOGO</div>
             <div className='flex justify-between w-full py-4'>
                 <form className='pl-10 relative'>
                     <input className='outline-0 text-black px-3 py-1 w-[300px] rounded' type='text' placeholder='Tìm kiếm'/>
@@ -24,7 +20,7 @@ const ClientHeader = ({count,setCount}:Props) => {
                         <li>Shop</li>
                         <li>Tin tức</li>
                         <li>Liên hệ</li>
-                        <li>Giỏ hàng: {cart.reduce((total,item)=>total+item.quantity,0)}</li>
+                        <li>Giỏ hàng: {count}</li>
                     </ul>
                 </nav>
             </div>
