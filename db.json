@@ -8,6 +8,22 @@
       "price": "100000",
       "type": "simple",
       "parent": 0
+    },
+    {
+      "id": 2,
+      "name": "Áo phông nam",
+      "image": "https://chodole.com/cdn/shop/products/CDL5_1_1024x1024.jpg?v=1586758906",
+      "price": "100000",
+      "type": "simple",
+      "parent": 0
+    },
+    {
+      "id": 3,
+      "name": "Áo nữ",
+      "image": "https://hellomida.vn/wp-content/uploads/2024/07/Ao-Thun-Nu-Croptop-Co-Tron-In-Chu-GOTUE-ATFM14-H1-600x900.jpg",
+      "price": "2000000",
+      "type": "simple",
+      "parent": 0
     }
   ],
   "variants": [],
@@ -18,15 +34,15 @@
       "Items": [
         {
           "productId": 1,
-          "quantity": 3
-        },
-        {
-          "productId": 10,
-          "quantity": 1
+          "quantity": 4
         },
         {
           "productId": 2,
-          "quantity": "3"
+          "quantity": 5
+        },
+        {
+          "productId": 3,
+          "quantity": 2
         }
       ]
     }

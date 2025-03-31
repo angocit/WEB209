@@ -7,10 +7,12 @@ import ProductAdd from './components/admin/productadd';
 import ProductEdit from './components/admin/productedit';
 import ProductList from './components/admin/productlist';
 import HomeClient from './components/client/home';
+import Login from './components/user/login';
 function App() {
   const routes = useRoutes([
       {path:"/",element:<ClientLayout/>,children:[
-        {path:"",element:<HomeClient/>}
+        {path:"",element:<HomeClient/>},
+        {path:"login",element:<Login/>}
       ]},
       {path:"/dashboard",element:<AdminLayout/>,children:[
         {path:"product-list",element:<ProductList/>},

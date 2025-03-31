@@ -1,8 +1,24 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {cartContext} from '../../context/cartContext'
+import { ICartProduct, TypeCart } from '../../interface/cart'
+import axios from 'axios'
 const ClientHeader = () => {
-    const {count} = useContext(cartContext)
+    const {cartstate,dispatch} = useContext(cartContext)
+    useEffect(()=>{
+        (async()=>{
+            try {
+                const token = localStorage.getItem("token")
+                const config = {
+                    headers: {'Authorization':`Bearer ${token}`}
+                }
+                const {data} = await axios.get(`http://localhost:3000/carts`,config)
+                dispatch({type:TypeCart.updateCart,payload:data.data.Items})
+            } catch (error) {
+                
+            }
+        })()
+    },[])
   return (
     <header className='bg-green-950 text-white'>
         <div className='max-w-7xl mx-auto flex justify-between items-center'>
@@ -21,7 +37,7 @@ const ClientHeader = () => {
                     <li><Link to={'#'}>Shop</Link></li>
                     <li><Link to={'#'}>Tin tức</Link></li>
                     <li><Link to={'#'}>Liên hệ</Link></li>
-                    <li><Link to={'#'}>Giỏ hàng ({count})</Link></li>
+                    <li><Link to={'#'}>Giỏ hàng ({cartstate.carts.reduce((total:any,item:ICartProduct)=>total+item.quantity,0)})</Link></li>
                 </ul>
             </nav>
             </div>
