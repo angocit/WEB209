@@ -7,6 +7,7 @@ import Detail from './components/client/detail'
 import ProductList from './components/admin/productlist'
 import ProductAdd from './components/admin/productadd'
 import ProductEdit from './components/admin/productedit'
+import Login from './components/client/user/login'
 
 type Props = {}
 
@@ -14,7 +15,8 @@ const App = (props: Props) => {
   const routes = useRoutes([
       {path:"/",element:<ClientLayout/>,children:[
         {path:"",element:<Home/>},
-        {path:"detail",element:<Detail/>}
+        {path:"detail",element:<Detail/>},
+        {path:"login",element:<Login/>}
       ]},
       {path:"/dashboard",element:<AdminLayout/>,children:[
           {path:"product-list",element:<ProductList/>},

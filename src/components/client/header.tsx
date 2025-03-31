@@ -1,7 +1,25 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { cartContext } from '../../context/Cart'
+import axios from 'axios'
+import { api } from '../../config/axios'
+import { CartActionType, IProductCart } from '../../interface/cart'
 const ClientHeader = () => {
-    const [count] = useContext(cartContext)
+    const {cartstate,dispatch} = useContext(cartContext)
+    useEffect(()=>{
+        (async()=>{
+            const token = localStorage.getItem("token")
+            const config = {
+                headers: {"Authorization":"Bearer "+token}
+            }
+            try {
+                const {data} = await api.get("carts",config)
+                dispatch({type:CartActionType.UpdateCart,payload:data.data.Items})
+                // console.log(data);                
+            } catch (error) {
+                
+            }
+        })()
+    },[])
   return (
     <header className='bg-green-900 text-white'>
         <div className='max-w-7xl mx-auto flex justify-between items-center'>
@@ -20,7 +38,7 @@ const ClientHeader = () => {
                         <li>Shop</li>
                         <li>Tin tức</li>
                         <li>Liên hệ</li>
-                        <li>Giỏ hàng: {count}</li>
+                        <li><button onClick={()=>dispatch({type:CartActionType.ChangeStatusCart,payload:true})}>Giỏ hàng: ({cartstate.carts.reduce((total:any,item:IProductCart)=>total+item.quantity,0)})</button></li>
                     </ul>
                 </nav>
             </div>

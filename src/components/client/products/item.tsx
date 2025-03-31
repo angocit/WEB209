@@ -8,9 +8,8 @@ type Props = {
 }
 
 const ProductItem = ({product}: Props) => {
-  const [count,setCount] = useContext(cartContext)
   const AddToCart = (id:number)=>{
-    setCount(count+1)
+    // setCount(count+1)
   }
   return (
     <div className='product-item'>

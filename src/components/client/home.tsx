@@ -6,7 +6,7 @@ import ProductItem from './products/item'
 import { cartContext } from '../../context/Cart'
 
 const Home = () => {
-    const [count,dispatch] = useContext(cartContext)
+    // const [count,dispatch] = useContext(cartContext)
     const {data,isLoading} = useQuery<IProduct[]>({
     queryKey: ["products"],
     queryFn: async ()=>{
@@ -23,15 +23,11 @@ const Home = () => {
   }
   return (
     <>
-      <p>Giá trị hiện tại: {count}</p>
-
-      <button onClick={()=>dispatch({type:"tang"})}>Tăng</button>
-      <button  onClick={()=>dispatch({type:"giam"})}>Giảm</button>
       <h1 className='text-[1.2rem] text-center my-4'>Sản phẩm bán chạy</h1>
       <div className='grid grid-cols-4 gap-4'>
       {
         (data)&&data.map(product=>(
-          <ProductItem product ={product}/>
+          <ProductItem key={product.id} product ={product}/>
         ))
       }
       </div>
