@@ -11,10 +11,18 @@ const ProductsInCart = () => {
         <ul>
             {(cartstate.carts)&&
             cartstate.carts.map((item:IProductCart,index:number)=>(
-                <li key={index}>{item.productId.name} SL: {item.quantity}</li>
+                <li key={index} className='flex'>
+                  <img src={item.productId.images} width={90}/>
+                  <div>
+                  <h3>{item.productId.name}</h3> 
+                  <span>{item.productId.price}</span>
+                  <p>SL: {item.quantity}</p>
+                  </div>
+                </li>
             ))
             }
         </ul>
+        <div className=''>Tổng tiền: {cartstate.carts.reduce((total:any,item:IProductCart)=>total+Number(item.productId.price)*item.quantity,0)}</div>
     </div>
   )
 }
