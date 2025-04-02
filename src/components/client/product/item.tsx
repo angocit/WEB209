@@ -25,9 +25,9 @@ const ItemProduct = ({product}:Props) => {
           "quantity":1
         }
       
-      const {data} = await axios.post(`http://localhost:3000/carts`,cart,config)
-        // console.log(data);        
-      dispatch({type:TypeCart.updateCart,payload:data.data.Items})
+        const {data} = await axios.post(`http://localhost:3000/carts`,cart,config)
+        console.log(data);        
+        dispatch({type:TypeCart.updateCart,payload:data.data.Items})
         message.success("Thêm giỏ hàng thành công")
     } catch (error) {
       

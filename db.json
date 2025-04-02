@@ -34,15 +34,15 @@
       "Items": [
         {
           "productId": 1,
-          "quantity": 4
+          "quantity": 7
         },
         {
           "productId": 2,
-          "quantity": 5
+          "quantity": 6
         },
         {
           "productId": 3,
-          "quantity": 2
+          "quantity": 4
         }
       ]
     }

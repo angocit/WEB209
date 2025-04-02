@@ -208,6 +208,9 @@ server.post("/carts",Permission,(req,res)=>{
       userId: userId,
       Items:[{productId,quantity}]
      }
+     newcart.Items = newcart.Items.map(item=>{
+      return {...item,productId:GetInfoVariantProduct(GetInfoById(item.productId,"products"))}
+    })
      db.carts = [...db.carts,newcart]
      fs.writeFileSync("db.json", JSON.stringify(db, null, 2), "utf-8");
      res.status(200).json({message:"Thêm giỏ hàng thành công!",data:newcart}); 
@@ -221,6 +224,9 @@ server.post("/carts",Permission,(req,res)=>{
       db.carts[index].Items = [...db.carts[index].Items,{productId,quantity}]
     }
     const data = {...db.carts[index]}
+    data.Items = data.Items.map(item=>{
+      return {...item,productId:GetInfoVariantProduct(GetInfoById(item.productId,"products"))}
+    })
      fs.writeFileSync("db.json", JSON.stringify(db, null, 2), "utf-8");
      res.status(201).json({message:"Thêm giỏ hàng thành công!",data}); 
   }

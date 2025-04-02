@@ -37,7 +37,7 @@ const ClientHeader = () => {
                     <li><Link to={'#'}>Shop</Link></li>
                     <li><Link to={'#'}>Tin tức</Link></li>
                     <li><Link to={'#'}>Liên hệ</Link></li>
-                    <li><Link to={'#'}>Giỏ hàng ({cartstate.carts.reduce((total:any,item:ICartProduct)=>total+item.quantity,0)})</Link></li>
+                    <li><button onClick={()=>dispatch({type:TypeCart.openSidebar,payload:true})}>Giỏ hàng ({cartstate.carts.reduce((total:any,item:ICartProduct)=>total+item.quantity,0)})</button></li>
                 </ul>
             </nav>
             </div>

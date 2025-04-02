@@ -32,7 +32,7 @@ const HomeClient = () => {
         <div className='grid grid-cols-5'>
         {
             (data)&&data.map(product=>(
-                <ItemProduct product={product}/>
+                <ItemProduct key={product.id} product={product}/>
             ))
         }
         </div>

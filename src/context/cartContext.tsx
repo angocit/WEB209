@@ -19,7 +19,7 @@ const CartContext = ({children}: Props) => {
   return (
     <cartContext.Provider value={{cartstate,dispatch}}>
         {children}
-        <ProductCartSidebar/>
+        {(cartstate.isOpenSidebar)&&<ProductCartSidebar/>}
     </cartContext.Provider>
   )
 }
