@@ -26,7 +26,7 @@ const GetInfoById = (id,collection)=>{
   return data.filter(item=>item.id==id).shift()
 }
 const GetInfoVariantProduct = (product)=>{
-  if (product?.variant){
+  if (product.variant){
     const variant = product.variant.map(item=>{
       const info = GetInfoById(item.type,"variants")
       info.items = undefined
@@ -210,18 +210,24 @@ server.post("/carts",Permission,(req,res)=>{
      }
      db.carts = [...db.carts,newcart]
      fs.writeFileSync("db.json", JSON.stringify(db, null, 2), "utf-8");
+     newcart.Items = newcart.Items.map(item=>{
+      return {...item,productId:GetInfoVariantProduct(GetInfoById(item.productId,"products"))}
+    })
      res.status(200).json({message:"Thêm giỏ hàng thành công!",data:newcart}); 
   }
   else {
     const item = db.carts[index].Items.filter(item=>item.productId==productId)
     if (item.length>0){
-      db.carts[index].Items = db.carts[index].Items.map(item=>(item.productId==productId)?{...item,quantity:Number(item.quantity)+Number(quantity)}:item)
+      db.carts[index].Items = db.carts[index].Items.map(item=>(item.productId==productId)?{...item,quantity:item.quantity+quantity}:item)
     }
     else {
       db.carts[index].Items = [...db.carts[index].Items,{productId,quantity}]
     }
     const data = {...db.carts[index]}
      fs.writeFileSync("db.json", JSON.stringify(db, null, 2), "utf-8");
+     data.Items = data.Items.map(item=>{
+      return {...item,productId:GetInfoVariantProduct(GetInfoById(item.productId,"products"))}
+    })
      res.status(201).json({message:"Thêm giỏ hàng thành công!",data}); 
   }
 })
@@ -233,7 +239,7 @@ server.get("/carts",Permission,(req,res)=>{
     res.status(404).json({message:"Chưa đăng nhập!"}); 
   }
   if (!cartByUser){
-    res.status(404).json({message:"Chưa có sản phẩm nào trong giỏ hàng!"}); 
+    res.status(200).json({message:"Chưa có sản phẩm nào trong giỏ hàng!"}); 
   }
   cartByUser.Items = cartByUser.Items.map(item=>{
     return {...item,productId:GetInfoVariantProduct(GetInfoById(item.productId,"products"))}

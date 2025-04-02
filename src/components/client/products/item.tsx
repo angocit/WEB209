@@ -2,14 +2,34 @@ import React, { useContext } from 'react'
 import { IProduct } from '../../../interface/product'
 import StarRating from './starrating'
 import { cartContext } from '../../../context/Cart'
+import { api } from '../../../config/axios'
+import { CartActionType } from '../../../interface/cart'
+import { message } from 'antd'
 
 type Props = {
     product:IProduct
 }
 
 const ProductItem = ({product}: Props) => {
-  const AddToCart = (id:number)=>{
-    // setCount(count+1)
+  const {dispatch} = useContext(cartContext)
+  const AddToCart = async (id:number)=>{
+    const token = localStorage.getItem("token")
+    const config = {
+        headers: {"Authorization":"Bearer "+token}
+    }
+    const cartdata = {
+          "productId":id,
+          "quantity":1
+      }
+    try {
+      const {data} = await api.post('carts',cartdata,config)
+      // console.log(data);
+      dispatch({type:CartActionType.UpdateCart,payload:data.data.Items}) 
+      message.success(data.message)  
+      dispatch({type:CartActionType.ChangeStatusCart,payload:true})    
+    } catch (error) {
+      
+    }
   }
   return (
     <div className='product-item'>
