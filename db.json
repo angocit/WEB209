@@ -24,6 +24,14 @@
       "price": "2000000",
       "type": "simple",
       "parent": 0
+    },
+    {
+      "id": 4,
+      "image": "http://res.cloudinary.com/dkpfaleot/image/upload/v1743592014/react/fv1pdpwtoiljetu0uv3c.png",
+      "name": "Sản phẩm demo",
+      "price": "232323",
+      "type": "simple",
+      "parent": 0
     }
   ],
   "variants": [],
@@ -34,15 +42,15 @@
       "Items": [
         {
           "productId": 1,
-          "quantity": 7
-        },
-        {
-          "productId": 2,
-          "quantity": 6
+          "quantity": 1
         },
         {
           "productId": 3,
-          "quantity": 4
+          "quantity": 3
+        },
+        {
+          "productId": 2,
+          "quantity": 1
         }
       ]
     }

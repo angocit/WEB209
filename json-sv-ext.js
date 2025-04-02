@@ -208,11 +208,11 @@ server.post("/carts",Permission,(req,res)=>{
       userId: userId,
       Items:[{productId,quantity}]
      }
+     db.carts = [...db.carts,newcart]
+     fs.writeFileSync("db.json", JSON.stringify(db, null, 2), "utf-8");
      newcart.Items = newcart.Items.map(item=>{
       return {...item,productId:GetInfoVariantProduct(GetInfoById(item.productId,"products"))}
     })
-     db.carts = [...db.carts,newcart]
-     fs.writeFileSync("db.json", JSON.stringify(db, null, 2), "utf-8");
      res.status(200).json({message:"Thêm giỏ hàng thành công!",data:newcart}); 
   }
   else {
@@ -224,10 +224,10 @@ server.post("/carts",Permission,(req,res)=>{
       db.carts[index].Items = [...db.carts[index].Items,{productId,quantity}]
     }
     const data = {...db.carts[index]}
-    data.Items = data.Items.map(item=>{
+     fs.writeFileSync("db.json", JSON.stringify(db, null, 2), "utf-8");
+     data.Items = data.Items.map(item=>{
       return {...item,productId:GetInfoVariantProduct(GetInfoById(item.productId,"products"))}
     })
-     fs.writeFileSync("db.json", JSON.stringify(db, null, 2), "utf-8");
      res.status(201).json({message:"Thêm giỏ hàng thành công!",data}); 
   }
 })
@@ -239,7 +239,7 @@ server.get("/carts",Permission,(req,res)=>{
     res.status(404).json({message:"Chưa đăng nhập!"}); 
   }
   if (!cartByUser){
-    res.status(404).json({message:"Chưa có sản phẩm nào trong giỏ hàng!"}); 
+    res.status(200).json({message:"Chưa có sản phẩm nào trong giỏ hàng!"}); 
   }
   cartByUser.Items = cartByUser.Items.map(item=>{
     return {...item,productId:GetInfoVariantProduct(GetInfoById(item.productId,"products"))}
