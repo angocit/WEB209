@@ -1,13 +1,24 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { IProduct } from '../../interface/product'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { createData } from '../../services/data'
+import { createData, ListData } from '../../services/data'
 
 const ProductAdd = () => {
   const [image,setImage] = useState<string>('')
   const {register,handleSubmit,reset} = useForm<IProduct>()
+  const {data:categorys,isLoading} = useQuery({
+    queryKey: ["categorys"],
+    queryFn: async ()=>{
+        try {
+          const {data} = await ListData("categorys")
+          return data
+        } catch (error) {
+          
+        }
+    }
+  })
   const mutation = useMutation({
     mutationFn: async (data:IProduct)=>{
         try {
@@ -51,6 +62,11 @@ const ProductAdd = () => {
         {(image!='')&&<img src={image} width={90}/>}
         <input type='hidden' {...register("image")}/>
         <input type='text' {...register("price")}/>
+        <select {...register("category")}>
+            {categorys&&categorys.map((item:any)=>(
+              <option key={item.id} value={item.id}>{item.name}</option>
+            ))}
+        </select>
         <button>Thêm mới</button>
       </form>
     </div>

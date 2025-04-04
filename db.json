@@ -1,5 +1,16 @@
 {
   "books": [],
+  "categorys":[
+    {"id":1,
+    "name":"Điện thoại"
+    },
+    {"id":2,
+    "name":"Máy tính bảng"
+    },
+    {"id":3,
+    "name":"Phụ kiện"
+    }
+  ],
   "products": [
     {
       "id": 1,
