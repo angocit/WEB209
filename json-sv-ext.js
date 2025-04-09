@@ -153,20 +153,20 @@ server.put("/products/:id", (req, res) => {
   fs.writeFileSync("db.json", JSON.stringify(db, null, 2), "utf-8");
   res.status(200).json(products[index]);
 });
-server.get("/products", (req, res) => {
-  const {products} = JSON.parse(fs.readFileSync("db.json", "utf-8"));
-  const simpleproduct = products.filter(item=>item.type=="simple")
-  const result = simpleproduct.map(item=>{
-      const children = products.filter(child=>child.parent==item.id&&child.type=="product_variation")
-      if (children.length>0){
-        const pricearr = children.map(child=>child.price)
-        item.price = (Math.min(...pricearr)==Math.max(...pricearr))?Math.min(...pricearr):`${Math.min(...pricearr)}-${Math.max(...pricearr)}`
-        item.type="product_variable"
-      }
-      return item
-  })
-  res.status(200).send(result)
-})
+// server.get("/products", (req, res) => {
+//   const {products} = JSON.parse(fs.readFileSync("db.json", "utf-8"));
+//   const simpleproduct = products.filter(item=>item.type=="simple")
+//   const result = simpleproduct.map(item=>{
+//       const children = products.filter(child=>child.parent==item.id&&child.type=="product_variation")
+//       if (children.length>0){
+//         const pricearr = children.map(child=>child.price)
+//         item.price = (Math.min(...pricearr)==Math.max(...pricearr))?Math.min(...pricearr):`${Math.min(...pricearr)}-${Math.max(...pricearr)}`
+//         item.type="product_variable"
+//       }
+//       return item
+//   })
+//   res.status(200).send(result)
+// })
 server.get("/products/:id", (req, res) => {
   const {products} = JSON.parse(fs.readFileSync("db.json", "utf-8"));
   const {id} = req.params

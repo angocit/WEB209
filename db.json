@@ -18,6 +18,7 @@
       "image": "https://product.hstatic.net/200000289371/product/dong-ho-thong-minh-tre-em-kids-life-xanh_e5df97f5e1c54474a2c2fe0146775174_master.jpg",
       "price": "100000",
       "type": "simple",
+      "category":1,
       "parent": 0
     },
     {
@@ -26,6 +27,7 @@
       "image": "https://chodole.com/cdn/shop/products/CDL5_1_1024x1024.jpg?v=1586758906",
       "price": "100000",
       "type": "simple",
+      "category":1,
       "parent": 0
     },
     {
@@ -34,7 +36,8 @@
       "image": "https://hellomida.vn/wp-content/uploads/2024/07/Ao-Thun-Nu-Croptop-Co-Tron-In-Chu-GOTUE-ATFM14-H1-600x900.jpg",
       "price": "2000000",
       "type": "simple",
-      "parent": 0
+      "parent": 0,
+      "category":1
     },
     {
       "id": 4,
@@ -42,6 +45,7 @@
       "name": "Sản phẩm demo",
       "price": "232323",
       "type": "simple",
+      "category":2,
       "parent": 0
     }
   ],
