@@ -6,6 +6,8 @@ export const cartReducer = (state:ICart,action:{type:CartActionType,payload:any}
             return {...state,carts:action.payload}
         case CartActionType.ChangeStatusCart:
             return {...state,isOpenCart:action.payload}
+        case CartActionType.CheckOut:
+            return {...state,order:action.payload}
         default:
             return state
     }

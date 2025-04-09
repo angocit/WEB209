@@ -1,5 +1,18 @@
 {
-  "books": [],
+  "categorys": [
+    {
+      "id":1,
+      "name":"Điện thoại"
+    },
+    {
+      "id":2,
+      "name":"Laptop"
+    },
+    {
+      "id":3,
+      "name":"Máy tính bảng"
+    }
+  ],
   "products": [
     {
       "id": 1,
@@ -8,7 +21,8 @@
       "price": "10000",
       "type": "simple",
       "parent": 0,
-      "score": 2
+      "score": 2,
+      "category":1
     },
     {
       "id": 4,
@@ -17,7 +31,8 @@
       "price": "2323232",
       "type": "simple",
       "parent": 0,
-      "score": 5
+      "score": 5,
+      "category":1
     },
     {
       "id": 5,
@@ -25,7 +40,8 @@
       "name": "Đồng hồ thời trang",
       "price": "10000",
       "type": "simple",
-      "parent": 0
+      "parent": 0,
+      "category":1
     },
     {
       "id": 6,
@@ -33,7 +49,8 @@
       "name": "Sản phẩm 4",
       "price": "40000",
       "type": "simple",
-      "parent": 0
+      "parent": 0,
+      "category":2
     }
   ],
   "variants": [],
@@ -44,11 +61,19 @@
       "Items": [
         {
           "productId": 4,
-          "quantity": 9
+          "quantity": 10
         },
         {
           "productId": 1,
           "quantity": 20
+        },
+        {
+          "productId": 6,
+          "quantity": 2
+        },
+        {
+          "productId": 5,
+          "quantity": 4
         }
       ]
     }

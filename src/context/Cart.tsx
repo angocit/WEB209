@@ -11,6 +11,7 @@ export const cartContext = createContext({} as any)
 const CartProvider = ({children}: Props) => {
     const cartinit:ICart ={
       carts:[],
+      order:[],
       isOpenCart:false
     } 
     // const [count,setCount] = useState<number>(1)

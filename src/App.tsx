@@ -8,6 +8,9 @@ import ProductList from './components/admin/productlist'
 import ProductAdd from './components/admin/productadd'
 import ProductEdit from './components/admin/productedit'
 import Login from './components/client/user/login'
+import SearchProduct from './components/client/products/search'
+import ListCart from './components/client/carts/listcart'
+import CheckOut from './components/client/carts/checkout'
 
 type Props = {}
 
@@ -15,6 +18,9 @@ const App = (props: Props) => {
   const routes = useRoutes([
       {path:"/",element:<ClientLayout/>,children:[
         {path:"",element:<Home/>},
+        {path:"search",element:<SearchProduct/>},
+        {path:"cart",element:<ListCart/>},
+        {path:"checkout",element:<CheckOut/>},
         {path:"detail",element:<Detail/>},
         {path:"login",element:<Login/>}
       ]},

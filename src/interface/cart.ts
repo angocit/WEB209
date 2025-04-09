@@ -2,7 +2,8 @@ import { IProduct } from "./product";
 
 export interface ICart {
     carts:IProductCart[],
-    isOpenCart:boolean
+    isOpenCart:boolean,
+    order:IProductCart[],
 }
 
 export interface IProductCart {
@@ -11,5 +12,6 @@ export interface IProductCart {
 }
 export enum CartActionType{
     "UpdateCart",
-    "ChangeStatusCart"
+    "ChangeStatusCart",
+    "CheckOut"
 }
