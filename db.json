@@ -1,83 +1,68 @@
 {
   "categorys": [
     {
-      "id":1,
-      "name":"Điện thoại"
+      "id": 1,
+      "name": "Điện thoại"
     },
     {
-      "id":2,
-      "name":"Laptop"
+      "id": 2,
+      "name": "Laptop"
     },
     {
-      "id":3,
-      "name":"Máy tính bảng"
+      "id": 3,
+      "name": "Máy tính bảng"
     }
   ],
   "products": [
     {
       "id": 1,
-      "name": "Giày nữ ABC update",
-      "images": "https://cdn.shopify.com/s/files/1/1404/4249/files/2021-05-06.GRC02_480x480.jpg?v=1620294739",
-      "price": "10000",
+      "images": "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807381/react/ex5tv67s6cblskasewbx.jpg",
+      "name": "Giày nữ ABC",
+      "price": "20000",
+      "gallerys": [
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744808159/react/reuy7lsnr8uvkldm7lae.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744808159/react/m8tn5abaqhwzcilqf1ow.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744808201/react/jh4oy5oddorfotjzb6y0.jpg"
+      ],
       "type": "simple",
-      "parent": 0,
-      "score": 2,
-      "category":1
+      "parent": 0
     },
     {
-      "id": 4,
-      "name": "Đồng hồ thời trang",
-      "images": "https://hellomida.vn/wp-content/uploads/2023/09/624f423a-6ba2-48ee-a659-4e7529ef0c61-600x900.jpg",
-      "price": "2323232",
+      "id": 2,
+      "images": "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807428/react/syqrgxrjrvkfnyba6qqm.jpg",
+      "name": "sdfsdf",
+      "price": "343434",
+      "gallerys": [
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807418/react/c5w24splglvfup2zyml2.jpg"
+      ],
       "type": "simple",
-      "parent": 0,
-      "score": 5,
-      "category":1
+      "parent": 0
     },
     {
-      "id": 5,
-      "images": "http://res.cloudinary.com/dkpfaleot/image/upload/v1743598557/react/krgeebcu4qyt9dcyzemk.jpg",
-      "name": "Đồng hồ thời trang",
-      "price": "10000",
+      "id": 3,
+      "images": "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807508/react/zvmrpykiabrumq3d9t85.jpg",
+      "name": "sdfasdfsda",
+      "price": "343434",
+      "gallerys": [
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807493/react/perznla1182l1qo6gtt2.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807491/react/gyv4zjqgkqrkvezezlrq.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807492/react/ggmkykz7c4rpkhhmk7bk.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807493/react/gbqehbeca38sysnzrdjv.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807494/react/iqtnhngxzef6k0ohvzh1.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807493/react/vailfptmozfzasru5jcn.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807492/react/klf5mrcxbabdjf3a0lm5.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807494/react/faifmehlnh3gxq7vwqz9.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807495/react/py5xj87f6jzacv4myppu.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807498/react/rrzdzsxyfjtetyc2irdp.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807495/react/dgkhdtyuw98a84sm4duj.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744807496/react/cixeu09j0ggaktzlircp.jpg"
+      ],
       "type": "simple",
-      "parent": 0,
-      "category":1
-    },
-    {
-      "id": 6,
-      "images": "http://res.cloudinary.com/dkpfaleot/image/upload/v1743598683/react/msqksaebolzpoevfv63g.jpg",
-      "name": "Sản phẩm 4",
-      "price": "40000",
-      "type": "simple",
-      "parent": 0,
-      "category":2
+      "parent": 0
     }
   ],
   "variants": [],
-  "carts": [
-    {
-      "id": 1,
-      "userId": 1,
-      "Items": [
-        {
-          "productId": 4,
-          "quantity": 10
-        },
-        {
-          "productId": 1,
-          "quantity": 20
-        },
-        {
-          "productId": 6,
-          "quantity": 2
-        },
-        {
-          "productId": 5,
-          "quantity": 4
-        }
-      ]
-    }
-  ],
+  "carts": [],
   "orders": [],
   "users": [
     {

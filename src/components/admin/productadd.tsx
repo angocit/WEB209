@@ -7,8 +7,12 @@ import { useNavigate } from 'react-router-dom'
 import { api } from '../../config/axios'
 import { useData } from '../../hooks/usedata'
 import { ICart } from '../../interface/cart'
+import { Button, Upload, UploadFile, UploadProps } from 'antd'
+import { UploadOutlined } from '@ant-design/icons'
 
 const ProductAdd = () => {
+    const fileList: UploadFile[] = [];
+    const [gallery,setGallery] = useState<string[]>([])
     const {register,handleSubmit,reset} = useForm<IProduct>()
     const [image,setImage] = useState<string> ("")
     const [loading,setLoading] = useState<boolean>(false)
@@ -31,11 +35,10 @@ const ProductAdd = () => {
         }        
     })
 const onSubmit = (product:IProduct)=>{
+    product.gallerys = gallery
     mutation.mutate(product)
 }
 const uploadImage = async (file:any)=>{
-    // const {data:products,isLoading:isLoadingProduct} = useData<IProduct>("products")
-    // const {data:categorys,isLoading:isLoadingCategory} = useData<ICart>("category")
     console.log(file[0]);
     setLoading(true)
     const formdata = new FormData()
@@ -55,6 +58,13 @@ const uploadImage = async (file:any)=>{
     }
     
 }
+const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
+   {
+    console.log(newFileList);    
+    const newgallery = newFileList.map(item=>item.response?.url)
+    // setFileList(newFileList);
+    setGallery(newgallery)
+   } 
   return (
     <div>
         <h1>Thêm mới sản phẩm</h1>
@@ -65,6 +75,19 @@ const uploadImage = async (file:any)=>{
             {(image!="")&&<img src={image} width={120}/>}
             <input type='hidden' {...register("images")} placeholder='Ảnh sản phẩm'/>
             <input type='text' {...register("price")} placeholder='Giá sản phẩm'/>
+            <label>Gallery</label>
+            <Upload
+                action="https://api.cloudinary.com/v1_1/dkpfaleot/image/upload"
+                listType="picture"
+                defaultFileList={fileList}
+                data = {{upload_preset:"reacttest"}}
+                onChange={handleChange}
+                multiple = {true}
+            >
+                <Button type="primary" icon={<UploadOutlined />}>
+                Upload
+                </Button>
+            </Upload>
             <button>Thêm mới</button>
         </form>
     </div>

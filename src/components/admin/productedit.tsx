@@ -1,12 +1,15 @@
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { IProduct } from '../../interface/product'
 import { api } from '../../config/axios'
+import { UploadOutlined } from '@ant-design/icons'
+import { Upload, Button, UploadFile, UploadProps } from 'antd'
 
 const ProductEdit = () => {
+    const [gallery,setGallery] = useState<string[]>([])
     const {register,handleSubmit,reset} = useForm<IProduct>()
     const params = useParams()
     const {data,isLoading} = useQuery<IProduct>({
@@ -36,8 +39,19 @@ const ProductEdit = () => {
         }        
     })
 const onSubmit = (product:IProduct)=>{
+    product.gallerys = gallery
     mutation.mutate(product)
 }
+const fileList: UploadFile[] =data?.gallerys.map((item,index)=>{
+    return {uid:index,name:item,status:'done',url:item,thumbUrl:item}
+})
+  const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
+     {
+      console.log(newFileList);    
+      const newgallery = newFileList.map(item=>item.response?.url??item.url)
+      // setFileList(newFileList);
+      setGallery(newgallery)
+     } 
     if (isLoading){
         return <>Đang tải</>
     }
@@ -48,6 +62,18 @@ const onSubmit = (product:IProduct)=>{
             <input type='text' {...register("name",{value:data?.name})} placeholder='Tên sản phẩm'/>
             <input type='text' {...register("images",{value:data?.images})} placeholder='Ảnh sản phẩm'/>
             <input type='text' {...register("price",{value:data?.price})} placeholder='Giá sản phẩm'/>
+            <Upload
+                action="https://api.cloudinary.com/v1_1/dkpfaleot/image/upload"
+                listType="picture"
+                defaultFileList={fileList}
+                data = {{upload_preset:"reacttest"}}
+                onChange={handleChange}
+                multiple = {true}
+            >
+                <Button type="primary" icon={<UploadOutlined />}>
+                Upload
+                </Button>
+            </Upload>
             <button>Sửa</button>
         </form>
     </div>
