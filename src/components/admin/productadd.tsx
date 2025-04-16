@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form'
 import { IProduct } from '../../interface/product'
 import { useNavigate } from 'react-router-dom'
 import { api } from '../../config/axios'
+import { useData } from '../../hooks/usedata'
+import { ICart } from '../../interface/cart'
 
 const ProductAdd = () => {
     const {register,handleSubmit,reset} = useForm<IProduct>()
@@ -32,6 +34,8 @@ const onSubmit = (product:IProduct)=>{
     mutation.mutate(product)
 }
 const uploadImage = async (file:any)=>{
+    // const {data:products,isLoading:isLoadingProduct} = useData<IProduct>("products")
+    // const {data:categorys,isLoading:isLoadingCategory} = useData<ICart>("category")
     console.log(file[0]);
     setLoading(true)
     const formdata = new FormData()

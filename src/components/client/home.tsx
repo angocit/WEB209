@@ -4,20 +4,22 @@ import { IProduct } from '../../interface/product'
 import { api } from '../../config/axios'
 import ProductItem from './products/item'
 import { cartContext } from '../../context/Cart'
+import { useData } from '../../hooks/usedata'
 
 const Home = () => {
     // const [count,dispatch] = useContext(cartContext)
-    const {data,isLoading} = useQuery<IProduct[]>({
-    queryKey: ["products"],
-    queryFn: async ()=>{
-        try {
-            const {data:products} = await api.get("products")
-            return products
-        } catch (error) {
-            console.log(error);            
-        }
-    }
-  })
+  //   const {data,isLoading} = useQuery<IProduct[]>({
+  //   queryKey: ["products"],
+  //   queryFn: async ()=>{
+  //       try {
+  //           const {data:products} = await api.get("products")
+  //           return products
+  //       } catch (error) {
+  //           console.log(error);            
+  //       }
+  //   }
+  // })
+  const {data,isLoading} = useData<IProduct>("products")
   if (isLoading){
     return <>Đang tải dữ liệu</>
   }
