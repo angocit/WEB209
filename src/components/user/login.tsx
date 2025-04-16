@@ -13,7 +13,7 @@ const Login = () => {
           try {
               const {data:user} = await axios.post(`http://localhost:3000/login`,data)
                 console.log(user);  
-                localStorage.setItem("token",user.accessToken)   
+                localStorage.setItem("token",JSON.stringify(user))   
                 return user           
             } catch (error) {
             console.log(error);
@@ -21,6 +21,7 @@ const Login = () => {
           }
       },
       onSuccess: (data)=>{
+        alert("Đăng nhập thành công")
         console.log(data);      
       }
     })

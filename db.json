@@ -1,51 +1,59 @@
 {
   "books": [],
-  "categorys":[
-    {"id":1,
-    "name":"Điện thoại"
+  "categorys": [
+    {
+      "id": 1,
+      "name": "Điện thoại"
     },
-    {"id":2,
-    "name":"Máy tính bảng"
+    {
+      "id": 2,
+      "name": "Máy tính bảng"
     },
-    {"id":3,
-    "name":"Phụ kiện"
+    {
+      "id": 3,
+      "name": "Phụ kiện"
     }
   ],
   "products": [
     {
       "id": 1,
-      "name": "Đồng hồ thời trang",
-      "image": "https://product.hstatic.net/200000289371/product/dong-ho-thong-minh-tre-em-kids-life-xanh_e5df97f5e1c54474a2c2fe0146775174_master.jpg",
-      "price": "100000",
+      "image": "http://res.cloudinary.com/dkpfaleot/image/upload/v1744799627/react/rnalyrwtm2chuzkkpmvn.jpg",
+      "name": "Giày nữ ABC",
+      "price": "10000",
+      "category": "2",
+      "gallerys": [],
       "type": "simple",
-      "category":1,
       "parent": 0
     },
     {
       "id": 2,
-      "name": "Áo phông nam",
-      "image": "https://chodole.com/cdn/shop/products/CDL5_1_1024x1024.jpg?v=1586758906",
-      "price": "100000",
+      "image": "http://res.cloudinary.com/dkpfaleot/image/upload/v1744800647/react/jlgvxi5vm5ngtnxkinbj.jpg",
+      "name": "Giày nữ ABC",
+      "price": "10000",
+      "category": "2",
+      "gallerys": [
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744800655/react/qfbhfrcbqzzquqc9elvh.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744800658/react/hfk9mjs1aeq51qdw6tbx.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744800664/react/tam6ezostiirvk4ng58p.jpg"
+      ],
       "type": "simple",
-      "category":1,
       "parent": 0
     },
     {
       "id": 3,
-      "name": "Áo nữ",
-      "image": "https://hellomida.vn/wp-content/uploads/2024/07/Ao-Thun-Nu-Croptop-Co-Tron-In-Chu-GOTUE-ATFM14-H1-600x900.jpg",
-      "price": "2000000",
+      "image": "http://res.cloudinary.com/dkpfaleot/image/upload/v1744800647/react/jlgvxi5vm5ngtnxkinbj.jpg",
+      "name": "Giày nữ ABC 2",
+      "price": "10000",
+      "category": "2",
+      "gallerys": [
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744800655/react/qfbhfrcbqzzquqc9elvh.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744800658/react/hfk9mjs1aeq51qdw6tbx.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744800780/react/jetmq1kv8n8rnpjx4kaa.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744800782/react/ojwq17spli9wzxmcy8ws.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744800782/react/owahodeit6xlxonuymv9.jpg",
+        "http://res.cloudinary.com/dkpfaleot/image/upload/v1744800786/react/qowbowzmrh1vkzlttm1d.jpg"
+      ],
       "type": "simple",
-      "parent": 0,
-      "category":1
-    },
-    {
-      "id": 4,
-      "image": "http://res.cloudinary.com/dkpfaleot/image/upload/v1743592014/react/fv1pdpwtoiljetu0uv3c.png",
-      "name": "Sản phẩm demo",
-      "price": "232323",
-      "type": "simple",
-      "category":2,
       "parent": 0
     }
   ],

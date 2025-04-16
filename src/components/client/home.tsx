@@ -6,17 +6,19 @@ import ItemProduct from './product/item'
 import Counter from './counter/counter'
 import { reducer } from '../../reducer/count'
 import { cartContext } from '../../context/cartContext'
+import { useProducts } from '../../hooks/products'
 
 const HomeClient = () => {
     const [counter,setCounter] = useState<number>(0)
     const {count,dispatch} = useContext(cartContext)
-    const {data,isLoading} = useQuery<IProduct[]>({
-        queryKey:["products"],
-        queryFn: async ()=>{
-            const {data:products} = await ListData("products")
-            return products
-        }
-    })
+    // const {data,isLoading} = useQuery<IProduct[]>({
+    //     queryKey:["products"],
+    //     queryFn: async ()=>{
+    //         const {data:products} = await ListData("products")
+    //         return products
+    //     }
+    // })
+    const {data,isLoading} = useProducts("products")
     if (isLoading){
         return <>Đang tải dữ liệu...</>
     }

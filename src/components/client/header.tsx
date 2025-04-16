@@ -24,12 +24,14 @@ const ClientHeader = () => {
         })()
     },[])
     const callProducts = async (keyword:string)=>{
+        if (keyword){
         try {
             const {data} = await api.get(`http://localhost:3000/products?name_like=${keyword}`)
             setProduct(data)
         } catch (error) {
             
-        }    
+        } 
+    }   
     }
     useEffect(()=>{
         let debounce = setTimeout(()=>{
