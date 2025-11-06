@@ -21,13 +21,16 @@ function App() {
     } 
     getAllProduct()    
   },[])
+  const MessageFn = (title:string)=>{
+    alert(title)
+  }
   return (
     <>
       {/* <h1>Vite + React</h1> */}
       <input onChange={(e:any)=>setValue(e.target.value)} placeholder='Nhập tên sản phẩm'/>
       {products.length>0&&
         products.map(item=>
-            <ProductItem product={item} label="sales" key={item.id}/>
+            <ProductItem MessageFn={MessageFn} product={item} key={item.id}/>
         )}
       {/* <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
