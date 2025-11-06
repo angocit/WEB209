@@ -3,49 +3,32 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import axios from 'axios';
-interface IProduct {
-  name: string;
-  price: string;
-  id: number;
-  image: string;
-  category: string;
-}
+import type { IProduct } from './types/product';
+import ProductItem from './components/products/productItem';
+
 function App() {
   const [count, setCount] = useState(0)
   const [count2, setCount2] = useState(0)
   const [products,setProduct] = useState<IProduct[]>([])
   const [value,setValue] = useState<string>('')
   useEffect(()=>{
-    const getProductbytitle = async (name:string)=>{
+    const getAllProduct = async ()=>{
         try {
-          if (name!==''){
-          const {data} = await axios.get(`http://localhost:3000/products?name_like=${name}`)
+          const {data} = await axios.get(`http://localhost:3000/products`)
           setProduct(data)
-          }
-          else {
-            setProduct([])
-          }
-        } catch (error) {
-          
+        } catch (error) {          
         }
-    }
-    const timeout = setTimeout(()=>{
-        // console.log('Giá trị '+value); 
-        getProductbytitle(value)
-    },500)
-    return ()=>{
-      clearTimeout(timeout)
-    }       
-  },[value])
+    } 
+    getAllProduct()    
+  },[])
   return (
     <>
       {/* <h1>Vite + React</h1> */}
       <input onChange={(e:any)=>setValue(e.target.value)} placeholder='Nhập tên sản phẩm'/>
-      {products.length>0&&<ul className='listproduct'>
-        {products.map(item=>
-          <li key={item.id}>{item.name}</li>
-        )}  
-      </ul>}
+      {products.length>0&&
+        products.map(item=>
+            <ProductItem product={item} label="sales" key={item.id}/>
+        )}
       {/* <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
