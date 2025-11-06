@@ -27,8 +27,11 @@ function App() {
   return (
     <>
       {/* <h1>Vite + React</h1> */}
+        <h1 className="text-3xl font-bold underline text-red-700">
+      Hello world!
+    </h1>
       <input onChange={(e:any)=>setValue(e.target.value)} placeholder='Nhập tên sản phẩm'/>
-      {products.length>0&&
+      {products&&products.length>0&&
         products.map(item=>
             <ProductItem MessageFn={MessageFn} product={item} key={item.id}/>
         )}
