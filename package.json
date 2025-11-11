@@ -11,6 +11,8 @@
     "db": "npx json-server db.json -m ./node_modules/json-server-auth"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.6.1",
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@tailwindcss/postcss": "^4.1.16",
     "axios": "^1.7.9",
     "json-server": "^0.17.4",

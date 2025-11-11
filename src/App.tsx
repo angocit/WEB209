@@ -14,7 +14,6 @@ function App() {
     {path:'/admin',Component:AdminLayout,children:[
       {path:'',Component:Dashboard}
     ]}
-    // {path:'/category',Component:Category}
   ]) 
   return router
 }
