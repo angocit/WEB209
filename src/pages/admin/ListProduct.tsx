@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
-import type { IProduct } from '../types/product'
+import type { IProduct } from '../../types/product'
 
-const Home = () => {
+type Props = {}
+
+const ListProduct = (props: Props) => {
   const {data,isLoading,isError} = useQuery<IProduct[]>({
     queryKey: ["AllProduct"],
     queryFn: async ()=>{
@@ -21,4 +23,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default ListProduct
