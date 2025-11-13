@@ -19,6 +19,12 @@ const ListProduct = (props: Props) => {
   if (isLoading) return <>Loading</>
 const columns = [
     {
+        title: 'No.',
+        dataIndex: 'key',
+        key: 'key',
+        render:(_:any,__:any,index:number)=>index+1
+    },
+    {
         title: 'Name',
         dataIndex: 'name',
         key: 'name',
@@ -27,6 +33,7 @@ const columns = [
         title: 'Image',
         dataIndex: 'image',
         key: 'image',
+        render: (url:string)=><img width={90} src={url}/>
     },
     {
         title: 'Price',
@@ -36,7 +43,7 @@ const columns = [
     ];
   return (
     <div>
-       <Table dataSource={data??[]} columns={columns} />;
+       <Table rowKey="id" dataSource={data??[]} columns={columns} />;
     </div>
   )
 }
