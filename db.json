@@ -18,6 +18,38 @@
       "price": "122222",
       "category": "3",
       "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "name": "sdfsdf",
+      "price": "23423",
+      "id": 8
+    },
+    {
+      "name": "Dầu gội",
+      "image": "https://images.squarespace-cdn.com/content/v1/53883795e4b016c956b8d243/1603186829771-7L3IUH5V2M3XALW843MY/3-2.jpg",
+      "price": "200000",
+      "id": 9
+    },
+    {
+      "name": "dsfsdf",
+      "image": "234234",
+      "price": "34234",
+      "id": 10
+    },
+    {
+      "name": "Sản phẩm 10",
+      "image": "sdfadsf",
+      "price": "10000",
+      "id": 11
     }
   ]
 }
