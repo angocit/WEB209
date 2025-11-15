@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Input, message, Radio } from 'antd';
+import { Button, Form, Input, InputNumber, message, Radio } from 'antd';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import type { IProduct } from '../../types/product';
@@ -33,14 +33,32 @@ const AddProduct = (props: Props) => {
     labelCol={{ flex: '110px' }}
     onFinish={onFinish}
     >
-      <Form.Item label="Tên sản phẩm" name="name">
+      <Form.Item label="Tên sản phẩm" name="name"
+      rules={[
+        {required:true,message:"Tên không để trống"},
+        {min:6,message:"Tên phải > 6 kí tự"}
+    ]}
+      >
         <Input placeholder="Tên sản phẩm" />
       </Form.Item>
-      <Form.Item label="Ảnh"  name="image">
+      <Form.Item label="Ảnh"  name="image" rules={[
+        {required:true,message:"Ảnh không để trống"}
+      ]}>
         <Input placeholder="1000" />
       </Form.Item>
-      <Form.Item label="Giá tiền"  name="price">
-        <Input placeholder="1000" />
+      <Form.Item label="Giá tiền"  name="price"
+      rules={[
+        {min:1000,message:"Giá>1000"},
+        {type:"number",message:"Giá phải là số"},
+        {required:true,message:"Giá không để trống"},
+      ]}
+      >
+        <InputNumber min={1000}/>
+      </Form.Item>
+      <Form.Item label="Email" name="email" rules={[
+        {pattern:/^\S+@+\S+\.[a-z]{2,6}$/,message:"Mail không đúng định dạng"}
+      ]}>
+        <Input placeholder='Email'/>
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit">Thêm mới</Button>
