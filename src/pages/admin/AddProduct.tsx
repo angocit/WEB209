@@ -48,12 +48,11 @@ const AddProduct = (props: Props) => {
       </Form.Item>
       <Form.Item label="Giá tiền"  name="price"
       rules={[
-        {min:1000,message:"Giá>1000"},
-        {type:"number",message:"Giá phải là số"},
+        {type:"number",min:1000,message:"Giá phải là số và >1000"},
         {required:true,message:"Giá không để trống"},
       ]}
       >
-        <InputNumber min={1000}/>
+        <InputNumber min={0}/>
       </Form.Item>
       <Form.Item label="Email" name="email" rules={[
         {pattern:/^\S+@+\S+\.[a-z]{2,6}$/,message:"Mail không đúng định dạng"}
