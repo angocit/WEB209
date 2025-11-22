@@ -1,11 +1,6 @@
 {
   "products": [
     {
-      "id": 2,
-      "name": "Sản phẩm 2",
-      "price": 2000
-    },
-    {
       "name": "Sản phẩm 3",
       "price": "90000",
       "id": 3,
@@ -18,20 +13,6 @@
       "price": "122222",
       "category": "3",
       "id": 4
-    },
-    {
-      "id": 5
-    },
-    {
-      "id": 6
-    },
-    {
-      "id": 7
-    },
-    {
-      "name": "sdfsdf",
-      "price": "23423",
-      "id": 8
     },
     {
       "name": "Dầu gội",

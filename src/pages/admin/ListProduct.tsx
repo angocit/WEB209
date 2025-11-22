@@ -1,8 +1,8 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
 import type { IProduct } from '../../types/product'
-import { Table } from 'antd';
+import { Button, message, Popconfirm, Table } from 'antd';
 type Props = {}
 
 const ListProduct = (props: Props) => {
@@ -16,6 +16,25 @@ const ListProduct = (props: Props) => {
     // enabled: !queryclient.getQueryData(["AllProduct"])
      staleTime:Infinity
   })
+  const mutation = useMutation({
+    mutationFn: async(id:number)=>{
+        await axios.delete(`http://localhost:3000/products/${id}`)
+        return id
+    },
+    onSuccess: (id)=>{
+      message.success("Xóa thành công")
+      queryclient.setQueryData(["AllProduct"],(products:any)=>{
+                return products.filter((product:IProduct)=>product.id!=id)
+            })
+    },
+    onError:()=>{
+      message.error("Xóa thất bại")
+    }
+  })
+  const handleDelete =(id:number)=>{
+      // alert(id)
+      mutation.mutate(id)
+  }
   if (isLoading) return <>Loading</>
 const columns = [
     {
@@ -39,6 +58,22 @@ const columns = [
         title: 'Price',
         dataIndex: 'price',
         key: 'price',
+    },
+    {
+        title: 'Action',
+        dataIndex: 'id',
+        key: 'id',
+        render: (id:number)=>(
+          <Popconfirm
+        title="Xóa sản phẩm"
+        description="Bạn thực sự muốn xóa?"
+        onConfirm={()=>handleDelete(id)}
+        okText="Yes"
+        cancelText="No"
+      >
+        <Button danger>Delete</Button>
+      </Popconfirm>
+        )
     },
     ];
   return (
