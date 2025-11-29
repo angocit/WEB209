@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartCT } from '../ClientLayout'
 
 const ClientHeader = () => {
+    const {count} = useContext(CartCT)
   return (
     <header>
         <div className='topbar bg-black text-white text-center py-2'>
@@ -28,6 +30,7 @@ const ClientHeader = () => {
                 <div className='info flex gap-5'>
                     <div className='cart'>
                         <img src="/images/cart.svg"/>
+                        {count}
                     </div>
                     <div className='user'>
                         <img src="/images/user.svg"/>

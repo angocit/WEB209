@@ -2,15 +2,10 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
 import type { IProduct } from '../types/product'
+import useProduct from '../hooks/producthook'
 
 const Home = () => {
-  const {data,isLoading,isError} = useQuery<IProduct[]>({
-    queryKey: ["AllProduct"],
-    queryFn: async ()=>{
-      const {data} = await axios.get("http://localhost:3000/products")
-      return data
-    }
-  })
+  const [data,isLoading] = useProduct<IProduct>('http://localhost:3000/products')
   if (isLoading) return <>Loading</>
   return (
     <div>

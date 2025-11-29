@@ -6,16 +6,20 @@ import AdminLayout from "./layouts/admin/AdminLayout"
 import Dashboard from "./pages/admin/Dashboard"
 import ListProduct from "./pages/admin/ListProduct"
 import AddProduct from "./pages/admin/AddProduct"
+import EditProduct from "./pages/admin/EditProduct"
+import Login from "./pages/Login"
 
 function App() {
   const router = useRoutes([
     {path:'/',Component:ClientLayout,children:[
       {path:'',Component:Home},
-      {path:'category',Component:Category}
+      {path:'category',Component:Category},
+       {path:'login',Component:Login}
     ]},
     {path:'/admin',Component:AdminLayout,children:[
       {path:'',Component:Dashboard},
       {path:'products',Component:ListProduct},
+      {path:'products/:id',Component:EditProduct},
       {path:'products/add',Component:AddProduct}
     ]}
   ]) 

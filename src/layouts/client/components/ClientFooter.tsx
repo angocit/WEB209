@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartCT } from '../ClientLayout'
 
 const ClientFooter = () => {
+  const {count,setCount} = useContext(CartCT)
   return (
-    <div>ClientFooter</div>
+    <div>ClientFooter
+      <button onClick={()=>setCount(count+1)}>Tăng giỏ hàng</button>
+    </div>
   )
 }
 

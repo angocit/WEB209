@@ -9,6 +9,7 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import SidebarMenu from './components/SidebarMenu';
+import PrivateAdmin from '../../private/PrivateAdmin';
 const { Header, Sider, Content } = Layout;
 const AdminLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -16,6 +17,7 @@ const AdminLayout = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   return (
+    <PrivateAdmin>
      <Layout style={{minHeight:'100vh'}}>
       <Sider 
         trigger={null} 
@@ -57,6 +59,7 @@ const AdminLayout = () => {
         </Content>
       </Layout>
     </Layout>
+    </PrivateAdmin>
   )
 }
 

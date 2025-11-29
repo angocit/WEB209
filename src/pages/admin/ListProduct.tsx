@@ -3,10 +3,12 @@ import axios from 'axios'
 import React from 'react'
 import type { IProduct } from '../../types/product'
 import { Button, message, Popconfirm, Table } from 'antd';
+import { useNavigate } from 'react-router-dom';
 type Props = {}
 
 const ListProduct = (props: Props) => {
     const queryclient = useQueryClient()
+    const navigate = useNavigate()
   const {data,isLoading,isError} = useQuery<IProduct[]>({
     queryKey: ["AllProduct"],
     queryFn: async ()=>{
@@ -64,6 +66,10 @@ const columns = [
         dataIndex: 'id',
         key: 'id',
         render: (id:number)=>(
+          <div className='flex gap-2'>
+          <Button color="primary" variant="solid" onClick={()=>navigate(`/admin/products/${id}`)}>
+            Sửa
+          </Button>          
           <Popconfirm
         title="Xóa sản phẩm"
         description="Bạn thực sự muốn xóa?"
@@ -71,8 +77,11 @@ const columns = [
         okText="Yes"
         cancelText="No"
       >
-        <Button danger>Delete</Button>
-      </Popconfirm>
+        <Button color="danger" variant="solid">
+            Xóa
+          </Button>
+      </Popconfirm> 
+      </div>     
         )
     },
     ];
