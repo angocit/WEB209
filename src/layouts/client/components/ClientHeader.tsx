@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { CartCT } from '../ClientLayout'
+import { CartCT } from '../../../context/cartContext'
 
 const ClientHeader = () => {
     const {count} = useContext(CartCT)

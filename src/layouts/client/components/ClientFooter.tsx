@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { CartCT } from '../ClientLayout'
+import { CartCT } from '../../../context/cartContext'
 
 const ClientFooter = () => {
   const {count,setCount} = useContext(CartCT)
