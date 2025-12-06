@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import { CartCT } from '../../../context/cartContext'
 
 const ClientHeader = () => {
-    const {count} = useContext(CartCT)
+    const {Storestate} = useContext(CartCT)
   return (
-    <header>
+    <header className='dark:bg-black dark:text-white'>
         <div className='topbar bg-black text-white text-center py-2'>
             <div className='max-w-7xl mx-auto relative'>
             <span>Sign up and get 20% off to your first order. <a className='font-bold underline' href='#'>Sign Up Now</a></span>
@@ -30,7 +30,7 @@ const ClientHeader = () => {
                 <div className='info flex gap-5'>
                     <div className='cart'>
                         <img src="/images/cart.svg"/>
-                        {count}
+                        {Storestate.cart}
                     </div>
                     <div className='user'>
                         <img src="/images/user.svg"/>

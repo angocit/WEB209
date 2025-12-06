@@ -8,7 +8,7 @@ type Props = {
 const PrivateAdmin = ({children}: Props) => {
     const user ={
         name:"admin",
-        role:"user"
+        role:"admin"
     }
   return user.role=='admin'?<>{children}</>:<Navigate to={'/login'}/>
 }
