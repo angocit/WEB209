@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import axios from 'axios'
 interface IMessage{
   user:string,
   message:string
@@ -9,6 +10,7 @@ interface IMessage{
 interface IProduct {
   id: number;
   name: string;
+  image:string;
   price: number;
 }
 function App() {
@@ -22,13 +24,11 @@ function App() {
   //     setCount(count+1)
   // },[messages,isClick])
   useEffect(()=>{
-    const timeout =setTimeout(async()=>{
-          const res = await fetch(`http://localhost:3000/product?name_like=${text}`)
-          const result = await res.json()
-          setProduct(result)
-    },500) 
-    return ()=>clearTimeout(timeout) 
-  },[text])
+      (async()=>{
+          const {data} = await axios.get(`http://localhost:3000/product`)
+          setProduct(data)
+        })()  // IIFE
+  },[])
   const handleClick = ()=>{
       setMessage([...messages,{user:"Ngoc",message:"Xin chào"} as IMessage])
       setMessage(oldvalue=>[...oldvalue,{user:"Bot",message:"Chào bạn"} as IMessage])
@@ -36,15 +36,19 @@ function App() {
   return (
     <div>
       <input onChange={(e)=>setText(e.target.value)} type='text' placeholder='Nhập gì đó vào đây'/>
-     
-     <h3>Kết quả tìm kiếm</h3>
-     <ul>
+     <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
+     <h3>Danh sách sản phẩm</h3>
+     <div className='products grid grid-cols-4'>
       {products.map((product)=>(
-        <li>
+        <div className='item'>
+          <img src={product.image}/>
           <h3>{product.name}</h3>
-        </li>
+          <span>{product.price}</span>
+        </div>
       ))}
-      </ul>
+      </div>
       Số hiện tại là: {count}
       <ul>
       {messages.map((message)=>(
