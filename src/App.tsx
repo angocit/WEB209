@@ -30,6 +30,9 @@ function App() {
       setMessage([...messages,{user:"Ngoc",message:"Xin chào"} as IMessage])
       setMessage(oldvalue=>[...oldvalue,{user:"Bot",message:"Chào bạn"} as IMessage])
   }
+  const sendMessage = (mess:string)=>{
+    alert(mess)
+  }
   return (
     <div>
       <input onChange={(e)=>setText(e.target.value)} type='text' placeholder='Nhập gì đó vào đây'/>
@@ -39,7 +42,7 @@ function App() {
      <h3>Danh sách sản phẩm</h3>
      <div className='products grid grid-cols-4'>
       {products.map((product,index)=>(
-        <ProductItem isEven ={(index%2)==0} key={product.id} product={product}/>
+        <ProductItem sendMessage={sendMessage} isEven ={(index%2)==0} key={product.id} product={product}/>
       ))}
       </div>
       Số hiện tại là: {count}
@@ -56,7 +59,7 @@ function App() {
     <h3>Đề xuất</h3>
      <div className='products grid grid-cols-4'>
       {products.map((product,index)=>(
-        <ProductItem isEven ={(index%2)==0} key={product.id} product={product}/>
+        <ProductItem sendMessage={sendMessage} isEven ={(index%2)==0} key={product.id} product={product}/>
       ))}
       </div>
     </div>
