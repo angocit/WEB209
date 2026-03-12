@@ -3,16 +3,13 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import axios from 'axios'
+import type { IProduct } from './interface/product'
+import ProductItem from './components/client/productitem'
 interface IMessage{
   user:string,
   message:string
 }
-interface IProduct {
-  id: number;
-  name: string;
-  image:string;
-  price: number;
-}
+
 function App() {
   const [messages, setMessage] = useState<IMessage[]>([])
   const [count,setCount] = useState<number>(0)
@@ -42,11 +39,7 @@ function App() {
      <h3>Danh sách sản phẩm</h3>
      <div className='products grid grid-cols-4'>
       {products.map((product)=>(
-        <div className='item'>
-          <img src={product.image}/>
-          <h3>{product.name}</h3>
-          <span>{product.price}</span>
-        </div>
+        <ProductItem key={product.id} product={product}/>
       ))}
       </div>
       Số hiện tại là: {count}
