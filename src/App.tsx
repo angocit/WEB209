@@ -38,8 +38,8 @@ function App() {
     </h1>
      <h3>Danh sách sản phẩm</h3>
      <div className='products grid grid-cols-4'>
-      {products.map((product)=>(
-        <ProductItem key={product.id} product={product}/>
+      {products.map((product,index)=>(
+        <ProductItem isEven ={(index%2)==0} key={product.id} product={product}/>
       ))}
       </div>
       Số hiện tại là: {count}
@@ -53,6 +53,12 @@ function App() {
       </ul>
         <button onClick={()=>handleClick()}>Send Message</button>
         <button onClick={()=>setisClick(!isClick)}>Thay đổi button</button>
+    <h3>Đề xuất</h3>
+     <div className='products grid grid-cols-4'>
+      {products.map((product,index)=>(
+        <ProductItem isEven ={(index%2)==0} key={product.id} product={product}/>
+      ))}
+      </div>
     </div>
   )
 }

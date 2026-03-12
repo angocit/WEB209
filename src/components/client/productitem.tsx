@@ -1,15 +1,14 @@
-import React from 'react'
 import type { IProduct } from '../../interface/product'
 
 type Props = {
-    product:IProduct
+    product:IProduct,
+    isEven:boolean
 }
-
-const ProductItem = ({product}: Props) => {
+const ProductItem = ({product,isEven}: Props) => {
   return (
-    <div className='item'>
+    <div>
         <img src={product.image}/>
-        <h3>{product.name}</h3>
+        {(isEven)?<h3>{product.name}</h3>:<h3 className='text-red-600'>{product.name}</h3>}        
         <span>{product.price}</span>
     </div>
   )
