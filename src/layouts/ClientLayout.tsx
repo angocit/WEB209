@@ -1,12 +1,15 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import Header from '../components/client/header'
+import Footer from '../components/client/footer'
 
 const ClientLayout = () => {
   return (
-    <div>
-        <h1>Client Layout</h1>
+    <>
+        <Header/>
         <Outlet/>
-    </div>
+        <Footer/>
+    </>
   )
 }
 
