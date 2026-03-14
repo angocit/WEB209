@@ -42,7 +42,7 @@ function App() {
      <h3>Danh sách sản phẩm</h3>
      <div className='products grid grid-cols-4'>
       {products.map((product,index)=>(
-        <ProductItem sendMessage={sendMessage} isEven ={(index%2)==0} key={product.id} product={product}/>
+        <ProductItem index={index} sendMessage={sendMessage} isEven ={(index%2)==0} key={product.id} product={product}/>
       ))}
       </div>
       Số hiện tại là: {count}
