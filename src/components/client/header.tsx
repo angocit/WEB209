@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -33,16 +33,16 @@ const Header = () => {
                 <nav className="pl-6">
                     <ul className="flex gap-2">
                         <li>
-                            <Link to={'/'}>Show</Link>
+                            <NavLink to={'/'}>Show</NavLink>
                         </li>
                         <li>
-                            <Link to={'/'}>On Sale</Link>
+                            <NavLink to={'/detail'}>Chi tiết</NavLink>
                         </li>
                         <li>
-                            <Link to={'/'}>New Arrivals</Link>
+                            <NavLink to={'/category'}>Danh mục</NavLink>
                         </li>
                         <li>
-                            <Link to={'/'}>Brands</Link>
+                            <NavLink to={'/'}>Brands</NavLink>
                         </li>
                     </ul>
                 </nav>
