@@ -1,22 +1,16 @@
 {
-    "product":[
-        {
-            "id":1,
-            "name":"Sản phẩm A",
-            "image":"https://product.hstatic.net/1000123703/product/dong_ho_big_quartz_1024x1024.jpg",
-            "price":1000
-        },
-        {
-            "id":2,
-            "name":"Sản phẩm B",
-            "image":"https://bizweb.dktcdn.net/thumb/grande/100/342/745/products/dong-ho-treo-tuong-pluttis-28cm-mau-do-4.png?v=1713848399103",
-            "price":1000
-        },
-        {
-            "id":3,
-            "name":"Sản phẩm C",
-            "image":"https://bizweb.dktcdn.net/thumb/1024x1024/100/307/505/products/hm-960.jpg?v=1540181546593",
-            "price":15000
-        }
-    ]
+  "product": [
+    {
+      "id": 1,
+      "name": "Sản phẩm A",
+      "image": "https://product.hstatic.net/1000123703/product/dong_ho_big_quartz_1024x1024.jpg",
+      "price": 1000
+    },
+    {
+      "id": 3,
+      "name": "Sản phẩm C",
+      "image": "https://bizweb.dktcdn.net/thumb/1024x1024/100/307/505/products/hm-960.jpg?v=1540181546593",
+      "price": 15000
+    }
+  ]
 }
