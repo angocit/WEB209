@@ -1,6 +1,7 @@
 import { ProductOutlined, UserOutlined } from '@ant-design/icons';
 import { Menu, type MenuProps } from 'antd';
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const SidebarMenu = () => {
     type MenuItem = Required<MenuProps>['items'][number];
@@ -19,14 +20,17 @@ const SidebarMenu = () => {
         }
     const items: MenuItem[] = [
         getItem('Quản lý sản phẩm', 'sub1', <ProductOutlined />, [
-            getItem('Tom', '3'),
-            getItem('Bill', '4'),
-            getItem('Alex', '5'),
+            getItem('Danh sách sản phẩm', 'products'),
+            getItem('Thêm mới sản phẩm', 'products/add'),
         ]),
         getItem('Quản lý người dùng', 'user', <UserOutlined />),
         ];
+        const navigate = useNavigate()
+        const handleClickMenu =({key}:any)=>{
+                navigate(key)                
+        }
   return (
-    <Menu theme="dark" defaultSelectedKeys={['sub1']} mode="inline" items={items} />
+    <Menu onClick={handleClickMenu} theme="dark" defaultSelectedKeys={['sub1']} mode="inline" items={items} />
   )
 }
 
