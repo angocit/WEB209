@@ -61,7 +61,7 @@ const Products = () => {
 if (isLoading) return <>Đang tải...</>
   return (
     <div>
-      <h1>Danh sách sản phẩm</h1>
+      <h1 className='text-center text-4xl mb-5'>Danh sách sản phẩm</h1>
       {data&&<Table rowKey="id" dataSource={data} columns={columns} />}
     </div>
   )
