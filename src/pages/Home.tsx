@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
-import { IProduct } from '../interface/product'
+import type { IProduct } from '../interface/product'
 
 const Home = () => {
   const queryclient = useQueryClient()

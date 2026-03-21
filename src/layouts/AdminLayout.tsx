@@ -8,6 +8,7 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
+import SidebarMenu from '../components/admin/SidebarMenu';
 const { Header, Sider, Content } = Layout;
 const AdminLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -28,9 +29,7 @@ const AdminLayout = () => {
         width={250}
       >
         <div className="text-white text-3xl p-5 text-center font-bold">WD20309</div>
-        <aside>
-          Sidebar
-        </aside>
+        <SidebarMenu/>
       </Sider>
       <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }}>
