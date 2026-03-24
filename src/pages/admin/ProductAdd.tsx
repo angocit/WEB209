@@ -47,7 +47,10 @@ const ProductAdd = () => {
     <Form.Item<TProduct>
       label="Tên sản phẩm"
       name="name"
-      rules={[{ required: true, message: 'Tên không được để trống' }]}
+      rules={[
+        { required: true, message: 'Tên không được để trống'},
+        {min:6,message:"Tên phải >= 6 kí tự"}
+      ]}
     >
       <Input />
     </Form.Item>
@@ -66,6 +69,28 @@ const ProductAdd = () => {
       ]}
     >
       <InputNumber/>
+    </Form.Item>
+    {/* Validate mẫu Email */}
+    {/* <Form.Item
+      label="Email"
+      name="email"
+      rules={[
+        { required: true, message: 'Email không để trống'},
+        {pattern: /^\S+@\S+\.+[a-z]{2,6}$/,message:"Email không đúng định dạng"}
+      ]}
+    >
+      <Input/>
+    </Form.Item> */}
+    {/* Validate mẫu Số điện thoại */}
+    <Form.Item
+      label="SĐT"
+      name="sdt"
+      rules={[
+        { required: true, message: 'ĐT không để trống'},
+        {pattern: /^0+[0-9]{9}$/,message:"ĐT không đúng định dạng"}
+      ]}
+    >
+      <Input/>
     </Form.Item>
     <Form.Item label={null}>
       <Button type="primary" htmlType="submit">

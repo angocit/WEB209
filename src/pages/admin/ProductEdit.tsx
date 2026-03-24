@@ -42,7 +42,7 @@ const ProductEdit = () => {
     if (isLoading) return <>Đang tải...</>
   return (
     <>
-    <h1 className='text-center text-2xl uppercase mb-5'>Thêm mới sản phẩm</h1>
+    <h1 className='text-center text-2xl uppercase mb-5'>Sửa sản phẩm</h1>
     <Form
     name="basic"
     labelCol={{ span: 8 }}
@@ -55,7 +55,9 @@ const ProductEdit = () => {
     <Form.Item<TProduct>
       label="Tên sản phẩm"
       name="name"
-      rules={[{ required: true, message: 'Tên không được để trống' }]}
+      rules={[
+        { required: true, message: 'Tên không được để trống'}
+    ]}
     >
       <Input />
     </Form.Item>
