@@ -3,6 +3,7 @@ import axios from 'axios'
 import React from 'react'
 import type { IProduct } from '../../interface/product'
 import { Button, message, Popconfirm, Table } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
 const Products = () => {
   const {data,isLoading} = useQuery<IProduct[]>({
@@ -41,6 +42,7 @@ const Products = () => {
       message.error("Xóa thất bại")
     }
   })
+  const navigate = useNavigate()
   const columns = [
   {
     title: 'STT',
@@ -71,10 +73,10 @@ const Products = () => {
     dataIndex: 'id',
     key: 'id',
     render: (id:number)=>(
-      <>
-      <Button color="primary" variant="solid">
+      <div className='flex gap-2'>
+      <Button color="primary" variant="solid" onClick={()=>navigate(`/admin/products/edit/${id}`)}>
             Sửa
-          </Button>
+        </Button>
          <Popconfirm
         title="Xóa sản phẩm"
         description="Bạn thực sự muốn xóa"
@@ -84,7 +86,7 @@ const Products = () => {
       >
         <Button danger>Xóa</Button>
       </Popconfirm>
-        </>
+        </div>
     )
   },
 ];

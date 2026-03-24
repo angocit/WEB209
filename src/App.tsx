@@ -13,6 +13,7 @@ import ClientLayout from './layouts/ClientLayout'
 import AdminLayout from './layouts/AdminLayout'
 import Products from './pages/admin/Products'
 import ProductAdd from './pages/admin/ProductAdd'
+import ProductEdit from './pages/admin/ProductEdit'
 interface IMessage{
   user:string,
   message:string
@@ -27,7 +28,8 @@ function App() {
     ]},
     {path:'/admin',Component:AdminLayout,children:[
       {path:'products',Component:Products},
-      {path:'products/add',Component:ProductAdd}
+      {path:'products/add',Component:ProductAdd},
+      {path:'products/edit/:id',Component:ProductEdit}
     ]}
     
   ])
