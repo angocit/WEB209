@@ -11,6 +11,18 @@
       "name": "Sản phẩm C",
       "image": "https://bizweb.dktcdn.net/thumb/1024x1024/100/307/505/products/hm-960.jpg?v=1540181546593",
       "price": 15000
+    },
+    {
+      "name": "Sản phẩm 3",
+      "image": "sdafadsf",
+      "price": 50000,
+      "id": 4
+    },
+    {
+      "name": "Sản phẩm 4",
+      "image": "dfgdfgdfsgs",
+      "price": 100000,
+      "id": 5
     }
   ]
 }

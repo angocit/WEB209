@@ -29,11 +29,13 @@ const Products = () => {
     },
     onSuccess:(value:number)=>{
       message.success("Xóa thành công")
-      if (queryclient.getQueryData(["products"])){
-        queryclient.setQueryData(["products"],(olddata:IProduct[])=>{
-          return olddata.filter(item=>item.id!=value)
-        })
-      }
+      // if (queryclient.getQueryData(["products"])){
+      //   queryclient.setQueryData(["products"],(olddata:IProduct[])=>{
+      //     return olddata.filter(item=>item.id!=value)
+      //   })
+      // }
+      queryclient.getQueryData(["products"])&&
+      queryclient.setQueryData(["products"],(olddata:IProduct[])=>olddata.filter(item=>item.id!=value))
     },
     onError:()=>{
       message.error("Xóa thất bại")
