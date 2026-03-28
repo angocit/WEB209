@@ -14,6 +14,8 @@ import AdminLayout from './layouts/AdminLayout'
 import Products from './pages/admin/Products'
 import ProductAdd from './pages/admin/ProductAdd'
 import ProductEdit from './pages/admin/ProductEdit'
+import PrivateRouter from './PrivateRouter'
+import Login from './pages/Login'
 interface IMessage{
   user:string,
   message:string
@@ -24,9 +26,10 @@ function App() {
     {path:'/',Component:ClientLayout,children:[
       {path:'',Component:Home},
       {path:'detail',Component:Detail},
-      {path:'category',Component:Category}
+      {path:'category',Component:Category},
+      {path:'login',Component:Login}
     ]},
-    {path:'/admin',Component:AdminLayout,children:[
+    {path:'/admin',element: <PrivateRouter><AdminLayout/></PrivateRouter>,children:[
       {path:'products',Component:Products},
       {path:'products/add',Component:ProductAdd},
       {path:'products/edit/:id',Component:ProductEdit}

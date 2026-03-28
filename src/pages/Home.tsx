@@ -2,6 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
 import type { IProduct } from '../interface/product'
+import ProductItem from '../components/client/productitem'
 
 const Home = () => {
   const queryclient = useQueryClient()
@@ -19,12 +20,9 @@ const Home = () => {
     <>
     <div className='max-w-7xl mx-auto'>
       <h2>Danh sách sản phẩm</h2>
-      <div className='grid grid-cols-4'>
+      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
           {data&&data.map((product)=>(
-            <div>
-              <img src={product.image}/>
-              <h3>{product.name}</h3>
-            </div>
+            <ProductItem product={product} key={product.id}/>
           ))}
       </div>
       </div>
