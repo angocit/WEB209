@@ -7,12 +7,15 @@ type Props = {
     product:IProduct
 }
 const ProductItem = ({product}: Props) => {
-  const {count,setCount} = useContext(countCT)
+  const {cartstate,dispath} = useContext(countCT)
   return (
     <div>
               <img src={product.image}/>
               <h3>{product.name}</h3>
-              <Button onClick={()=>setCount(count+1)} type="primary">Thêm giở hàng</Button>
+              <Button onClick={()=>{
+                dispath({type:'addtocart',payload:cartstate.count+1});
+                dispath({type:'closeOpen',payload:true});
+                }} type="primary">Thêm giở hàng</Button>
    </div>
   )
 }
