@@ -7,9 +7,9 @@ type Props = {
 }
 
 const PrivateRouter = ({children}: Props) => {
-    const {isAdmin,isLoading} = useAuth()
+    const {isAdmin,isLoading,isLogin} = useAuth()
     if (isLoading) return <>Đang tải...</>    
-  return (isAdmin)?<>{children}</>:<Navigate to={'/login'} />
+  return (isAdmin)?<>{children}</>:(isLogin)?<Navigate to={'/'} />:<Navigate to={'/login'} />
 }
 
 export default PrivateRouter

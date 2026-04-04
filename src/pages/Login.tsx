@@ -13,7 +13,7 @@ const Login = () => {
                 console.log(data);
                 sessionStorage.setItem('token',data.accessToken)
                 message.success("Đăng nhập thành công")
-                // navigate('/login')
+                navigate('/admin')
             } catch (error:any) {
                 console.dir(error.response.data);                
                  message.error(error.response.data)                

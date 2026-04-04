@@ -1,10 +1,10 @@
 {
   "product": [
     {
-      "id": 1,
-      "name": "Sản phẩm A",
+      "name": "Sản phẩm A lll",
       "image": "https://product.hstatic.net/1000123703/product/dong_ho_big_quartz_1024x1024.jpg",
-      "price": 1000
+      "price": 1000,
+      "id": 1
     },
     {
       "id": 3,
