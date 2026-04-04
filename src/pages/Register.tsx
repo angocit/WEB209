@@ -4,19 +4,17 @@ import axios from 'axios'
 import React from 'react'
 import { data, useNavigate } from 'react-router-dom'
 
-const Login = () => {
-  const navigate = useNavigate()
+const Register = () => {
+    const navigate = useNavigate()
     const mutation = useMutation({
         mutationFn:async (udata)=>{
             try {
-                const {data} = await axios.post(`http://localhost:3000/login`,udata)
-                console.log(data);
-                sessionStorage.setItem('token',data.accessToken)
-                message.success("Đăng nhập thành công")
-                // navigate('/login')
-            } catch (error:any) {
-                console.dir(error.response.data);                
-                 message.error(error.response.data)                
+                const {data} = await axios.post(`http://localhost:3000/register`,udata)
+                message.success("Đăng ký thành công")
+                navigate('/login')
+            } catch (error) {
+                console.log(error);                
+                 message.error("Đăng ký thất bại")                
             }
         }
     })
@@ -26,7 +24,7 @@ const Login = () => {
     }
   return (
     <div>
-        <h1>Đăng nhập tài khoản</h1>
+        <h1>Đăng ký tài khoản</h1>
         <Form
     name="basic"
     labelCol={{ span: 8 }}
@@ -53,7 +51,7 @@ const Login = () => {
     </Form.Item>
     <Form.Item label={null}>
       <Button type="primary" htmlType="submit">
-        Đăng nhập
+        Đăng ký
       </Button>
     </Form.Item>
   </Form>
@@ -61,4 +59,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register

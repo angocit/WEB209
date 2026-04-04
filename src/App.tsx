@@ -16,6 +16,7 @@ import ProductAdd from './pages/admin/ProductAdd'
 import ProductEdit from './pages/admin/ProductEdit'
 import PrivateRouter from './PrivateRouter'
 import Login from './pages/Login'
+import Register from './pages/Register'
 interface IMessage{
   user:string,
   message:string
@@ -27,7 +28,8 @@ function App() {
       {path:'',Component:Home},
       {path:'detail',Component:Detail},
       {path:'category',Component:Category},
-      {path:'login',Component:Login}
+      {path:'login',Component:Login},
+      {path:'register',Component:Register}
     ]},
     {path:'/admin',element: <PrivateRouter><AdminLayout/></PrivateRouter>,children:[
       {path:'products',Component:Products},

@@ -1,4 +1,4 @@
-import { Button, Form, Input, InputNumber, message } from 'antd'
+import { Button, Form, Input, InputNumber, message, Select } from 'antd'
 import React from 'react'
 import type { IProduct, TProduct } from '../../interface/product'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -92,6 +92,17 @@ const ProductAdd = () => {
     >
       <Input/>
     </Form.Item>
+    <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
+        <Select
+          allowClear
+          placeholder="Select a option and change input text above"
+          options={[
+            { label: 'male', value: 'male' },
+            { label: 'female', value: 'female' },
+            { label: 'other', value: 'other' },
+          ]}
+        />
+      </Form.Item>
     <Form.Item label={null}>
       <Button type="primary" htmlType="submit">
         Submit

@@ -24,5 +24,17 @@
       "price": 100000,
       "id": 5
     }
+  ],
+  "users": [
+    {
+      "email": "angocit@gmail.com",
+      "password": "$2a$10$aBq4jD3SoO3V1sIGPrNi7.WtMUA1J4lB2x/5ab2FAvTyf6XZmAJji",
+      "id": 1
+    },
+    {
+      "email": "angocit2@gmail.com",
+      "password": "$2a$10$AREScFKSObBJFlan3nvPLubBFei2bbc73sPc2Y4O./u6Bg/bo0W7.",
+      "id": 2
+    }
   ]
 }
